@@ -1,5 +1,5 @@
 # Paws and Claws
-Find your perfect furry companion. 
+An app to connect people looking for a furry friend with pets that need homes.
 
 ## Built With:
 * Express
@@ -7,14 +7,7 @@ Find your perfect furry companion.
 * Pug Templates
 
 ## Feature-List
-* create a user account with preferences for the type of pet you are looking for
-* shelters can create an account, and upload available dogs
-* match people with dogs based on similar preferences and/or location
-* match requests (messages) can be sent from either the user or shelter side
-* login option with user data to take to your profile
+For a full feature lisit visit the [Feature-List](./documentaion/featureList.md).
 
 ### Models and Tables
-
-* animals
-* humans
-* shelters
+For a full lisit of the tables, models, templates, and endpoints visit the [Database Section](./documentaion/database.md).
