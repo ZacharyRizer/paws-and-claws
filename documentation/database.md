@@ -2,7 +2,7 @@
 
 Below is a representation of all of our tables and their relations:
 
-![alt text](https://github.com/ZacharyRizer/paws-and-claws/blob/master/documentation/PawsAndClawsTable.pdf)
+![](../documentation/PawsAndClawsTable.jpg)
 
 1. Users: details for the account that are public
    1. every user has a relation to a userData table that keeps private data
