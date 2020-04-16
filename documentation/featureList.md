@@ -25,3 +25,4 @@
 ### Stretch-Goals
 1. Rather than the shelters seeing a list of adoption requests, the shelter's available pets would show best matches to adopters, mimicking the adopting side
 2. Real time messaging between shelter and adopter, rather than adoption requests
+3. Inluce cats along with dogs, two different pet types with separate breed tables
