@@ -1,6 +1,6 @@
 ## Tables and Their Associations
 
-Below is a representation of all of our tables and their relations:
+Below is a representation of all of the tables and their relations:
 
 ![](../documentation/PawsAndClawsTable.jpg)
 
