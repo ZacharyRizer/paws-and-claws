@@ -8,6 +8,6 @@ An app to connect people looking for a furry friend with pets that need homes.
 * Pug Templates
 
 ### Documentation:
-* [Feature List](documentation/featureList.md)
+* [Feature List](/documentation/featureList.md)
 * [Database](/documentation/database.md)
 * [Routes and Endpoints](/documentation/routes_endpoints.md)
