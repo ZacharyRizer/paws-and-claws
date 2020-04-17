@@ -13,6 +13,7 @@
      * get a percentage of the matched categories
      * display pets starting with the best match on down
    * matching preferences will include:
+     * pet type
      * pet age
      * pet breed
      * pet size
@@ -20,9 +21,11 @@
      * good with: kids, other cats, other dogs
      * location (proximity of the person to the shelter)
 3. when an adopter has found a potential match, they can create an adoption request that would be sent the shelter for review
+4. Demo user login
 
 
 ### Stretch-Goals
-1. Rather than the shelters seeing a list of adoption requests, the shelter's available pets would show best matches to adopters, mimicking the adopting side
-2. Real time messaging between shelter and adopter, rather than adoption requests
-3. Inluce cats along with dogs, two different pet types with separate breed tables
+1. Media query for mobile
+2. History of matched pets with the option to have a particular pet not show in that users query
+3. Show matches one by one with 'swiping' rather than a list
+4. Real time messaging between shelter and adopter, rather than adoption requests

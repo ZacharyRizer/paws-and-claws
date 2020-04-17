@@ -1,13 +1,13 @@
-# Paws and Claws
+# Paws and Claws ![](../paws-and-claws/documentation/Images/logo.png)
 An app to connect people looking for a furry friend with pets that need homes.
 
 ## Built With:
 * Express
 * Node.js
+* Sequelize
 * Pug Templates
 
-## Feature-List
-For a full feature lisit visit the [Feature-List](https://github.com/ZacharyRizer/paws-and-claws/blob/master/documentation/featureList.md).
-
-### Models and Tables
-For a full lisit of the tables, models, templates, and endpoints visit the [Database Section](https://github.com/ZacharyRizer/paws-and-claws/blob/master/documentation/database.md).
+### Documentation:
+* [Feature List](../paws-and-claws/documentation/featureList.md)
+* [Database](../paws-and-claws/documentation/database.md)
+* [Routes and Endpoints](../paws-and-claws/documentation/routes_endpoints.md)
