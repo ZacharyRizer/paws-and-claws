@@ -2,7 +2,7 @@
 
 Below is a representation of all of the tables and their relations:
 
-![](/documentation/Images/DatabaseTable.jpeg)
+![](/documentation/images/DatabaseTable.jpeg)
 
 1. Users: all user information - for both shelters and adopters
    *  Users.userPetPrefId => particular UserPetPrefs.id
