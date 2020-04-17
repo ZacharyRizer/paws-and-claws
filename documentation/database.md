@@ -2,7 +2,7 @@
 
 Below is a representation of all of the tables and their relations:
 
-![](../documentation/images/PawsAndClawsTable.jpeg)
+![](/documentation/Images/PawsAndClawsTable.jpeg)
 
 1. Users: all user information - for both shelters and adopters
    1. adopters are linked to a preferred pet
