@@ -1,4 +1,4 @@
-# Paws and Claws ![](../paws-and-claws/documentation/Images/logo.png)
+# Paws and Claws ![](/documentation/Images/logo.png)
 An app to connect people looking for a furry friend with pets that need homes.
 
 ## Built With:
