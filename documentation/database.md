@@ -13,7 +13,11 @@ Below is a representation of all of the tables and their relations:
    *  Pets.breedId => particular Breeds.id
    *  Pets.shelterId => particular Shelter.id
    *  AdoptionRequests.petId => particular Pets.id
-
+   
+3. Shelters: details of a shelter and all available pets
+   *  AdoptionRequest.shelterId => particular Shelter.id
+   *  Pets.shelterId => particular Shelter.id
+   
 3. AdoptionRequests: created by an adopter to alert a shelter they are interested in a particular pet
    *  AdoptionRequests.petId => particular Pets.id
    *  AdoptionRequests.userId => particular Users.id
