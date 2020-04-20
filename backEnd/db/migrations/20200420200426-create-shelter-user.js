@@ -38,6 +38,18 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
+      city: {
+        allowNull: false,
+        type: Sequelize.STRING(64),
+      },
+      state: {
+        allowNull: false,
+        type: Sequelize.STRING(2),
+      },
+      zipCode: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

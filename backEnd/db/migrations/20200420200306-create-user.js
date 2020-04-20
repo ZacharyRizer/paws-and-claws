@@ -37,9 +37,6 @@ module.exports = {
           key: 'id'
         },
       },
-      address: {
-        type: Sequelize.STRING
-      },
       phoneNum: {
         allowNull: false,
         type: Sequelize.INTEGER,
