@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     userPetPrefId: DataTypes.INTEGER,
-    phoneNum: DataTypes.INTEGER
+    phoneNum: DataTypes.STRING
   }, {});
   User.associate = function(models) {
     User.belongsTo(models.UserPetPreference, { foreignKey: 'userPetPrefId' })

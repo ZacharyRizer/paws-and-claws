@@ -28,7 +28,7 @@ module.exports = {
       },
       phoneNum: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       website: {
         type: Sequelize.STRING
