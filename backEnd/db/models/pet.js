@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     isOkayPets: DataTypes.BOOLEAN
   }, {});
   Pet.associate = function(models) {
-    // associations can be defined here
+    Pet.hasMany(models.AdoptionRequest, { foreignKey: 'petId'});
+    Pet.belongsTo(models.Breed, { foreignKey: 'breedId' });
+    Pet.belongsTo(models.ShelterUser, { foreignKey: 'shelterId' });
   };
   return Pet;
 };

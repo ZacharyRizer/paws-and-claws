@@ -7,10 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     shelterName: DataTypes.STRING,
     phoneNum: DataTypes.INTEGER,
     website: DataTypes.STRING,
-    address: DataTypes.STRING
+    address: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    zipCode: DataTypes.STRING, 
   }, {});
   ShelterUser.associate = function(models) {
-    // associations can be defined here
+    ShelterUser.hasMany(models.AdoptionRequest, { foreignKey: 'shelterId'});
+    ShelterUser.hasMany(models.Pet, { foreignKey: 'shelterId'});
   };
   return ShelterUser;
 };

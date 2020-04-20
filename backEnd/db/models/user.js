@@ -7,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     userPetPrefId: DataTypes.INTEGER,
-    address: DataTypes.STRING,
     phoneNum: DataTypes.INTEGER
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.belongsTo(models.UserPetPreference, { foreignKey: 'userPetPrefId' })
+    User.hasMany(models.AdoptionRequest, { foreignKey: 'userId' })
   };
   return User;
 };

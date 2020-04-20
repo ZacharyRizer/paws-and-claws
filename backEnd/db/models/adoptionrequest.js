@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     isAccepted: DataTypes.BOOLEAN
   }, {});
   AdoptionRequest.associate = function(models) {
-    // associations can be defined here
+    AdoptionRequest.belongsTo(models.Pet, { foreignKey: 'petId'});
+    AdoptionRequest.belongsTo(models.ShelterUser, { foreignKey: 'shelterId'});
+    AdoptionRequest.belongsTo(models.User, { foreignKey: 'userId'});
   };
   return AdoptionRequest;
 };
