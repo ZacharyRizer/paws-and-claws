@@ -17,23 +17,18 @@ module.exports = {
         },
       },
       age: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       sex: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       size: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       isOkayPets: {
-        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       isOkayKids: {
-        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       createdAt: {
