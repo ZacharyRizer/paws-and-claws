@@ -31,7 +31,11 @@ module.exports = {
         type: Sequelize.STRING(64)
       },
       userPetPrefId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'UserPetPreferences',
+          key: 'id'
+        },
       },
       address: {
         type: Sequelize.STRING
