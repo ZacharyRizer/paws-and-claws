@@ -5,7 +5,7 @@ Below is a representation of all of the tables and their relations:
 ![](/documentation/Images/PawsAndClawsTable.png)
 
 1. Users: all user information - for adopters
-   *  Users.userPetPrefId => particular UserPetPrefs.id
+   *  UserPetPrefs.userId => particular Users.id
    *  AdoptionRequests.userId => particular Users.id
 
 
@@ -17,6 +17,7 @@ Below is a representation of all of the tables and their relations:
 3. Shelters: details of a shelter and all available pets
    *  AdoptionRequest.shelterId => particular Shelter.id
    *  Pets.shelterId => particular Shelter.id
+   *  ShelterUsers.stateId => particular States.id
    
 3. AdoptionRequests: created by an adopter to alert a shelter they are interested in a particular pet
    *  AdoptionRequests.petId => particular Pets.id
@@ -24,7 +25,7 @@ Below is a representation of all of the tables and their relations:
    *  AdoptionRequests.ShelterId => particular Shelter.id
 
 4. UserPetPrefs: 'virtual' pet created by the adopter to match qualities with available pets
-   *  Users.userPetPrefId => particular UserPetPrefs.id
+   *  UserPetPrefs.userId => particular Users.id
    *  UserPetPrefs.breedId => particular Breeds.id
 
 5. Breeds: preseeded list of all available breeds with their associated petType
