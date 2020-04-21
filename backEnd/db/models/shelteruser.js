@@ -9,12 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     website: DataTypes.STRING,
     address: DataTypes.STRING,
     city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    zipCode: DataTypes.STRING, 
+    stateId: DataTypes.INTEGER,
+    zipCode: DataTypes.STRING,
   }, {});
-  ShelterUser.associate = function(models) {
-    ShelterUser.hasMany(models.AdoptionRequest, { foreignKey: 'shelterId'});
-    ShelterUser.hasMany(models.Pet, { foreignKey: 'shelterId'});
+  ShelterUser.associate = function (models) {
+    ShelterUser.hasMany(models.AdoptionRequest, { foreignKey: 'shelterId' });
+    ShelterUser.hasMany(models.Pet, { foreignKey: 'shelterId' });
+    ShelterUser.belongsTo(models.State, { foreignKey: 'stateId' });
   };
   return ShelterUser;
 };

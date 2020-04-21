@@ -42,9 +42,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(64),
       },
-      state: {
+      stateId: {
         allowNull: false,
-        type: Sequelize.STRING(2),
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'States',
+          key: 'id'
+        },
       },
       zipCode: {
         allowNull: false,
