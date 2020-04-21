@@ -8,7 +8,7 @@ module.exports = {
         petId: 2,
         shelterId: 1,
         message: "I would love to adopt Shana",
-        isAccepted: true,
+        isAccepted: false,
         createdAt: new Date(),
         updatedAt: new Date()
       }
