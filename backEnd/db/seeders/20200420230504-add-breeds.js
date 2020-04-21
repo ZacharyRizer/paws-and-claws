@@ -24,6 +24,7 @@ module.exports = {
       { breedName: "Great Dane", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Shetland sheepdog", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Mixed Breed Dog", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
+      { breedName: "Shiba Inu", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Siamese", petType: "Cat", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Persian", petType: "Cat", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Maine Coon", petType: "Cat", createdAt: new Date(), updatedAt: new Date() },

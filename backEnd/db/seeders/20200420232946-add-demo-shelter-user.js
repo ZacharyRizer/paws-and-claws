@@ -13,19 +13,14 @@ module.exports = {
         address: "0000 Demo Street",
         city: "Demo",
         state: "DE",
-        zipCode: 00000,
+        zipCode: 10000,
         createdAt: new Date(),
+        updatedAt: new Date()
       }
     ])
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+    return queryInterface.bulkDelete('ShelterUsers', null, {});
   }
 };
