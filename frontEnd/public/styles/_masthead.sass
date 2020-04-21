@@ -1,0 +1,20 @@
+@import "utils"
+
+.masthead
+    margin: 0 auto 0 auto
+    width: 100%
+    background: $grey1
+    display: flex
+    flex-direction: column
+    border-radius: 0 0 10px 10px
+    h2
+        margin: 40px 0 0 5%
+        color: $secdark
+    p
+        margin: 10px 10% 0 10%
+    .nav-button
+        margin: 10px 20% 15px auto
+        background: $secdark
+        @include navButton
+        &:hover
+            background: $light
