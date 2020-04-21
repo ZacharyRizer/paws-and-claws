@@ -54,17 +54,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(5),
       },
-  createdAt: {
-    allowNull: false,
-    type: Sequelize.DATE
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
   },
-  updatedAt: {
-    allowNull: false,
-    type: Sequelize.DATE
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('ShelterUsers');
   }
-});
-  },
-down: (queryInterface, Sequelize) => {
-  return queryInterface.dropTable('ShelterUsers');
-}
 };
