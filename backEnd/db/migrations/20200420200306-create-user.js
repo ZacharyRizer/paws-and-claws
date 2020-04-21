@@ -38,7 +38,7 @@ module.exports = {
         },
       },
       phoneNum: {
-        type: Sequelize.STRING(9),
+        type: Sequelize.STRING(10),
         unique: true
       },
       createdAt: {
