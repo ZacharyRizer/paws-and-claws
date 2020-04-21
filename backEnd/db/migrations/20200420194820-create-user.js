@@ -30,16 +30,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(64)
       },
-      userPetPrefId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'UserPetPreferences',
-          key: 'id'
-        },
-      },
       phoneNum: {
-        allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(10),
         unique: true
       },
       createdAt: {
