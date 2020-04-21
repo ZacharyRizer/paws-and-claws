@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const UserPetPreference = sequelize.define('UserPetPreference', {
     breedId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
     sex: DataTypes.INTEGER,
     size: DataTypes.INTEGER,
