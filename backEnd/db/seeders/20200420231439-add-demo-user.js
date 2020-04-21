@@ -9,7 +9,6 @@ module.exports = {
         hashedPassword: "",
         firstName: "Demo",
         lastName: "User",
-        userPetPrefId: null,
         phoneNum: "0000000000",
         createdAt: new Date(),
         updatedAt: new Date()

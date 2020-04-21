@@ -8,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     isOkayPets: DataTypes.BOOLEAN,
     isOkayKids: DataTypes.BOOLEAN
   }, {});
-  UserPetPreference.associate = function(models) {
+  UserPetPreference.associate = function (models) {
     UserPetPreference.belongsTo(models.Breed, { foreignKey: 'breedId' });
-    UserPetPreference.hasOne(models.User, { foreignKey: 'userPetPrefId' });
+    UserPetPreference.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return UserPetPreference;
 };

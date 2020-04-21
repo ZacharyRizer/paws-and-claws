@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     userPetPrefId: DataTypes.INTEGER,
     phoneNum: DataTypes.STRING
   }, {});
-  User.associate = function(models) {
-    User.belongsTo(models.UserPetPreference, { foreignKey: 'userPetPrefId' })
+  User.associate = function (models) {
+    User.hasMany(models.UserPetPreference, { foreignKey: 'userId' })
     User.hasMany(models.AdoptionRequest, { foreignKey: 'userId' })
   };
   return User;

@@ -5,7 +5,6 @@ module.exports = {
     return queryInterface.bulkInsert("ShelterUsers", [
       {
         email: "Demo@DemoShelterUser.com",
-        username: "DemoShelterUser",
         hashedPassword: "",
         shelterName: "Demo Shelter",
         phoneNum: "0000000000",
