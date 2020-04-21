@@ -12,7 +12,7 @@ module.exports = {
         website: "https://www.demoshelteruser.demo/",
         address: "0000 Demo Street",
         city: "Demo",
-        state: "DE",
+        stateId: 8,
         zipCode: 10000,
         createdAt: new Date(),
         updatedAt: new Date()
