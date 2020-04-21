@@ -28,7 +28,7 @@ module.exports = {
       },
       phoneNum: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(10)
       },
       website: {
         type: Sequelize.STRING
@@ -42,25 +42,29 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(64),
       },
-      state: {
+      stateId: {
         allowNull: false,
-        type: Sequelize.STRING(2),
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'States',
+          key: 'id'
+        },
       },
       zipCode: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(5),
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    });
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('ShelterUsers');
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE
   }
+});
+  },
+down: (queryInterface, Sequelize) => {
+  return queryInterface.dropTable('ShelterUsers');
+}
 };

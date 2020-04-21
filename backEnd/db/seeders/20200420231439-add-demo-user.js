@@ -10,7 +10,7 @@ module.exports = {
         firstName: "Demo",
         lastName: "User",
         userPetPrefId: null,
-        phoneNum: "(000) 000-0000",
+        phoneNum: "0000000000",
         createdAt: new Date(),
         updatedAt: new Date()
       }
