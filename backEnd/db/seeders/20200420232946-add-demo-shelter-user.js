@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert("ShelterUsers", [
       {
         email: "Demo1@DemoShelterUser.com",
-        hashedPassword: "",
+        hashedPassword: "$2a$10$rfNptqnxIVN3WgNiYAcYCuP/Bo6J5s1tUysT97QcbZTaS9QzWQpLm",
         shelterName: "Demo Shelter 1",
         phoneNum: "0000000001",
         website: "https://www.demoshelteruser1.demo/",
@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         email: "Demo2@DemoShelterUser.com",
-        hashedPassword: "",
+        hashedPassword: "$2a$10$rfNptqnxIVN3WgNiYAcYCuP/Bo6J5s1tUysT97QcbZTaS9QzWQpLm",
         shelterName: "Demo Shelter 2",
         phoneNum: "0000000002",
         website: "https://www.demoshelteruser2.demo/",
