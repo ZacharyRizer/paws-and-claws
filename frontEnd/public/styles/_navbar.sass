@@ -26,15 +26,47 @@
         color: $grey1
         font-weight: 400
 
-.nav-right
+.nav-right-1
     display: flex
+    margin-right: 50px
     .nav-button
         background: $primary
         font-weight: 400
         border: 2px $grey1 solid
         &:last-child
-            margin-right: 50px
             margin-left: 25px
         @include navButton
         &:hover
             background: $lighter
+
+.nav-right-2
+    display: flex
+    align-items: center
+    .greeting
+        color: $grey1
+        margin-right: 20px
+        font-size: 16px
+        padding: 10px
+.nav-list
+    display: flex
+    justify-content: space-between
+    list-style: none
+    padding: 0
+    margin-right: 50px
+    .nav-link
+        color: $grey1
+        font-size: 16px
+        padding: 10px
+        border-radius: 5px
+        box-sizing: border-box
+        &:hover
+            // box-shadow: 0 0 2px 2px $grey1
+            // background: $lighter
+            color: lightcoral
+    li
+        padding: 0 20px 0 20px
+        &:not(:last-child)
+            border-right: 1px solid $grey2
+
+.hidden
+    display: none

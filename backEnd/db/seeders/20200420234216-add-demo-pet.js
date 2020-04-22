@@ -22,7 +22,7 @@ module.exports = {
         breedId: 2,
         shelterId: 1,
         petName: "Shana",
-        age: 9,
+        age: 3,
         sex: 2,
         size: 4,
         description:

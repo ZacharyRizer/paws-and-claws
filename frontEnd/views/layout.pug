@@ -6,13 +6,35 @@ html(lang="en")
         link(href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet")
         link(href="/styles/style.css" rel="stylesheet")
         link(rel="icon" type="image/png" href="../images/pixelDog.png")
+        script(type="module" src="js/navbar.js")
         title Paws and Claws
     body
         .nav
             .nav-left
                 a(href='/'): img(src="../images/pixelDog.png")
                 a(href="/"): h1 Paws and Claws
-            .nav-right
+            .nav-right-1
                 a.nav-button(href="/login") Login
                 a.nav-button(href="/register") Register
-        block content
+            div(class="nav-right-2 hidden")
+                p.greeting Welcome, User
+                ul.nav-list
+                    li: a.nav-link(href="/matches") Your Pets
+                    li: a.nav-link(href="/profile") Profile
+                    li: a.nav-link(href="/logout") Logout
+        .page-container
+            div(class="masthead hidden" id="masthead")
+                div(class="register-container hidden" id="registerContainer")
+                    h2 Your new best friend is a click away
+                    p Quis dolor excepteur est ipsum sint. Occaecat (culpa velit aliqua deserunt do elit nisi labore deserunt irure. Consequat duis mollit ex nisi et deserunt id tempor consectetur aute. Magna ipsum irure non sint.
+                    a.nav-button(href="/register") Register
+                div(class="logged-in-container hidden" id="loggedInContainer")
+                    h2 Here's a list of pets we think you'd get along great with
+                    p No pressure, just some suggestions
+                div(class="error-container hidden" id="errorContainer")
+                    h3 Uh-oh! We had a few problems...
+                    ul.error-list
+                        li.error Sample error 1
+                        li.error Sample error 2
+                        li.error Sample error 3
+            block content

@@ -53,17 +53,34 @@ router.post("/",
     .withMessage("Please provide a last name")
     .isLength({ max: 64 })
     .withMessage("Max last name length is 64"),
-  validateLoginInfo, asyncHandler(async (req, res, next) => {
+  check("password")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a password."),
+  check("confirmPassword")
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Confirm Password')
+    .isLength({ max: 50 })
+    .withMessage('Confirm Password must not be more than 50 characters long')
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('Confirm Password does not match Password');
+      }
+      return true;
+    }),
+  validateLoginInfo,
+  asyncHandler(async (req, res, next) => {
     const { email, username, password, firstName, lastName } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({ email, username, hashedPassword, firstName, lastName })
 
     const token = getUserToken(user);
+    const role = "Adopter";
     res
       .status(201)
       .json({
         user: { id: user.id },
+        role,
         token,
       })
   }));
@@ -82,7 +99,8 @@ router.post("/token", requireUserAuth, asyncHandler(async (req, res, next) => {
     return next(err);
   }
   const token = getUserToken(user);
-  res.json({ token, user: { id: user.id } });
+  const role = "Adopter";
+  res.json({ token, role, user: { id: user.id } });
 }));
 
 router.put("/:id", requireUserAuth, asyncHandler(async (req, res, next) => {

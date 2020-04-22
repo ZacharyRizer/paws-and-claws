@@ -5,7 +5,7 @@ const { check } = require("express-validator");
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const { getUserToken, requireUserAuth, requireShelterAuth } = require("../auth");
 const db = require("../db/models");
-const { Pet } = db
+const { Pet, Breed } = db
 
 const router = express.Router();
 
@@ -16,6 +16,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const pets = await Pet.findAll({
       order: [["createdAt", "DESC"]],
+      include: Breed
     });
     res.json({ pets });
   })
@@ -36,6 +37,7 @@ router.get(
       where: {
         id: req.params.id,
       },
+      include: Breed
     });
     if (pet) {
       res.json({ pet });

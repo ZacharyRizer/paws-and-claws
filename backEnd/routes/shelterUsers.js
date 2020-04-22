@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 
 const { asyncHandler, handleValidationErrors } = require("../utils");
-const { getUserToken, requireShelterAuth } = require("../auth");
+const { getShelterToken, requireShelterAuth } = require("../auth");
 const db = require("../db/models");
 
 const router = express.Router();
@@ -27,6 +27,17 @@ const validateLoginShelter = [
   check("password")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a password."),
+  check("confirmPassword")
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Confirm Password')
+    .isLength({ max: 50 })
+    .withMessage('Confirm Password must not be more than 50 characters long')
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('Confirm Password does not match Password');
+      }
+      return true;
+    }),
   check('shelterName')
     .exists({ checkFalsy: true })
     .withMessage("Please provide a shelter name.")
@@ -34,9 +45,7 @@ const validateLoginShelter = [
     .withMessage("Name cannot be longer than 128 character."),
   check('phoneNum')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a phone number.')
-    .isLength({ max: 10 })
-    .withMessage('Please provide a valid phone number.'),
+    .withMessage('Please provide a phone number.'),
   check('address')
     .exists({ checkFalsy: true })
     .withMessage('Please provide an address'),
@@ -63,9 +72,11 @@ router.post('/',
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await ShelterUser.create({ email, hashedPassword, shelterName, phoneNum, address, city, stateId, zipCode });
 
-    const token = getUserToken(user);
+    const token = getShelterToken(user);
+    const role = "Shelter";
     res.status(201).json({
       user: { id: user.id },
+      role,
       token,
     });
 
@@ -90,8 +101,9 @@ router.post(
       err.errors = ["The provided credentials were invalid."];
       return next(err);
     }
-    const token = getUserToken(shelterUser);
-    res.json({ token, user: { id: user.id } });
+    const token = getShelterToken(shelterUser);
+    const role = "Shelter";
+    res.json({ token, role, user: { id: user.id } });
   })
 );
 
