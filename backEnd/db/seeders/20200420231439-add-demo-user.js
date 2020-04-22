@@ -6,7 +6,7 @@ module.exports = {
       {
         email: "Demo@DemoUser.com",
         username: "DemoUser",
-        hashedPassword: "",
+        hashedPassword: "$2a$10$rfNptqnxIVN3WgNiYAcYCuP/Bo6J5s1tUysT97QcbZTaS9QzWQpLm",
         firstName: "Demo",
         lastName: "User",
         phoneNum: "0000000000",
