@@ -4,15 +4,28 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("ShelterUsers", [
       {
-        email: "Demo@DemoShelterUser.com",
+        email: "Demo1@DemoShelterUser.com",
         hashedPassword: "",
-        shelterName: "Demo Shelter",
-        phoneNum: "0000000000",
-        website: "https://www.demoshelteruser.demo/",
-        address: "0000 Demo Street",
-        city: "Demo",
-        stateId: 8,
-        zipCode: 10000,
+        shelterName: "Demo Shelter 1",
+        phoneNum: "0000000001",
+        website: "https://www.demoshelteruser1.demo/",
+        address: "0001 Demo Street",
+        city: "Portland",
+        stateId: 37,
+        zipCode: 97206,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: "Demo2@DemoShelterUser.com",
+        hashedPassword: "",
+        shelterName: "Demo Shelter 2",
+        phoneNum: "0000000002",
+        website: "https://www.demoshelteruser2.demo/",
+        address: "0002 Demo Street",
+        city: "Memphis",
+        stateId: 42,
+        zipCode: 38018,
         createdAt: new Date(),
         updatedAt: new Date()
       }
