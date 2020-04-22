@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    .forms-container
+        form.create-pref-pet
+            .create-pref-header
+                h1 Let's find you the perfect pet!
+                p Enter in what you are looking for in a furry friend.
+            .breeds
+                select(name="breed" required)
+                    each breed in breed
+                        option(value=`${breed.id}`)= breed.breedName
+            

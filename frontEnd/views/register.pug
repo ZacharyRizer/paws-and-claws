@@ -1,59 +1,61 @@
 extends layout.pug
 
 block content
-    .page-container
-        .forms-container
-            form.register-user
-                .user-form-header
-                    h1 Register as an adopter
-                    p Ready to find your best friend? Enter your contact information below. We'll never pollute your inbox with anything but pictures of dogs.
-                .name
-                    //- label(for="firstName")
-                    input.firstName(name="firstName" type="text" placeholder="First Name" required)
-                    //- label(for="lastName")
-                    input.lastName(name="lastName" type="text" placeholder="Last Name" required)
-                .username-email
-                    //- label(name="username")
-                    input.username(name="username" type="text" placeholder="Username" required)
-                    //- label(for="email")
-                    input.email(name="email" type="text" placeholder="Email address" required)
+    .forms-container
+        form.register-user
+            .user-form-header
+                h1 Register as an adopter
+                p Ready to find your best friend? Enter your contact information below. We'll never pollute your inbox with anything but pictures of dogs.
+            .name
+                //- label(for="firstName")
+                input.firstName(name="firstName" type="text" placeholder="First Name" required)
+                //- label(for="lastName")
+                input.lastName(name="lastName" type="text" placeholder="Last Name" required)
+            .username-email
+                //- label(name="username")
+                input.username(name="username" type="text" placeholder="Username" required)
+                //- label(for="email")
+                input.email(name="email" type="text" placeholder="Email address" required)
+            //- label(for="phoneNumber")
+            input.phone-number(name="phoneNumber" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="2224446666")
+            //- label(for="password")
+            input.password(name="password" type="password" placeholder="Password" autocomplete="off" required)
+            //- label(for="confirmPassword")
+            input.password-confirm(name="confirmPassword" type="password" placeholder="Confirm Password" autocomplete="off" required)
+            button.button(type="submit") Create Account
+        span.divider
+        form.register-shelter
+            .shelter-form-header
+                h1 Register as a shelter
+                p Ready to find a home for the puppies you protect? Enter your shelter's information below. We'll help you place every pupper in its ideal home.
+            .shelter-names
+                //- label(for="shelterName")
+                input.shelterName(name="shelterName" type="text" placeholder="Shelter Name" required)
+                //- label(for="website")
+                input.website(name="website" type="text" placeholder="Website URL")
+            .website-email
                 //- label(for="phoneNumber")
-                input.phone-number(name="phoneNumber" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="2224446666")
-                //- label(for="password")
-                input.password(name="password" type="password" placeholder="Password" required)
-                //- label(for="confirmPassword")
-                input.password-confirm(name="confirmPassword" type="password" placeholder="Confirm Password" required)
-                button.button(type="submit") Create Account
-            span.divider
-            form.register-shelter
-                .shelter-form-header
-                    h1 Register as a shelter
-                    p Ready to find a home for the puppies you protect? Enter your shelter's information below. We'll help you place every pupper in its ideal home.
-                .shelter-names
-                    //- label(for="shelterName")
-                    input.shelterName(name="shelterName" type="text" placeholder="Shelter Name" required)
-                    //- label(for="website")
-                    input.website(name="website" type="text" placeholder="Website URL")
-                .website-email
-                    //- label(for="phoneNumber")
-                    input.shelter-phoneNumber(name="phoneNumber" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="2224446666")
-                    //- label(for="email")
-                    input.email(name="email" type="text" placeholder="Email Address" required)
-                //- label(for="address")
-                input.street-address(name="address" type="text" placeholder="Street Address" required)
-                //- label(for="city")
-                .address-fields
-                    input.city(name="city" type="text" placeholder="City" required)
-                    //- label(for="state")
-                    select.state(name="state" required)
-                        option(value="1") AL
-                        option(value="2") AK
-                        option(value="3") AZ
-                        option(value="4") AR
-                        option(value="5") CA
-                    //- label(for="zipCode")
-                    input.zipCode(name="zipCode" type="text" placeholder="12345" required)
-                .password-fields
-                    input.password(name="password" type="password" placeholder="Password" required)
-                    input.password-confirm(name="confirmPassword" type="password" placeholder="Confirm Password" required)
-                button.button(type="submit") Create Shelter
+                input.shelter-phoneNumber(name="phoneNumber" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="2224446666")
+                //- label(for="email")
+                input.email(name="email" type="text" placeholder="Email Address" required)
+            //- label(for="address")
+            input.street-address(name="address" type="text" placeholder="Street Address" required)
+            //- label(for="city")
+            .address-fields
+                input.city(name="city" type="text" placeholder="City" required)
+                //- label(for="state")
+                select(name="state" class="state custom-select" required)
+                    each state in states
+                        option(value=`${state.id}`)= state.stateName
+                    //- option(value="1") AL
+                    //- option(value="2") AK
+                    //- option(value="3") AZ
+                    //- option(value="4") AR
+                    //- option(value="5") CA
+                //- label(for="zipCode")
+                input.zipCode(name="zipCode" type="text" placeholder="12345" required)
+            .password-fields
+                input.password(name="password" type="password" placeholder="Password" autocomplete="off" required)
+                input.password-confirm(name="confirmPassword" type="password" placeholder="Confirm Password" autocomplete="off" required)
+            button.button(type="submit") Create Shelter
+    script(type="module" src="js/register.js")

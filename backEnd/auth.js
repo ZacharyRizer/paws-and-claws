@@ -9,6 +9,23 @@ const { secret, expiresIn } = jwtConfig;
 const getUserToken = user => {
     const userData = {
         id: user.id,
+        role: "Adopter",
+        email: user.email,
+    };
+
+    const token = jwt.sign(
+        { data: userData },
+        secret,
+        { expiresIn: parseInt(expiresIn, 10) }
+    );
+
+    return token;
+};
+
+const getShelterToken = user => {
+    const userData = {
+        id: user.id,
+        role: "Shelter",
         email: user.email,
     };
 
@@ -86,4 +103,4 @@ const restoreUser = (req, res, next) => {
 const requireUserAuth = [bearerToken(), restoreUser];
 const requireShelterAuth = [bearerToken(), restoreShelterUser];
 
-module.exports = { getUserToken, requireUserAuth, requireShelterAuth };
+module.exports = { getUserToken, getShelterToken, requireUserAuth, requireShelterAuth };
