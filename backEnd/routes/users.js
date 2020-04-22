@@ -75,7 +75,11 @@ router.post("/token", requireUserAuth, asyncHandler(async (req, res, next) => {
   });
 
   if (!user || !user.validatePassword(password)) {
-    next(userNotFound(userId));
+    const err = new Error("Failed to log in.");
+    err.errors = ["The provided credentials were invalid"];
+    err.status = 401;
+    err.title = "Login failed.";
+    return next(err);
   }
   const token = getUserToken(user);
   res.json({ token, user: { id: user.id } });
@@ -103,7 +107,7 @@ router.put("/:id", requireUserAuth, asyncHandler(async (req, res, next) => {
     });
     res.json({ updatedUser });
   } else {
-
+    next(userNotFound(userId));
   }
 }));
 
