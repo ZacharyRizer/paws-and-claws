@@ -1,0 +1,126 @@
+@import "utils"
+
+.forms-container
+    padding-top: 100px
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+form
+    width: 40%
+input
+    background: $grey1
+    border: 2px solid $darker
+    border-radius: 3px
+    padding: 10px 10px
+    font-family: "Arvo"
+    &::placeholder
+        color: $grey4
+    &:hover
+        box-shadow: 0 0 3px 2px $grey3
+button
+    background: $dark
+    border: 2px solid $darker
+    font-family: "Arvo"
+    padding: 5px
+    width: 150px
+    text-align: center
+    color: $grey1
+    border-radius: 10px
+    &:hover
+        background: $lighter
+        cursor: pointer
+.register-user
+    display: flex
+    flex-direction: column
+    background: $grey1
+    padding: 20px 30px
+    .user-form-header
+        @include formHeader
+    .name
+        display: flex
+        justify-content: space-between
+        @include formBox
+    .username-email
+        box-sizing: border-box
+        width: 80%
+        align-self: center
+        display: flex
+        justify-content: space-between
+        margin-bottom: 10px
+    .firstName, .lastName, .username, .email
+        width: 42%
+    .phone-number
+        @include formBox
+    .password
+        box-sizing: border-box
+        width: 80%
+        align-self: center
+        margin-bottom: 10px
+    .password-confirm
+        box-sizing: border-box
+        width: 80%
+        align-self: center
+        margin-bottom: 10px
+    .button
+        align-self: flex-end
+        margin-right: 10%
+.divider
+    width: 5px
+    height: 460px
+    background: $grey3
+    opacity: 0.5
+    border-radius: 2px
+    z-index: 0
+.register-shelter
+    display: flex
+    flex-direction: column
+    background: $grey1
+    padding: 20px 30px
+    .shelter-form-header
+        @include formHeader
+    .shelter-names
+        display: flex
+        justify-content: space-between
+        @include formBox
+    .website-email
+        display: flex
+        justify-content: space-between
+        @include formBox
+    .shelterName, .shelter-phoneNumber, .website, .email
+        width: 42%
+    .street-address
+        @include formBox
+    .address-fields
+        display: flex
+        justify-content: space-between
+        width: 100%
+        // select
+        //     width: 10%
+        @include formBox
+        .city
+            width: 36%
+        .zipCode
+            width: 22%
+    .state
+        background: inherit
+        box-sizing: border-box
+        width: 20%
+        color: $grey4
+        border: 2px solid $darker
+        border-radius: 3px
+        font-family: "Arvo"
+        &:hover
+            box-shadow: 0 0 3px 2px $grey3
+        option
+            color: $grey1
+            background: $darker
+    .password-fields
+        display: flex
+        justify-content: space-between
+        & *
+            width: 42%
+        @include formBox
+    .button
+        align-self: flex-end
+        margin-right: 10%

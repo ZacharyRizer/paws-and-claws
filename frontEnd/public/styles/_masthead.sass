@@ -2,19 +2,36 @@
 
 .masthead
     margin: 0 auto 0 auto
-    width: 100%
-    background: $grey1
     display: flex
-    flex-direction: column
+    background-image: linear-gradient(180deg, #DDDDDD, #F5F5F5)
     border-radius: 0 0 10px 10px
-    h2
-        margin: 40px 0 0 5%
-        color: $secdark
-    p
-        margin: 10px 10% 0 10%
-    .nav-button
-        margin: 10px 20% 15px auto
-        background: $secdark
-        @include navButton
-        &:hover
-            background: $light
+    .register-container
+        h2
+            color: $darker
+        p
+            margin: 10px 10% 0 10%
+            color: $grey5
+        .nav-button
+            margin: 10px 20% 0 auto
+            background: $darker
+            @include navButton
+            &:hover
+                background: $lighter
+        @include mastheadFormatter
+
+    .logged-in-container
+        @include mastheadFormatter
+        h2
+            color: $darker
+        p
+            margin: 10px 0 0 10px
+            color: $grey5
+    .error-container
+        @include mastheadFormatter
+        h3
+            margin: 10px 0 0 10px
+            color: $grey5
+        ul
+            list-style: none
+        li
+            color: $mutedRed
