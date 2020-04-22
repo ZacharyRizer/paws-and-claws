@@ -30,6 +30,20 @@ const adoptionRequestNotFoundError = (id) => {
   return err;
 };
 
+// GET for a specific adoption request to display for shelter to read
+router.get(
+  "/:id",
+  asyncHandler(async (req, res, next) => {
+    const adoptionRequestId = parseInt(req.params.id, 10);
+    const adoptionRequest = await AdoptionRequest.findByPk(adoptionRequestId);
+    if (adoptionRequest) {
+      res.json({ adoptionRequest });
+    } else {
+      next(adoptionRequestNotFoundError(req.params.id));
+    }
+  })
+);
+
 router.post('/',
   check("message")
     .exists({ checkFalsy: true })

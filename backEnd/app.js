@@ -3,6 +3,12 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { ValidationError } = require("sequelize");
 const indexRouter = require("./routes/index");
+const userRouter = require('./routes/users')
+const shelterRouter = require('./routes/shelterUsers');
+const petsRouter = require('./routes/pets');
+const adoptionRequestsRouter = require('./routes/adoptionRequests');
+const statesRouter = require('./routes/states');
+const preferredPets = require('./routes/preferredPets')
 
 const { environment } = require("./config");
 
@@ -13,6 +19,12 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:4000" }));
 
 app.use("/", indexRouter);
+app.use('/users', userRouter)
+app.use('/shelters', shelterRouter);
+app.use('/pets', petsRouter);
+app.use('/adoptionRequests', adoptionRequestsRouter);
+app.use('/states', statesRouter);
+app.use('/preferredPets', preferredPets);
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {

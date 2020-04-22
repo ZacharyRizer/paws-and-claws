@@ -8,7 +8,15 @@ const db = require("../db/models");
 
 const router = express.Router();
 
-const { User } = db;
+const { User, AdoptionRequest } = db;
+
+const userNotFound = userId => {
+  const err = new Error("User not found");
+  err.errors = [`User with id: ${userId} could not be found.`];
+  err.title = "User not found.";
+  err.status = 404;
+  return err;
+}
 
 const validateLoginInfo = [
   check("email")
@@ -60,44 +68,63 @@ router.post("/",
       })
   }));
 
-router.post("/token", validateLoginInfo, asyncHandler(async (req, res, next) => {
+router.post("/token", requireUserAuth, asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({
     where: { email },
   });
 
   if (!user || !user.validatePassword(password)) {
-    const err = new Error("Failed to log in.");
-    err.errors = ["The provided credentials were invalid"];
-    err.status = 401;
-    err.title = "Login failed.";
-
-    return next(err);
+    next(userNotFound(userId));
   }
   const token = getUserToken(user);
   res.json({ token, user: { id: user.id } });
 }));
 
-router.put("/:id", validateLoginInfo, asyncHandler(async (req, res, next) => {
+router.put("/:id", requireUserAuth, asyncHandler(async (req, res, next) => {
   const userId = parseInt(req.params.id, 10);
   const user = await User.findByPk(userId);
   if (user) {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    let hashedPassword;
+    if (req.body.password) {
+      hashedPassword = await bcrypt.hash(req.body.password, 10);
+    }
+
     await user.update({
       email: req.body.email,
       username: req.body.username,
-      password: hashedPassword,
+      hashedPassword: hashedPassword,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
     });
-    res.json({ user });
+
+    const updatedUser = await User.findByPk(userId, {
+      attributes: { exclude: ["hashedPassword"] }
+    });
+    res.json({ updatedUser });
   } else {
-    const err = new Error("User not found");
-    err.errors = [`User with id: ${userId} could not be found.`];
-    err.title = "User not found.";
-    err.status = 404;
-    next(err);
+
   }
 }));
+
+router.delete("/:id(\\d+)", requireUserAuth, asyncHandler(async (req, res, next) => {
+  const userId = parseInt(req.params.id, 10);
+  const user = await User.findByPk(userId);
+
+  if (user) {
+    const adoptionRequests = await AdoptionRequest.findAll({
+      where: {
+        userId: userId,
+      }
+    });
+    adoptionRequests.forEach(async request => await request.destroy());
+
+    await user.destroy();
+    res.status(204).end();
+  } else {
+    next(userNotFound(userId));
+  }
+})
+);
 
 module.exports = router;

@@ -7,9 +7,8 @@ const { getUserToken, requireShelterAuth } = require("../auth");
 const db = require("../db/models");
 
 const router = express.Router();
-router.use(requireShelterAuth);
 
-const { ShelterUser } = db;
+const { Pet, ShelterUser, AdoptionRequest} = db;
 
 const validateEmailAndPassword = [
   check("email")
@@ -25,11 +24,6 @@ const validateLoginShelter = [
     .exists({ checkFalsy: true })
     .isEmail()
     .withMessage("Please provide a valid email."),
-  check('username')
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide a username. ")
-    .isLength({ max: 32 })
-    .withMessage("Username cannot be longer than 32 character."),
   check("password")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a password."),
@@ -65,9 +59,9 @@ router.post('/',
   validateEmailAndPassword,
   handleValidationErrors,
   asyncHandler(async (req, res) => {
-    const { email, username, password, shelterName, phoneNum, address, city, stateId, zipCode } = req.body;
+    const { email, password, shelterName, phoneNum, address, city, stateId, zipCode } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await ShelterUser.create({ email, username, hashedPassword, shelterName, phoneNum, address, city, stateId, zipCode });
+    const user = await ShelterUser.create({ email, hashedPassword, shelterName, phoneNum, address, city, stateId, zipCode });
 
     const token = getUserToken(user);
     res.status(201).json({
@@ -80,7 +74,7 @@ router.post('/',
 
 router.post(
   "/token",
-  validateEmailAndPassword,
+  requireShelterAuth,
   asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
     const shelterUser = await ShelterUser.findOne({
@@ -111,19 +105,21 @@ const shelterUserNotFoundError = (id) => {
 
 // Update a shelter User
 router.put('/:id(\\d+)',
-  validateEmailAndPassword,
+  requireShelterAuth,
   handleValidationErrors,
   asyncHandler(async (req, res, next) => {
     const shelterUserId = parseInt(req.params.id, 10);
-    const updatedShelterUser = await ShelterUser.findByPk(shelterUserId);
+    const shelterUser = await ShelterUser.findByPk(shelterUserId);
 
-    if (updatedShelterUser) {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      await updatedShelterUser.update(
+    if (shelterUser) {
+      let hashedPassword;
+      if (req.body.password) {
+        hashedPassword = await bcrypt.hash(req.body.password, 10);
+      }
+      await shelterUser.update(
         {
           email: req.body.email,
-          username: req.body.username,
-          password: hashedPassword,
+          hashedPassword: hashedPassword,
           shelterName: req.body.shelterName,
           phoneNum: req.body.phoneNum,
           city: req.body.city,
@@ -131,6 +127,9 @@ router.put('/:id(\\d+)',
           zipCode: req.body.zipCode
         }
       );
+      const updatedShelterUser = await ShelterUser.findByPk(shelterUserId, {
+        attributes: { exclude: ["hashedPassword"] }
+      });
       res.json({ updatedShelterUser });
     } else {
       next(shelterUserNotFoundError(shelterUserId));
@@ -161,11 +160,26 @@ router.get(
 
 router.delete(
   "/:id(\\d+)",
+  requireShelterAuth,
   asyncHandler(async (req, res, next) => {
     const shelterUserId = parseInt(req.params.id, 10);
     const shelterUser = await ShelterUser.findByPk(shelterUserId);
 
     if (shelterUser) {
+      const adoptionRequests = await AdoptionRequest.findAll({
+        where: {
+          shelterId: shelterUserId,
+        }
+      });
+      adoptionRequests.forEach(async request => await request.destroy());
+
+      const pets = await Pet.findAll({
+        where: {
+          shelterId: shelterUserId,
+        }
+      });
+      pets.forEach(async pet => await pet.destroy());
+
       await shelterUser.destroy();
       res.status(204).end();
     } else {
