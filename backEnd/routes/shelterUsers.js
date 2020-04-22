@@ -8,7 +8,7 @@ const db = require("../db/models");
 
 const router = express.Router();
 
-const { Pet, ShelterUser, AdoptionRequest} = db;
+const { Pet, ShelterUser, AdoptionRequest } = db;
 
 const validateEmailAndPassword = [
   check("email")

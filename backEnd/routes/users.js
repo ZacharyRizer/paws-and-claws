@@ -119,6 +119,13 @@ router.delete("/:id(\\d+)", requireUserAuth, asyncHandler(async (req, res, next)
     });
     adoptionRequests.forEach(async request => await request.destroy());
 
+    const petPref = await petPref.findAll({
+      where: {
+        userId: userId,
+      }
+    });
+
+    await petPref.destroy();
     await user.destroy();
     res.status(204).end();
   } else {
