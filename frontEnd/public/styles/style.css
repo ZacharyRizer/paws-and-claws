@@ -144,6 +144,7 @@ a {
 }
 
 .masthead {
+  width: 100%;
   margin: 0 auto 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -210,6 +211,7 @@ a {
 }
 
 .masthead .error-container {
+  width: 100%;
   margin: 40px 5% 40px 5%;
   width: 100%;
   display: -webkit-box;
@@ -248,6 +250,10 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .card-container {
@@ -333,7 +339,7 @@ a {
   color: #303030;
 }
 
-.forms-container {
+.forms-container-register {
   padding-top: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -671,6 +677,23 @@ button:hover {
 .shelter-form-header p {
   margin: 5px 20px 20px 20px;
   color: #808080;
+}
+
+.forms-container-login {
+  padding-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .user-login, .shelter-login {

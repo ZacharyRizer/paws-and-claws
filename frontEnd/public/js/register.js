@@ -18,11 +18,11 @@ registerFormUser.addEventListener("submit", async (e) => {
     const firstName = formData.get("firstName");
     const lastName = formData.get("lastName");
     const email = formData.get("email");
-    const phoneNum = formData.get("phoneNum");
+    const phoneNum = formData.get("phoneNumber");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword")
     const body = { username, firstName, lastName, email, phoneNum, password, confirmPassword };
-    console.log(body);
+
     try {
         const res = await fetch("http://localhost:8080/users", {
             method: "POST",
@@ -68,7 +68,6 @@ registerFormShelter.addEventListener("submit", async (e) => {
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword")
     const body = { shelterName, email, website, phoneNum, address, city, stateId, zipCode, password, confirmPassword };
-    console.log(body);
 
     try {
         const res = await fetch("http://localhost:8080/shelters", {

@@ -45,6 +45,17 @@ app.get("/logout", function (req, res) {
 app.get('/adoptionRequests', (req, res) => {
     res.render('adoption-request');
 })
+
+// //Only shelter can create a pet
+// app.get('/create-pet', (req, res) => {
+//     res.render('create-pet');
+// })
+
+// //Only Adopter can fill out the preferred pet
+
+// app.get('/preferredPet', (req, res) => {
+//     res.render('create-pref-pet')
+// })
 // Define a port and start listening for connections.
 const port = 4000;
 

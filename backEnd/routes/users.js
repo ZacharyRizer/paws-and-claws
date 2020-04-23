@@ -2,13 +2,15 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 
-const { asyncHandler, handleValidationErrors } = require("../utils");
+const { asyncHandler, handleValidationErrors, validatePassword } = require("../utils");
 const { getUserToken, requireUserAuth } = require("../auth");
 const db = require("../db/models");
 
 const router = express.Router();
 
 const { User, AdoptionRequest } = db;
+
+
 
 const userNotFound = userId => {
   const err = new Error("User not found");
@@ -85,13 +87,14 @@ router.post("/",
       })
   }));
 
-router.post("/token", requireUserAuth, asyncHandler(async (req, res, next) => {
+router.post("/token", asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({
     where: { email },
   });
+  console.log(user.hashedPassword)
 
-  if (!user || !user.validatePassword(password)) {
+  if (!user || !validatePassword(password, user.hashedPassword)) {
     const err = new Error("Failed to log in.");
     err.errors = ["The provided credentials were invalid"];
     err.status = 401;
