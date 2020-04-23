@@ -21,9 +21,9 @@ export const handleErrors = async (err) => {
         }
         errorList.innerHTML = errorsHtml.join("");
     } else {
-        // alert(
-        //     "Something went wrong. Please check your internet connection and try again!"
-        // );
+        alert(
+            "Something went wrong. Please check your internet connection and try again!"
+        );
     }
 };
 

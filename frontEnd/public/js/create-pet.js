@@ -1,39 +1,39 @@
 import { handleErrors } from "./utils.js";
 
-const petForm = document.querySelector(".pet-form");
+const petForm = document.querySelector(".create-pet");
+const masthead = document.querySelector(".masthead");
+const errorContainer = document.getElementById("errorContainer");
+
+
+if (localStorage.getItem("PAWS_AND_CLAWS_ROLE") !== "Shelter") {
+    window.location.href = "/login"
+}
 
 petForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    if (localStorage.getItem("PAWS_AND_CLAWS_ROLE") !== "Shelter") {
-        //TODO: Error handling
-    }
-
     const formData = new FormData(petForm);
-    const breedId = formData.get("breedId");
-    //const shelterId = formData.get("shelterId");
-    const userId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
+    const breedId = formData.get("breeds");
+    // const shelterId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
     const petName = formData.get("petName");
     const age = formData.get("age");
     const sex = formData.get("sex");
     const size = formData.get("size");
     const description = formData.get("description");
     const photo = formData.get("photo");
-    const isOkayKids = formData.get("isOkayKids");
-    const isOkayPets = formData.get("isOkayPets");
-    const isAdopted = formData.get("isAdopted");
+    const isOkayKids = formData.get("isOkayKids") ? true : false
+    const isOkayPets = formData.get("isOkayPets") ? true : false
 
     const body = {
         breedId,
-        userId,
         petName,
         age,
         sex,
         size,
         description,
+        photo,
         isOkayKids,
         isOkayPets,
-        isAdopted
     };
 
     try {
@@ -48,14 +48,16 @@ petForm.addEventListener("submit", async (e) => {
             },
         });
         if (res.status === 401) {
-            window.location.href = "/login"; //redirect to profile page
+            window.location.href = "/login";
             return;
         }
         if (!res.ok) {
             throw res;
         }
-        window.location.href = "/"; //redirect to profile page
+        window.location.href = "/shelterProfile"; //redirect to profile page
     } catch (err) {
+        masthead.classList.remove('hidden');
+        errorContainer.classList.remove('hidden');
         handleErrors(err);
     }
 });

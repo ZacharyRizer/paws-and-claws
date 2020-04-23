@@ -18,7 +18,6 @@ window.addEventListener('DOMContentLoaded', async (e) => {
             return; //redirect to the log-in page
         }
         const { pets } = await res.json();
-        console.log(pets)
         const petsContainer = document.querySelector(".card-container");
         let petsHtml = [];
 
