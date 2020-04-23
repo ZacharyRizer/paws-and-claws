@@ -8,7 +8,8 @@ const shelterRouter = require('./routes/shelterUsers');
 const petsRouter = require('./routes/pets');
 const adoptionRequestsRouter = require('./routes/adoptionRequests');
 const statesRouter = require('./routes/states');
-const preferredPets = require('./routes/preferredPets')
+const preferredPetsRouter = require('./routes/preferredPets')
+const breedsRouter = require('./routes/breeds');
 
 const { environment } = require("./config");
 
@@ -24,7 +25,8 @@ app.use('/shelters', shelterRouter);
 app.use('/pets', petsRouter);
 app.use('/adoptionRequests', adoptionRequestsRouter);
 app.use('/states', statesRouter);
-app.use('/preferredPets', preferredPets);
+app.use('/breeds', breedsRouter);
+app.use('/preferredPets', preferredPetsRouter);
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {

@@ -73,13 +73,6 @@ const validatePet = [
     .withMessage('Please provide a url link to the pet\'s photo')
     .isURL()
     .withMessage('Please provide a value URL'),
-  check("isOkayPets")
-    .exists({ checkFalsy: true })
-    .withMessage('Please indicate whether the pet is okay with other pets'),
-  check("isOkayKids")
-    .exists({ checkFalsy: true })
-    .withMessage('Please indicate whether the pet is okay with children'),
-
   handleValidationErrors,
 ];
 
@@ -95,7 +88,6 @@ router.post(
       size,
       description,
       photo,
-      isAdopted,
       isOkayPets,
       isOkayKids
     } = req.body;
@@ -107,7 +99,7 @@ router.post(
       size,
       description,
       photo,
-      isAdopted,
+      isAdopted: false,
       isOkayPets,
       isOkayKids,
       shelterId: req.user.id
