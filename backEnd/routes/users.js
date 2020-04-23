@@ -71,10 +71,10 @@ router.post("/",
     }),
   validateLoginInfo,
   asyncHandler(async (req, res, next) => {
-    const { email, username, password, firstName, lastName } = req.body;
+    const { email, username, password, firstName, lastName, phoneNum } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({ email, username, hashedPassword, firstName, lastName })
+    const user = await User.create({ email, username, hashedPassword, firstName, lastName, phoneNum })
 
     const token = getUserToken(user);
     const role = "Adopter";

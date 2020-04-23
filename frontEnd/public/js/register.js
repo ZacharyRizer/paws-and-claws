@@ -19,6 +19,8 @@ registerFormUser.addEventListener("submit", async (e) => {
     const body = { username, firstName, lastName, email, phoneNum, password, confirmPassword };
 
     try {
+        console.log(body);
+
         const res = await fetch("http://localhost:8080/users", {
             method: "POST",
             body: JSON.stringify(body),
@@ -39,7 +41,7 @@ registerFormUser.addEventListener("submit", async (e) => {
         localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
         // redirect to home page to see all tweets:
-        window.location.href = "/create-dream-pet";
+        window.location.href = "/createPreferredPet";
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
@@ -85,7 +87,7 @@ registerFormShelter.addEventListener("submit", async (e) => {
         localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
         // redirect to home page to see all tweets:
-        window.location.href = "/create-pet";
+        window.location.href = "/createPet";
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
