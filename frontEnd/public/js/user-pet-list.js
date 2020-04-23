@@ -1,4 +1,4 @@
-import { handleErrors, convertAge } from "./utils.js";
+const { convertAge } = require("./utils.js");
 
 const masthead = document.querySelector(".masthead");
 const registerContainer = document.getElementById("registerContainer");

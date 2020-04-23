@@ -34,7 +34,10 @@ const validateLoginInfo = [
 router.get("/:id", requireUserAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10);
   const user = await User.findByPk(userId, {
-    attributes: { exclude: ["hashedPassword"] }
+    attributes: {
+      exclude: ["hashedPassword"],
+      include: AdoptionRequest
+    }
   });
   res.json({ user });
 }));

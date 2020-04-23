@@ -33,4 +33,4 @@ export const convertAge = (ageIndex) => {
     if (ageIndex === 3) return "Middle Aged"
     if (ageIndex === 4) return "Adult"
     if (ageIndex === 5) return "Mature"
-}
+};

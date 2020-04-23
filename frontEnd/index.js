@@ -40,7 +40,49 @@ app.get("/logout", function (req, res) {
     res.redirect("/");
 });
 
+const matchPets = (dogs, prefPet) => {
+    // let dog1 = {
+    //     name: ‘Misty’,
+    //     breed: 4,
+    //     age: 3,
+    //     sex: 2,
+    //     size: 1,
+    //     description: ‘cute fluffy dog’,
+    //     photo: ‘some url’,
+    //     isOkayKid: true,
+    //     isOkayPets: true
+    // }
+    const matches = dogs.forEach(dog => {
+        count = 0
+        for (let key in prefPet) {
+            if (prefPet[key] === dog[key]) {
+                count++
+            }
+        }
+        dog.matchPercentage = count / 6;
+    }).map(dog => {
+        return (dog.matchPercentage > 0.6);
+    });
 
+    return matches;
+}
+
+app.get("/users/:id", async (req, res) => {
+    let responseOne = await fetch("http://localhost:8080/users/:id");
+    const { user } = await responseOne.json();
+    // let responseTwo = await fetch("https://localhost:8080/pets");
+    // let { dogs } = await responseTwo.json();
+    // matches = matchPets(dogs);
+    // res.render('user-profile', { user, matches });
+    try {
+        let responseTwo = await fetch("http://localhost:8080/pets");
+        let { dogs } = await responseTwo.json();
+        console.log(dogs)
+    } catch (e) {
+        console.log(e)
+    }
+    res.render('user-profile')
+})
 
 app.get('/adoptionRequests', (req, res) => {
     res.render('adoption-request');

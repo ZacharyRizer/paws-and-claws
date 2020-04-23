@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+    .profile-header
+        h3 Shelter Name
+        .contact
+            p phoneNumber
+            p email
+            p website
+        .address
+            p address
+            p city
+            p state
+            p zipCode
+    .pet-list-container
+        ul.pet-list
+            each pet in pets
+                li: a(href"#"") Pet Name

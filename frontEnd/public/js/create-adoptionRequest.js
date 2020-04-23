@@ -1,4 +1,3 @@
-
 import { handleErrors } from "./utils.js";
 
 const adoptionRequestFormUser = document.querySelector(".adoption-request-adopter");
