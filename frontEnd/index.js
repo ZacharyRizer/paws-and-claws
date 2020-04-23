@@ -16,10 +16,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // Set the pug view engine.
 app.set("view engine", "pug");
 
-// app.get('/', (req, res) => {
-//     res.render('homepage');
-// });
-
 app.get('/', (req, res) => {
     res.render('homepage');
 });
@@ -34,9 +30,24 @@ app.get('/login', (req, res) => {
     res.render('login')
 });
 
+// //Only shelter can create a pet
+app.get('/createPet', async (req, res) => {
+    let response = await fetch("http://localhost:8080/breeds");
+    const { breeds } = await response.json();
+    res.render('create-pet', { breeds });
+})
+
+// //Only Adopter can fill out the preferred pet
+app.get('/createPreferredPet', async (req, res) => {
+    let response = await fetch("http://localhost:8080/breeds");
+    const { breeds } = await response.json();
+    res.render('create-pref-pet', { breeds })
+});
+
 app.get("/logout", function (req, res) {
     localStorage.removeItem("PAWS_AND_CLAWS_ACCESS_TOKEN")
     localStorage.removeItem("PAWS_AND_CLAWS_CURRENT_USER_ID")
+    localStorage.removeItem("PAWS_AND_CLAWS_ROLE")
     res.redirect("/");
 });
 
@@ -88,16 +99,6 @@ app.get('/adoptionRequests', (req, res) => {
     res.render('adoption-request');
 })
 
-// //Only shelter can create a pet
-// app.get('/create-pet', (req, res) => {
-//     res.render('create-pet');
-// })
-
-// //Only Adopter can fill out the preferred pet
-
-// app.get('/preferredPet', (req, res) => {
-//     res.render('create-pref-pet')
-// })
 // Define a port and start listening for connections.
 const port = 4000;
 

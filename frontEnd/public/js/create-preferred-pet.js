@@ -1,22 +1,22 @@
 import { handleErrors } from "./utils.js";
 
-const petPrefForm = document.querySelector(".");
+const petPrefForm = document.querySelector(".create-pref-pet");
+
+if (localStorage.getItem("PAWS_AND_CLAWS_ROLE") !== "Adopter") {
+    window.location.href = "/login"
+}
 
 petPrefForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    if (localStorage.getItem("PAWS_AND_CLAWS_ROLE") !== "Adopter") {
-        //TODO: Error handling
-    }
-
     const formData = new FormData(petPrefForm);
-    const breedId = formData.get("breed");
+    const breedId = formData.get("breeds");
     const userId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
     const age = formData.get("age");
     const sex = formData.get("sex");
     const size = formData.get("size");
-    const isOkayKids = formData.get("isOkayKids");
-    const isOkayPets = formData.get("isOkayPets");
+    const isOkayKids = formData.get("isOkayKids") ? true : false;
+    const isOkayPets = formData.get("isOkayPets") ? true : false;
 
     const body = {
         breedId,

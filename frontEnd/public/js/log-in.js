@@ -3,8 +3,6 @@ import { handleErrors } from "./utils.js";
 const logInFormUser = document.querySelector(".user-login");
 const logInFormShelter = document.querySelector(".shelter-login");
 const masthead = document.querySelector(".masthead");
-const registerContainer = document.getElementById("registerContainer");
-const loggedInContainer = document.getElementById("loggedInContainer");
 const errorContainer = document.getElementById("errorContainer");
 
 logInFormUser.addEventListener("submit", async (e) => {
