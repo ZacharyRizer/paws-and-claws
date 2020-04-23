@@ -8,9 +8,7 @@ const db = require("../db/models");
 
 const router = express.Router();
 
-const { User, AdoptionRequest } = db;
-
-
+const { User, AdoptionRequest, UserPetPreference } = db;
 
 const userNotFound = userId => {
   const err = new Error("User not found");
@@ -36,8 +34,8 @@ router.get("/:id", requireUserAuth, asyncHandler(async (req, res) => {
   const user = await User.findByPk(userId, {
     attributes: {
       exclude: ["hashedPassword"],
-      include: AdoptionRequest
-    }
+    },
+    include: AdoptionRequest, UserPetPreference
   });
   res.json({ user });
 }));
@@ -81,6 +79,7 @@ router.post("/",
 
     const token = getUserToken(user);
     const role = "Adopter";
+    const name = `${firstName} ${lastName}`
     res
       .status(201)
       .json({

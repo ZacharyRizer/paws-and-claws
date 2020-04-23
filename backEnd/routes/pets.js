@@ -9,8 +9,6 @@ const { Pet, Breed, ShelterUser } = db
 
 const router = express.Router();
 
-router.use(requireShelterAuth);
-
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -79,6 +77,7 @@ const validatePet = [
 router.post(
   "/",
   validatePet,
+  requireShelterAuth,
   asyncHandler(async (req, res) => {
     const {
       breedId,
@@ -111,6 +110,7 @@ router.post(
 router.put(
   "/:id",
   handleValidationErrors,
+  requireShelterAuth,
   asyncHandler(async (req, res, next) => {
     const pet = await Pet.findOne({
       where: {
@@ -139,6 +139,7 @@ router.put(
 
 router.delete(
   "/:id",
+  requireShelterAuth,
   asyncHandler(async (req, res, next) => {
     const pet = await Pet.findOne({
       where: {

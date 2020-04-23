@@ -12,6 +12,21 @@ const { UserPetPreference, User } = db;
 
 router.use(requireUserAuth);
 
+router.get("/:id", asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  const petPref = await UserPetPreference.findOne({
+    where: {
+      userId: userId,
+    },
+  });
+
+  if (petPref) {
+    res.json({ petPref });
+  } else {
+    next(petNotFoundError(req.params.id))
+  }
+}));
+
 router.post(
   "/",
   check("breedId")

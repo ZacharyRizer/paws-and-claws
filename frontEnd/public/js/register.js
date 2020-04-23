@@ -44,7 +44,7 @@ registerFormUser.addEventListener("submit", async (e) => {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
         // registerContainer.classList.add('hidden');
-        // loggedInContainer.classList.add('hidden');
+        // loggedInContainer.clascreatePreferredPetn');
         handleErrors(err);
     }
 });
@@ -90,5 +90,5 @@ registerFormShelter.addEventListener("submit", async (e) => {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
         handleErrors(err);
-    }
+    } eP
 });

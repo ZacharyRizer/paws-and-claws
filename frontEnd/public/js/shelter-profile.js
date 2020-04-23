@@ -1,28 +1,27 @@
-import { handleErrors, convertAge } from "./utils.js";
+import { convertAge, matchPets } from "./utils.js";
 
 const masthead = document.querySelector(".masthead");
-const registerContainer = document.getElementById("registerContainer");
-const loggedInContainer = document.getElementById("loggedInContainer");
 const errorContainer = document.getElementById("errorContainer");
 
 window.addEventListener('DOMContentLoaded', async (e) => {
-    masthead.classList.remove('hidden');
-    registerContainer.classList.remove('hidden');
 
+    const shelterUserId = parseInt(localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID"), 10);
     try {
         const res = await fetch(`http://localhost:8080/pets`);
-
-        if (res.status === 401) {
-            window.location.href = "/log-in";
-            return; //redirect to the log-in page
-        }
         const { pets } = await res.json();
-        const petsContainer = document.querySelector(".card-container");
+
+        const availablePets = pets.filter(pet => {
+            if (pet.shelterId === shelterUserId) {
+                return pet;
+            };
+        });
+
+        const petsContainer = document.querySelector(".pet-card-container");
         let petsHtml = [];
-        pets.forEach((pet, i) => {
-            if (i < 12) {
-                const { id, petName, age, breedId, photo } = pet;
-                const petHtml = `
+
+        availablePets.forEach((pet, i) => {
+            const { id, petName, age, breedId, photo } = pet;
+            const petHtml = `
                 <div class="card" id="pet-${id}">
                     <div class="card-image">
                         <img src=${photo}>
@@ -40,8 +39,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
                     </div>
                 </div>
             `
-                petsHtml.push(petHtml);
-            }
+            petsHtml.push(petHtml);
         })
         petsContainer.innerHTML = petsHtml.join("");
     } catch (err) {

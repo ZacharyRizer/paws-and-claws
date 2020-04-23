@@ -3,18 +3,20 @@ extends layout.pug
 block content
     .profile-container
         .profile-left
-            ul.pet-list
-                //- each dog in matches
-                //-     li.pet= `${dog.name}, ${dog.age}, ${dog.size}, ${dog.Breed.breedName}, ${dog.ShelterUser.shelterName}`
-
-        .profile-right
-            .info-container
-                h3 James Ballard
-                .contact
-                    p jballa91@gmail.com
-                    p 2223334444
-            nav.links-container
-                ul.profile-nav-list
-                    li: a.profile-nav-link(href="#") Edit your dream pet
-                    li: a.profile-nav-link(href="#") Matches
-                    li: a.profile-nav-link(href="#") Adoption requests
+            .pet-card-container
+        .dummy
+            .profile-right
+                .info-container
+                    h3= `${user.firstName} ${user.lastName}`
+                    .contact
+                        p= `${user.email}`
+                        if user.phoneNumber
+                            p= `${user.phoneNumber}`
+                        else
+                            p No phone number available
+                nav.links-container
+                    ul.profile-nav-list
+                        li(id="matches"): a.profile-nav-link(href="#") Matches
+                        li(id="requests"): a.profile-nav-link(href="#") Adoption requests
+                        li(id="editPetPref"): a.profile-nav-link(href="#") Edit your dream pet
+    script(type="module" src="/js/user-profile.js")

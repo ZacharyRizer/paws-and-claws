@@ -8,7 +8,7 @@ const db = require("../db/models");
 
 const router = express.Router();
 
-const { Pet, ShelterUser, AdoptionRequest } = db;
+const { Pet, ShelterUser, AdoptionRequest, State } = db;
 
 const validateEmailAndPassword = [
   check("email")
@@ -150,11 +150,10 @@ router.put('/:id(\\d+)',
 
 //GET single shelter user
 router.get(
-  "/:id(\\d+)",
-  requireShelterAuth,
-  asyncHandler(async (req, res, next) => {
+  "/:id(\\d+)", requireShelterAuth, asyncHandler(async (req, res, next) => {
     const shelterUserId = parseInt(req.params.id, 10)
     const shelterUser = await ShelterUser.findByPk(shelterUserId, {
+      include: [State],
       attributes: { exclude: ["hashedPassword"] }
     });
 
@@ -163,7 +162,6 @@ router.get(
     } else {
       next(shelterUserNotFoundError(shelterUserId));
     }
-
   })
 );
 
@@ -199,3 +197,4 @@ router.delete(
   })
 );
 module.exports = router;
+

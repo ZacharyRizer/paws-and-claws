@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
+const { Op } = require("sequelize");
 
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const { getUserToken, requireUserAuth, requireShelterAuth } = require("../auth");
@@ -9,17 +10,8 @@ const db = require("../db/models");
 const router = express.Router();
 // router.use(requireShelterAuth);
 
-const { AdoptionRequest, Pet } = db;
+const { AdoptionRequest, Pet, ShelterUser, User } = db;
 // GET - shelter gets all the adoption requests
-
-router.get('/', asyncHandler(async (req, res) => {
-  const adoptionRequests = await AdoptionRequest.findAll({
-    order: [["createdAt", "DESC"]],
-    include: [{ model: Pet, attributes: ['petName'] }],
-    where: { shelterId: req.user.id }
-  });
-  res.json({ adoptionRequests });
-}));
 
 // Adoption request not found
 const adoptionRequestNotFoundError = (id) => {
@@ -30,12 +22,38 @@ const adoptionRequestNotFoundError = (id) => {
   return err;
 };
 
-// GET for a specific adoption request to display for shelter to read
+// GET all adoption requests for users
 router.get(
-  "/:id",
+  "/user/:id",
+  requireUserAuth,
   asyncHandler(async (req, res, next) => {
-    const adoptionRequestId = parseInt(req.params.id, 10);
-    const adoptionRequest = await AdoptionRequest.findByPk(adoptionRequestId);
+    if (req.user === undefined) {
+      const err = new Error("Unauthorized");
+      err.status = 401;
+      err.message = "You must be logged in to do that.";
+      err.title = "Unauthorized";
+      throw err;
+    }
+    const userId = parseInt(req.params.id, 10);
+    const adoptionRequest = await AdoptionRequest.findAll({
+      where: { userId: userId }
+    });
+    if (adoptionRequest) {
+      res.json({ adoptionRequest });
+    } else {
+      next(adoptionRequestNotFoundError(req.params.id));
+    }
+  })
+);
+
+// GET all adoption requests for shelters
+router.get(
+  "/shelter/:id",
+  asyncHandler(async (req, res, next) => {
+    const shelterId = parseInt(req.params.id, 10);
+    const adoptionRequest = await AdoptionRequest.findAll({
+      where: { shelterId: shelterId }
+    });
     if (adoptionRequest) {
       res.json({ adoptionRequest });
     } else {

@@ -44,62 +44,29 @@ app.get('/createPreferredPet', async (req, res) => {
     res.render('create-pref-pet', { breeds })
 });
 
-app.get("/logout", function (req, res) {
-    localStorage.removeItem("PAWS_AND_CLAWS_ACCESS_TOKEN")
-    localStorage.removeItem("PAWS_AND_CLAWS_CURRENT_USER_ID")
-    localStorage.removeItem("PAWS_AND_CLAWS_ROLE")
-    res.redirect("/");
+app.get("/users/:id", async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+    let response = await fetch(`http://localhost:8080/users/${userId}`);
+    const { user } = await response.json();
+    res.render('user-profile', { user });
 });
 
-const matchPets = (dogs, prefPet) => {
-    // let dog1 = {
-    //     name: ‘Misty’,
-    //     breed: 4,
-    //     age: 3,
-    //     sex: 2,
-    //     size: 1,
-    //     description: ‘cute fluffy dog’,
-    //     photo: ‘some url’,
-    //     isOkayKid: true,
-    //     isOkayPets: true
-    // }
-    const matches = dogs.forEach(dog => {
-        count = 0
-        for (let key in prefPet) {
-            if (prefPet[key] === dog[key]) {
-                count++
-            }
-        }
-        dog.matchPercentage = count / 6;
-    }).map(dog => {
-        return (dog.matchPercentage > 0.6);
-    });
-
-    return matches;
-}
-
-app.get("/users/:id", async (req, res) => {
-    let responseOne = await fetch("http://localhost:8080/users/:id");
-    const { user } = await responseOne.json();
-    // let responseTwo = await fetch("https://localhost:8080/pets");
-    // let { dogs } = await responseTwo.json();
-    // matches = matchPets(dogs);
-    // res.render('user-profile', { user, matches });
-    try {
-        let responseTwo = await fetch("http://localhost:8080/pets");
-        let { dogs } = await responseTwo.json();
-        console.log(dogs)
-    } catch (e) {
-        console.log(e)
-    }
-    res.render('user-profile')
-})
+app.get("/shelters/:id", async (req, res) => {
+    const shelterUserId = parseInt(req.params.id, 10);
+    let response = await fetch(`http://localhost:8080/shelters/${shelterUserId}`);
+    const { shelterUser } = await response.json();
+    res.render('shelter-profile', { shelterUser });
+});
 
 app.get('/adoptionRequests', (req, res) => {
     res.render('adoption-request');
-})
+});
+
+app.get("/logout", function (req, res) {
+    res.render('logout');
+});
 
 // Define a port and start listening for connections.
 const port = 4000;
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));  
+app.listen(port, () => console.log(`Listening on port ${port}...`));
