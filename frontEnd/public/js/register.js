@@ -3,13 +3,8 @@ import { handleErrors } from "./utils.js";
 const registerFormUser = document.querySelector(".register-user");
 const registerFormShelter = document.querySelector(".register-shelter");
 const masthead = document.querySelector(".masthead");
-const registerContainer = document.getElementById("registerContainer");
-const loggedInContainer = document.getElementById("loggedInContainer");
 const errorContainer = document.getElementById("errorContainer");
 
-// window.addEventListener('DOMContentLoaded', async (e) => {
-//     masthead.classList.add('hidden');
-// });
 
 registerFormUser.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -94,8 +89,6 @@ registerFormShelter.addEventListener("submit", async (e) => {
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
-        // registerContainer.classList.add('hidden');
-        // loggedInContainer.classList.add('hidden');
         handleErrors(err);
     }
 });
