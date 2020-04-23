@@ -1,4 +1,4 @@
-import { handleErrors, convertAge } from "./utils.js";
+const { convertAge } = require("./utils.js");
 
 const masthead = document.querySelector(".masthead");
 const registerContainer = document.getElementById("registerContainer");
@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     masthead.classList.remove('hidden');
     registerContainer.classList.remove('hidden');
 
+    //   const userId = localStorage.getItem("TWITTER_LITE_CURRENT_USER_ID");
     try {
         const res = await fetch(`http://localhost:8080/pets`);
 
@@ -17,8 +18,10 @@ window.addEventListener('DOMContentLoaded', async (e) => {
             return; //redirect to the log-in page
         }
         const { pets } = await res.json();
+        console.log(pets)
         const petsContainer = document.querySelector(".card-container");
         let petsHtml = [];
+
         pets.forEach((pet, i) => {
             if (i < 12) {
                 const { id, petName, age, breedId, photo } = pet;

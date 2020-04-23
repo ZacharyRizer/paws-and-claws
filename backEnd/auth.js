@@ -39,6 +39,7 @@ const getShelterToken = user => {
 
 const restoreShelterUser = (req, res, next) => {
     const { token } = req;
+    console.log(token)
 
     if (!token) {
         return next();
@@ -70,6 +71,7 @@ const restoreShelterUser = (req, res, next) => {
 
 const restoreUser = (req, res, next) => {
     const { token } = req;
+    console.log(token)
 
     if (!token) {
         return next();

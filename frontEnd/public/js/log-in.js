@@ -32,8 +32,10 @@ logInFormUser.addEventListener("submit", async (e) => {
         localStorage.setItem("PAWS_AND_CLAWS_ACCESS_TOKEN", token);
         localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
-        // redirect to home page to see all tweets:
-        window.location.href = "/";
+        // localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
+
+        let userId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
+        window.location.href = `/users/${userId}`;
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
@@ -42,6 +44,7 @@ logInFormUser.addEventListener("submit", async (e) => {
         handleErrors(err);
     }
 });
+
 logInFormShelter.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(logInFormShelter);
@@ -68,8 +71,9 @@ logInFormShelter.addEventListener("submit", async (e) => {
         localStorage.setItem("PAWS_AND_CLAWS_ACCESS_TOKEN", token);
         localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
-        // redirect to home page to see all tweets:
-        window.location.href = "/";
+
+        let shelterId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
+        window.location.href = `/shelters/${shelterId}`;
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');

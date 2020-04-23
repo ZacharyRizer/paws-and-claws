@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+    .profile-container
+        .profile-left
+            .pet-card-container
+        .dummy
+            .profile-right
+                .info-container
+                    h3= `${user.firstName} ${user.lastName}`
+                    .contact
+                        p= `${user.email}`
+                        if user.phoneNumber
+                            p= `${user.phoneNumber}`
+                        else
+                            p No phone number available
+                nav.links-container
+                    ul.profile-nav-list
+                        li(id="matches"): a.profile-nav-link(href="#") Matches
+                        li(id="requests"): a.profile-nav-link(href="#") Adoption requests
+                        li(id="editPetPref"): a.profile-nav-link(href="#") Edit your dream pet
+    script(type="module" src="/js/user-profile.js")

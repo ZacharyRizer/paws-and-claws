@@ -44,20 +44,29 @@ app.get('/createPreferredPet', async (req, res) => {
     res.render('create-pref-pet', { breeds })
 });
 
-app.get("/logout", function (req, res) {
-    localStorage.removeItem("PAWS_AND_CLAWS_ACCESS_TOKEN")
-    localStorage.removeItem("PAWS_AND_CLAWS_CURRENT_USER_ID")
-    localStorage.removeItem("PAWS_AND_CLAWS_ROLE")
-    res.redirect("/");
+app.get("/users/:id", async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+    let response = await fetch(`http://localhost:8080/users/${userId}`);
+    const { user } = await response.json();
+    res.render('user-profile', { user });
 });
 
-
+app.get("/shelters/:id", async (req, res) => {
+    const shelterUserId = parseInt(req.params.id, 10);
+    let response = await fetch(`http://localhost:8080/shelters/${shelterUserId}`);
+    const { shelterUser } = await response.json();
+    res.render('shelter-profile', { shelterUser });
+});
 
 app.get('/adoptionRequests', (req, res) => {
     res.render('adoption-request');
-})
+});
+
+app.get("/logout", function (req, res) {
+    res.render('logout');
+});
 
 // Define a port and start listening for connections.
 const port = 4000;
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));  
+app.listen(port, () => console.log(`Listening on port ${port}...`));

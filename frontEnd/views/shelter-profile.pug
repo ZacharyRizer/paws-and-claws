@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+    .profile-container
+        .profile-left
+            .pet-card-container
+        .dummy
+            .profile-right
+                .info-container
+                    h3= `${shelterUser.shelterName}`
+                    .contact
+                        p= `${shelterUser.phoneNum}`
+                        p= `${shelterUser.email}`
+                        p= `${shelterUser.website}`
+                    .address
+                        p= `${shelterUser.address}`
+                        p= `${shelterUser.city}, ${shelterUser.State.stateName} ${shelterUser.zipCode}`
+                nav.links-container
+                    ul.profile-nav-list
+                        li: a.profile-nav-link(href="/createPet") Add a pet
+                        li: a.profile-nav-link(href="#") Adoption requests
+    script(type="module" src="/js/shelter-profile.js")

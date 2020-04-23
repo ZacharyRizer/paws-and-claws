@@ -5,18 +5,16 @@ const { check } = require("express-validator");
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const { getUserToken, requireUserAuth, requireShelterAuth } = require("../auth");
 const db = require("../db/models");
-const { Pet, Breed } = db
+const { Pet, Breed, ShelterUser } = db
 
 const router = express.Router();
-
-router.use(requireShelterAuth);
 
 router.get(
   "/",
   asyncHandler(async (req, res) => {
     const pets = await Pet.findAll({
       order: [["createdAt", "DESC"]],
-      include: Breed
+      include: [Breed, ShelterUser]
     });
     res.json({ pets });
   })
@@ -37,7 +35,7 @@ router.get(
       where: {
         id: req.params.id,
       },
-      include: Breed
+      include: [Breed, ShelterUser]
     });
     if (pet) {
       res.json({ pet });
@@ -79,6 +77,7 @@ const validatePet = [
 router.post(
   "/",
   validatePet,
+  requireShelterAuth,
   asyncHandler(async (req, res) => {
     const {
       breedId,
@@ -111,6 +110,7 @@ router.post(
 router.put(
   "/:id",
   handleValidationErrors,
+  requireShelterAuth,
   asyncHandler(async (req, res, next) => {
     const pet = await Pet.findOne({
       where: {
@@ -139,6 +139,7 @@ router.put(
 
 router.delete(
   "/:id",
+  requireShelterAuth,
   asyncHandler(async (req, res, next) => {
     const pet = await Pet.findOne({
       where: {

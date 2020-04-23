@@ -33,4 +33,22 @@ export const convertAge = (ageIndex) => {
     if (ageIndex === 3) return "Middle Aged"
     if (ageIndex === 4) return "Adult"
     if (ageIndex === 5) return "Mature"
+};
+
+export const matchPets = (dogs, prefPet) => {
+    dogs.forEach(dog => {
+        let count = 0
+        for (let key in prefPet) {
+            if (prefPet[key] === dog[key]) {
+                count++
+            }
+        }
+        dog.matchPercentage = count / 6;
+    })
+
+    const bestMatches = dogs.filter(dog => {
+        return (dog.matchPercentage > 0.5);
+    });
+
+    return bestMatches;
 }
