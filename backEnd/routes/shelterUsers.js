@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 
-const { asyncHandler, handleValidationErrors } = require("../utils");
+const { asyncHandler, handleValidationErrors, validatePassword } = require("../utils");
 const { getShelterToken, requireShelterAuth } = require("../auth");
 const db = require("../db/models");
 
@@ -85,7 +85,6 @@ router.post('/',
 
 router.post(
   "/token",
-  requireShelterAuth,
   asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
     const shelterUser = await ShelterUser.findOne({
@@ -94,7 +93,7 @@ router.post(
       },
     });
 
-    if (!shelterUser || !shelterUser.validatePassword(password)) {
+    if (!shelterUser || !validatePassword(password, shelterUser.hashedPassword)) {
       const err = new Error("Login failed");
       err.status = 401;
       err.title = "Login failed";
@@ -103,7 +102,7 @@ router.post(
     }
     const token = getShelterToken(shelterUser);
     const role = "Shelter";
-    res.json({ token, role, user: { id: user.id } });
+    res.json({ token, role, user: { id: shelterUser.id } });
   })
 );
 

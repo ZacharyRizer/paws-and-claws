@@ -18,7 +18,6 @@ const getUserToken = user => {
         secret,
         { expiresIn: parseInt(expiresIn, 10) }
     );
-
     return token;
 };
 

@@ -48,6 +48,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
+  console.log(err);
   res.status(err.status || 500);
   const isProduction = environment === "production";
   res.json({

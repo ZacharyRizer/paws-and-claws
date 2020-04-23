@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 
 const asyncHandler = handler => (req, res, next) => handler(req, res, next).catch(next);
 
@@ -17,4 +18,8 @@ const handleValidationErrors = (req, res, next) => {
     next();
 };
 
-module.exports = { asyncHandler, handleValidationErrors };
+function validatePassword(password, hashedPassword) {
+    return bcrypt.compareSync(password, hashedPassword.toString());
+}
+
+module.exports = { asyncHandler, handleValidationErrors, validatePassword };
