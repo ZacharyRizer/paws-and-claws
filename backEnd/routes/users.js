@@ -31,6 +31,16 @@ const validateLoginInfo = [
 
 router.get("/:id", requireUserAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10);
+  console.log(req.user.role)
+
+  if (!req.user || req.user.id !== userId) {
+    const err = new Error("Unauthorized");
+    err.status = 401;
+    err.message = "You do not have permission(s) to do that.";
+    err.title = "Unauthorized";
+    throw err;
+  }
+
   const user = await User.findByPk(userId, {
     attributes: {
       exclude: ["hashedPassword"],
@@ -79,13 +89,13 @@ router.post("/",
 
     const token = getUserToken(user);
     const role = "Adopter";
-    const name = `${firstName} ${lastName}`
     res
       .status(201)
       .json({
         user: { id: user.id },
         role,
         token,
+        name: username,
       })
   }));
 
@@ -105,7 +115,12 @@ router.post("/token", asyncHandler(async (req, res, next) => {
   }
   const token = getUserToken(user);
   const role = "Adopter";
-  res.json({ token, role, user: { id: user.id } });
+  res.json({
+    token,
+    role,
+    user: { id: user.id },
+    name: user.username
+  });
 }));
 
 router.put("/:id", requireUserAuth, asyncHandler(async (req, res, next) => {

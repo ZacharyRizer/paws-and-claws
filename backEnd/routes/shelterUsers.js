@@ -10,6 +10,33 @@ const router = express.Router();
 
 const { Pet, ShelterUser, AdoptionRequest, State } = db;
 
+//GET single shelter user
+router.get(
+  "/:id(\\d+)", requireShelterAuth, asyncHandler(async (req, res, next) => {
+    const shelterUserId = parseInt(req.params.id, 10)
+    console.log(req.user)
+
+    if (req.user.id !== shelterUserId) {
+      const err = new Error("Unauthorized");
+      err.status = 401;
+      err.message = "You do not have permission(s) to do that.";
+      err.title = "Unauthorized";
+      throw err;
+    }
+
+    const shelterUser = await ShelterUser.findByPk(shelterUserId, {
+      include: [State],
+      attributes: { exclude: ["hashedPassword"] }
+    });
+
+    if (shelterUser) {
+      res.json({ shelterUser });
+    } else {
+      next(shelterUserNotFoundError(shelterUserId));
+    }
+  })
+);
+
 const validateEmailAndPassword = [
   check("email")
     .exists({ checkFalsy: true })
@@ -78,6 +105,7 @@ router.post('/',
       user: { id: user.id },
       role,
       token,
+      name: user.shelterName
     });
 
   }));
@@ -102,7 +130,12 @@ router.post(
     }
     const token = getShelterToken(shelterUser);
     const role = "Shelter";
-    res.json({ token, role, user: { id: shelterUser.id } });
+    res.json({
+      token,
+      role,
+      user: { id: shelterUser.id },
+      name: shelterUser.shelterName,
+    });
   })
 );
 
@@ -146,24 +179,6 @@ router.put('/:id(\\d+)',
       next(shelterUserNotFoundError(shelterUserId));
     }
   }));
-
-
-//GET single shelter user
-router.get(
-  "/:id(\\d+)", requireShelterAuth, asyncHandler(async (req, res, next) => {
-    const shelterUserId = parseInt(req.params.id, 10)
-    const shelterUser = await ShelterUser.findByPk(shelterUserId, {
-      include: [State],
-      attributes: { exclude: ["hashedPassword"] }
-    });
-
-    if (shelterUser) {
-      res.json({ shelterUser });
-    } else {
-      next(shelterUserNotFoundError(shelterUserId));
-    }
-  })
-);
 
 // Delete a shelter user
 

@@ -11,6 +11,7 @@ const getUserToken = user => {
         id: user.id,
         role: "Adopter",
         email: user.email,
+        name: user.username,
     };
 
     const token = jwt.sign(
@@ -26,6 +27,7 @@ const getShelterToken = user => {
         id: user.id,
         role: "Shelter",
         email: user.email,
+        name: user.shelterName,
     };
 
     const token = jwt.sign(
@@ -39,13 +41,12 @@ const getShelterToken = user => {
 
 const restoreShelterUser = (req, res, next) => {
     const { token } = req;
-    console.log(token)
 
     if (!token) {
         return next();
     }
 
-    return jwt.verify(token, secret, async (err, jwtPayload) => {
+    return jwt.verify(token, secret, null, async (err, jwtPayload) => {
         if (err) {
             err.status = 401;
             return next(err);
@@ -70,14 +71,13 @@ const restoreShelterUser = (req, res, next) => {
 };
 
 const restoreUser = (req, res, next) => {
-    const { token } = req;
-    console.log(token)
 
+    const { token } = req;
     if (!token) {
         return next();
     }
 
-    return jwt.verify(token, secret, async (err, jwtPayload) => {
+    return jwt.verify(token, secret, null, async (err, jwtPayload) => {
         if (err) {
             err.status = 401;
             return next(err);
@@ -87,6 +87,7 @@ const restoreUser = (req, res, next) => {
 
         try {
             req.user = await User.findByPk(id);
+
         } catch (e) {
             return next(e);
         }
