@@ -7,11 +7,83 @@ const matchLink = document.getElementById('matches');
 const requestsLink = document.getElementById('requests');
 const editPetPref = document.getElementById('editPetPref');
 
+
+const userId = localStorage.getItem('PAWS_AND_CLAWS_CURRENT_USER_ID');
+
 window.addEventListener('DOMContentLoaded', async (e) => {
+    // Add authorization functionality
+    // We should be able to only access the 
     profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
-    const userId = localStorage.getItem('PAWS_AND_CLAWS_CURRENT_USER_ID');
+    let response = await fetch(`http://localhost:8080/users/${userId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem(
+                "PAWS_AND_CLAWS_ACCESS_TOKEN"
+            )}`,
+        }
+    });
+    const { user } = await response.json();
+
+    const userFullName = document.getElementById('user-name');
+    const userEmail = document.getElementById('user-email');
+    const userPhone = document.getElementById('user-phoneNum');
+
+    userFullName.innerHTML = `${user.firstName} ${user.lastName}`;
+    userEmail.innerHTML = `${user.email}`;
+
+    if (user.phoneNum) {
+        userPhone.innerHTML = `${user.phoneNum}`
+    }
 
     // Default to Matches
+    try {
+        const res = await fetch(`http://localhost:8080/pets`);
+        const { pets } = await res.json();
+
+        const res2 = await fetch(`http://localhost:8080/preferredPets/${userId}`);
+        const { petPref } = await res2.json();
+
+        const matches = matchPets(pets, petPref);
+
+        let petsContainer = document.querySelector('.pet-card-container');
+        let petsHtml = [];
+
+        matches.forEach((match, i) => {
+            const { id, petName, age, breedId, photo } = match;
+            const petHtml = `
+                <div class='card' id='pet-${id}'>
+                    <div class='card-image'>
+                        <img src=${photo}>
+                    </div>
+                    <div class='card-info'>
+                        <p class='pet-name'>${petName}</p>
+                        <div class='pet-age'>
+                            <p>Age</p>
+                            <p> ${convertAge(age)} </p>
+                        </div>
+                        <div class='pet-breed'>
+                            <p>Breed</p>
+                            <p>${match.Breed.breedName}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+            petsHtml.push(petHtml);
+        })
+        petsContainer.innerHTML = petsHtml.join('');
+        matchLink.classList.add('selected');
+        requestsLink.classList.remove('selected');
+        editPetPref.classList.remove('selected');
+    } catch (err) {
+        console.error(err);
+    }
+
+
+});
+// Matches
+matchLink.addEventListener('click', async (event) => {
+    profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
     try {
         const res = await fetch(`http://localhost:8080/pets`);
         const { pets } = await res.json();
@@ -54,83 +126,59 @@ window.addEventListener('DOMContentLoaded', async (e) => {
         console.error(err);
     }
 
-    // Matches
-    matchLink.addEventListener('click', async (event) => {
-        try {
-            const res = await fetch(`http://localhost:8080/pets`);
-            const { pets } = await res.json();
 
-            const res2 = await fetch(`http://localhost:8080/preferredPets/${userId}`);
-            const { petPref } = await res2.json();
+});
 
-            const matches = matchPets(pets, petPref);
+// Adoption Requests
+requestsLink.addEventListener('click', async (event) => {
+    profileContainer.innerHTML = `<div class="adoption-requests-container"></div>`;
+    const adoptReqContainer = document.querySelector('.adoption-requests-container');
+    try {
+        const res = await fetch(`http://localhost:8080/adoptionRequests/user/${userId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem(
+                    "PAWS_AND_CLAWS_ACCESS_TOKEN"
+                )}`,
+            }
+        });
 
-            const petsContainer = document.querySelector('.pet-card-container');
-            let petsHtml = [];
+        const { adoptionRequests } = await res.json();
 
-            matches.forEach((match, i) => {
-                const { id, petName, age, breedId, photo } = match;
-                const petHtml = `
-                <div class='card' id='pet-${id}'>
-                    <div class='card-image'>
-                        <img src=${photo}>
-                    </div>
-                    <div class='card-info'>
-                        <p class='pet-name'>${petName}</p>
-                        <div class='pet-age'>
-                            <p>Age</p>
-                            <p> ${convertAge(age)} </p>
-                        </div>
-                        <div class='pet-breed'>
-                            <p>Breed</p>
-                            <p>${match.Breed.breedName}</p>
-                        </div>
-                    </div>
-                </div>
-            `
-                petsHtml.push(petHtml);
-            })
-            petsContainer.innerHTML = petsHtml.join('');
-            matchLink.classList.add('selected');
-            requestsLink.classList.remove('selected');
-            editPetPref.classList.remove('selected');
-        } catch (err) {
-            console.error(err);
-        }
-    });
-
-    // Adoption Requests
-    requestsLink.addEventListener('click', async (event) => {
-        profileContainer.innerHTML = `<div class="adoption-requests-container"></div>`;
-        const adoptReqContainer = document.querySelector('.adoption-requests-container');
-        try {
-            const res = await fetch(`http://localhost:8080/adoptionRequests/user/${userId}`);
-            const { adoptionRequests } = res.json();
-
-            let adoptReqHTMLArr = [];
-            adoptionRequests.forEach(adoptReq => {
-                const adoptReqHTML = `
+        let adoptReqHTMLArr = [];
+        adoptionRequests.forEach(adoptReq => {
+            const adoptReqHTML = `
                     <div class="adoption-requests-container">
                         <table class="requests-table">
                             <thead>
                                 <tr>
                                     <th>Pet</th>
                                     <th>Shelter</th>
+                                    <th>Message</th>
+                                    <th>Date Sent</th>
                                 </tr>
-
+                                <tr>
+                                    <td>${adoptReq.Pet.petName}</td>
+                                    <td>${adoptReq.ShelterUser.shelterName}</td>
+                                    <td>${adoptReq.message}</td>
+                                    <td>${adoptReq.createdAt}</td>
+                                </tr>
                         </table>
                     </div>
                 `
-                adoptReqHTMLArr.push(adoptReqHTML);
-            })
-            adoptReqContainer.innerHTML = adoptReqHTMLArr.join('')
-            matchLink.classList.remove('selected');
-            requestsLink.classList.add('selected');
-            editPetPref.classList.remove('selected');
-        } catch (e) {
-            console.log(e);
-        }
+            adoptReqHTMLArr.push(adoptReqHTML);
+        })
+        adoptReqContainer.innerHTML = adoptReqHTMLArr.join('')
+        matchLink.classList.remove('selected');
+        requestsLink.classList.add('selected');
+        editPetPref.classList.remove('selected');
+    } catch (e) {
+        console.log(e);
+    }
 
-    });
 });
 
+editPetPref.addEventListener('click', async (event) => {
+    profileContainer.innerHTML = '';
+})

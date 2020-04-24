@@ -7,14 +7,14 @@ block content
         .dummy
             .profile-right
                 .info-container
-                    h3= `${shelterUser.shelterName}`
+                    h3(id="shelter-name")
                     .contact
-                        p= `${shelterUser.phoneNum}`
-                        p= `${shelterUser.email}`
-                        p= `${shelterUser.website}`
+                        p(id="shelter-phoneNum")
+                        p(id="shelter-email")
+                        p(id="shelter-website")
                     .address
-                        p= `${shelterUser.address}`
-                        p= `${shelterUser.city}, ${shelterUser.State.stateName} ${shelterUser.zipCode}`
+                        p(id="shelter-address")
+                        p(id="shelter-address-2")
                 nav.links-container
                     ul.profile-nav-list
                         li: a.profile-nav-link(href="/createPet") Add a pet

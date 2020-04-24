@@ -54,7 +54,7 @@ petForm.addEventListener("submit", async (e) => {
         if (!res.ok) {
             throw res;
         }
-        window.location.href = "/shelterProfile"; //redirect to profile page
+        window.location.href = "/shelter-profile";
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');

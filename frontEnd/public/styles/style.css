@@ -781,14 +781,13 @@ button:hover {
 }
 
 .profile-container .dummy {
-  width: 25%;
+  width: 30%;
 }
 
 .profile-container .dummy .profile-right {
-  width: inherit;
-  border-radius: 3px;
+  width: 100%;
   background: #f5f5f5;
-  position: fixed;
+  border-radius: 3px;
 }
 
 .profile-container .dummy .profile-right li:hover {
@@ -809,11 +808,6 @@ button:hover {
 .profile-container .dummy .profile-right .info-container p {
   margin-left: 20px;
   color: #808080;
-}
-
-.profile-container .dummy .profile-right .links-container {
-  display: block;
-  top: 87px;
 }
 
 .profile-container .dummy .profile-right .links-container .profile-nav-list {

@@ -27,15 +27,15 @@ logInFormUser.addEventListener("submit", async (e) => {
             token,
             role,
             user: { id },
+            name,
         } = await res.json();
         // storage access_token in localStorage:
         localStorage.setItem("PAWS_AND_CLAWS_ACCESS_TOKEN", token);
         localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
-        // localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
+        localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
 
-        let userId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
-        window.location.href = `/users/${userId}`;
+        window.location.href = `/user-profile`;
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
@@ -66,14 +66,15 @@ logInFormShelter.addEventListener("submit", async (e) => {
             token,
             role,
             user: { id },
+            name,
         } = await res.json();
         // storage access_token in localStorage:
         localStorage.setItem("PAWS_AND_CLAWS_ACCESS_TOKEN", token);
         localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
+        localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
 
-        let shelterId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
-        window.location.href = `/shelters/${shelterId}`;
+        window.location.href = `/shelter-profile`;
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');

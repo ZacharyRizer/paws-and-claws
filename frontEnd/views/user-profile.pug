@@ -7,13 +7,10 @@ block content
         .dummy
             .profile-right
                 .info-container
-                    h3= `${user.firstName} ${user.lastName}`
+                    h3(id="user-name")
                     .contact
-                        p= `${user.email}`
-                        if user.phoneNumber
-                            p= `${user.phoneNumber}`
-                        else
-                            p No phone number available
+                        p(id="user-email")
+                        p(id="user-phoneNum")
                 nav.links-container
                     ul.profile-nav-list
                         li(id="matches"): a.profile-nav-link(href="#") Matches

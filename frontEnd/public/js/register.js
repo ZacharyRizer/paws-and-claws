@@ -35,11 +35,13 @@ registerFormUser.addEventListener("submit", async (e) => {
             token,
             role,
             user: { id },
+            name,
         } = await res.json();
         // storage access_token in localStorage:
         localStorage.setItem("PAWS_AND_CLAWS_ACCESS_TOKEN", token);
         localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
+        localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
         // redirect to home page to see all tweets:
         window.location.href = "/createPreferredPet";
     } catch (err) {
@@ -81,16 +83,18 @@ registerFormShelter.addEventListener("submit", async (e) => {
             token,
             role,
             user: { id },
+            name,
         } = await res.json();
         // storage access_token in localStorage:
         localStorage.setItem("PAWS_AND_CLAWS_ACCESS_TOKEN", token);
         localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
+        localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
         // redirect to home page to see all tweets:
         window.location.href = "/createPet";
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
         handleErrors(err);
-    } eP
+    }
 });

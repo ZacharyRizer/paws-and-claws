@@ -46,7 +46,7 @@ petPrefForm.addEventListener("submit", async (e) => {
         if (!res.ok) {
             throw res;
         }
-        window.location.href = "/"; //redirect to matches
+        window.location.href = "/user-profile"; //redirect to matches
     } catch (err) {
         handleErrors(err);
     }

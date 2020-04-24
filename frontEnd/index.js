@@ -44,18 +44,12 @@ app.get('/createPreferredPet', async (req, res) => {
     res.render('create-pref-pet', { breeds })
 });
 
-app.get("/users/:id", async (req, res) => {
-    const userId = parseInt(req.params.id, 10);
-    let response = await fetch(`http://localhost:8080/users/${userId}`);
-    const { user } = await response.json();
-    res.render('user-profile', { user });
+app.get("/user-profile", async (req, res) => {
+    res.render('user-profile');
 });
 
-app.get("/shelters/:id", async (req, res) => {
-    const shelterUserId = parseInt(req.params.id, 10);
-    let response = await fetch(`http://localhost:8080/shelters/${shelterUserId}`);
-    const { shelterUser } = await response.json();
-    res.render('shelter-profile', { shelterUser });
+app.get("/shelter-profile", async (req, res) => {
+    res.render('shelter-profile');
 });
 
 app.get('/adoptionRequests', (req, res) => {
