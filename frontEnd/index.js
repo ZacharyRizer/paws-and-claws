@@ -52,6 +52,10 @@ app.get("/shelter-profile", async (req, res) => {
     res.render('shelter-profile');
 });
 
+app.get("/pets/:id", async (req, res) => {
+    res.render('pet-information')
+})
+
 app.get('/adoptionRequests', (req, res) => {
     res.render('adoption-request');
 });
