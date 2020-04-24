@@ -19,8 +19,6 @@ registerFormUser.addEventListener("submit", async (e) => {
     const body = { username, firstName, lastName, email, phoneNum, password, confirmPassword };
 
     try {
-        console.log(body);
-
         const res = await fetch("http://localhost:8080/users", {
             method: "POST",
             body: JSON.stringify(body),
