@@ -1,11 +1,10 @@
-import { convertAge, matchPets } from "./utils.js";
+import { handleErrors, convertAge, matchPets } from "./utils.js";
 
 const masthead = document.querySelector(".masthead");
 const errorContainer = document.getElementById("errorContainer");
 const profileContainer = document.querySelector('.profile-left');
-const matchLink = document.getElementById('matches');
-const requestsLink = document.getElementById('requests');
 const addPet = document.getElementById('addPet');
+const adoptReq = document.getElementById('adoptReq')
 
 profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
 const shelterId = localStorage.getItem('PAWS_AND_CLAWS_CURRENT_USER_ID');
@@ -28,8 +27,6 @@ window.addEventListener('DOMContentLoaded', async (e) => {
         }
     });
     const { shelterUser } = await response.json();
-    console.log(shelterUser);
-
 
     const shelterName = document.getElementById('shelter-name');
     const shelterPhone = document.getElementById('shelter-phoneNum');
@@ -118,7 +115,7 @@ addPet.addEventListener('click', async (e) => {
         let breedHTMLArr = [];
         breeds.forEach(breed => {
             const breedHTML = `
-                <option class="breed">${breed.breedName}</option>
+                <option class="breed" value=${breed.id}>${breed.breedName}</option>
             `
             breedHTMLArr.push(breedHTML);
         });
@@ -128,17 +125,22 @@ addPet.addEventListener('click', async (e) => {
         <form class="create-pet">
             <div class="create-pet-header">
                 <h1>Add a pet to the adoption list</h1>
+                </br>
                 <p>Let's find the pets at your shelter a good Home!</p>
             </div>
+            </br>
             <div class="form-element">
                 <label for="petName">Pet Name:</label>
-                <input type="text" name="petName" id="petName" placeholder="Pet Name" /></div>
+                <input type="text" name="petName" id="petName" placeholder="Pet Name" />
+            </div>
+            </br>
             <div class="form-element">
                 <label for="breeds">Breed:</label>
                 <select name="breeds" id="breeds" required="required">
                     ${breedOptions}
                 </select>
             </div>
+            </br>
             <div class="form-element">
                 <label for="age">Age:</label>
                 <select name="age" id="age" placeholder="Age">
@@ -149,6 +151,7 @@ addPet.addEventListener('click', async (e) => {
                     <option value="5">Mature (10+)</option>
                 </select>
             </div>
+            </br>
             <div class="form-element">
                 <label for="sex">Sex:</label>
                 <select name="sex" id="sex" placeholder="Sex">
@@ -156,6 +159,7 @@ addPet.addEventListener('click', async (e) => {
                     <option value="2">Female</option>
                 </select>
             </div>
+            </br>
             <div class="form-element">
                 <label for="size">Size:</label>
                 <select name="size" id="size" placeholder="Sex">
@@ -166,33 +170,39 @@ addPet.addEventListener('click', async (e) => {
                     <option value="5">X-Large</option>
                 </select>
             </div>
+            </br>
             <div class="form-element">
                 <label for="description">Describe the pet:</label>
                 <textarea id="description" name="description" placeholder="Describe The Pet"></textarea>
             </div>
+            </br>
             <div class="form-element">
                  <label for="photo">Add an image of the pet:</label>
                  <input name="photo" type="text" id="photo" placeholder="photo url" />
             </div>
+            </br>
             <div class="form-element">
                 <label for="isOkayKids">Is the pet ok with children?</label>
                 <input type="checkbox" id="idOkayKids" name="isOkayKids" />
             </div>
+            </br>
             <div class="form-element">
                 <label for="isOkayPets">Is the pet ok with other pets?</label>
                 <input type="checkbox" name="isOkayPets" id="isOkayPets" />
             </div>
-            <div class="form-element"></div>
+            </br>
+            <div class="form-element">
+            </br>
+            </div>
                 <button class="button" type="submit">Add Pet</button></form>
-        </div>
+            </div>
         `
-        matchLink.classList.remove('selected');
-        requestsLink.classList.remove('selected');
-        editPetPref.classList.add('selected');
+        adoptReq.classList.remove('selected');
+        addPet.classList.add('selected');
     } catch (e) {
         console.log(e);
     }
-    const form = document.querySelector('.add-pet-form')
+    const form = document.querySelector('.create-pet')
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
