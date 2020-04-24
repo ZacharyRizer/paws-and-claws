@@ -15,9 +15,9 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
         if (role === "Adopter") {
-            profileLink.href = "user-profile";
+            profileLink.href = "/user-profile";
         } else if (role === "Shelter") {
-            profileLink.href = "shelter-profile";
+            profileLink.href = "/shelter-profile";
         }
 
         navRight2.classList.remove('hidden');

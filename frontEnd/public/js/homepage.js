@@ -1,4 +1,4 @@
-import { handleErrors, convertAge } from "./utils.js";
+import { handleErrors, convertAge, convertSex, convertSize } from "./utils.js";
 
 const masthead = document.querySelector(".masthead");
 const registerContainer = document.getElementById("registerContainer");
@@ -46,4 +46,18 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     } catch (err) {
         console.error(err);
     }
+
+    const petCards = document.querySelectorAll('.card');
+
+    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
+        let clickTarget = e.target.parentNode;
+
+        while (!clickTarget.id) {
+            clickTarget = clickTarget.parentNode;
+        }
+
+        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
+
+        window.location.href = `/pets/${petNum}`;
+    }));
 });

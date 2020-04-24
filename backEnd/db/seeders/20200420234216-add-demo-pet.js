@@ -41,7 +41,7 @@ module.exports = {
         petName: "Twain",
         age: 1,
         sex: 1,
-        size: 1,
+        size: 4,
         description: "Much doge. Very wow.",
         photo: "https://upload.wikimedia.org/wikipedia/commons/3/34/Labrador_on_Quantock_%282175262184%29.jpg",
         isAdopted: false,
