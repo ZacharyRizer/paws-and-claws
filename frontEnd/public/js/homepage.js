@@ -7,7 +7,6 @@ const errorContainer = document.getElementById("errorContainer");
 
 window.addEventListener('DOMContentLoaded', async (e) => {
     masthead.classList.remove('hidden');
-    registerContainer.classList.remove('hidden');
 
     try {
         const res = await fetch(`http://localhost:8080/pets`);

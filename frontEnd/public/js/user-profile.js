@@ -173,27 +173,30 @@ requestsLink.addEventListener('click', async (event) => {
         let adoptReqHTMLArr = [];
         adoptionRequests.forEach(adoptReq => {
             const adoptReqHTML = `
-                    <div class="adoption-requests-container">
-                        <table class="requests-table">
-                            <thead>
-                                <tr>
-                                    <th>Pet</th>
-                                    <th>Shelter</th>
-                                    <th>Message</th>
-                                    <th>Date Sent</th>
-                                </tr>
                                 <tr>
                                     <td>${adoptReq.Pet.petName}</td>
                                     <td>${adoptReq.ShelterUser.shelterName}</td>
-                                    <td>${adoptReq.message}</td>
-                                    <td>${adoptReq.createdAt}</td>
+                                    <td class="message">${adoptReq.message}</td>
+                                    <td class="date">${adoptReq.createdAt}</td>
                                 </tr>
-                        </table>
-                    </div>
                 `
             adoptReqHTMLArr.push(adoptReqHTML);
         })
-        adoptReqContainer.innerHTML = adoptReqHTMLArr.join('')
+        let adoptReqs = adoptReqHTMLArr.join('')
+        adoptReqContainer.innerHTML = `
+            <div class="adoption-requests-container">
+                <table class="requests-table">
+                    <thead>
+                        <tr>
+                            <th>Pet</th>
+                            <th>Shelter</th>
+                            <th>Message</th>
+                            <th>Date Sent</th>
+                        </tr>
+                        ${adoptReqs}
+                </table>
+            </div>
+        `;
         matchLink.classList.remove('selected');
         requestsLink.classList.add('selected');
         editPetPref.classList.remove('selected');
