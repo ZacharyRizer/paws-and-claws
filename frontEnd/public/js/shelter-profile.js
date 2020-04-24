@@ -5,7 +5,7 @@ const errorContainer = document.getElementById("errorContainer");
 const profileContainer = document.querySelector('.profile-left');
 const matchLink = document.getElementById('matches');
 const requestsLink = document.getElementById('requests');
-const editPetPref = document.getElementById('editPetPref');
+const addPet = document.getElementById('addPet');
 
 profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
 const shelterId = localStorage.getItem('PAWS_AND_CLAWS_CURRENT_USER_ID');
@@ -95,3 +95,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
         window.location.href = `/pets/${petNum}`;
     }));
 });
+
+addPetPref.addEventListener('click', async (e) => {
+
+})

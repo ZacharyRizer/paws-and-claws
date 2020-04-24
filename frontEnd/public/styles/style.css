@@ -766,6 +766,10 @@ button:hover {
   width: 70%;
 }
 
+.profile-container .profile-left .hidden {
+  display: none;
+}
+
 .profile-container .pet-card-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -897,5 +901,19 @@ button:hover {
 .requests-table .date {
   text-align: right;
   font-size: 12px;
+}
+
+.pet-pref-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.pet-pref-container form {
+  width: 60%;
 }
 /*# sourceMappingURL=style.css.map */
