@@ -9,9 +9,7 @@ const { secret, expiresIn } = jwtConfig;
 const getUserToken = user => {
     const userData = {
         id: user.id,
-        role: "Adopter",
         email: user.email,
-        name: user.username,
     };
 
     const token = jwt.sign(
@@ -25,9 +23,7 @@ const getUserToken = user => {
 const getShelterToken = user => {
     const userData = {
         id: user.id,
-        role: "Shelter",
         email: user.email,
-        name: user.shelterName,
     };
 
     const token = jwt.sign(
@@ -56,6 +52,7 @@ const restoreShelterUser = (req, res, next) => {
 
         try {
             req.user = await ShelterUser.findByPk(id);
+            req.role = "Shelter";
         } catch (e) {
             return next(e);
         }
@@ -87,7 +84,7 @@ const restoreUser = (req, res, next) => {
 
         try {
             req.user = await User.findByPk(id);
-
+            req.role = "User";
         } catch (e) {
             return next(e);
         }

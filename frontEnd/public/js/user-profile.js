@@ -78,8 +78,6 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     } catch (err) {
         console.error(err);
     }
-
-
 });
 // Matches
 matchLink.addEventListener('click', async (event) => {
@@ -125,8 +123,6 @@ matchLink.addEventListener('click', async (event) => {
     } catch (err) {
         console.error(err);
     }
-
-
 });
 
 // Adoption Requests
@@ -176,7 +172,6 @@ requestsLink.addEventListener('click', async (event) => {
     } catch (e) {
         console.log(e);
     }
-
 });
 
 editPetPref.addEventListener('click', async (event) => {

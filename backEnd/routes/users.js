@@ -30,10 +30,9 @@ const validateLoginInfo = [
 ];
 
 router.get("/:id", requireUserAuth, asyncHandler(async (req, res) => {
-  const userId = parseInt(req.params.id, 10);
-  console.log(req.user.role)
+  const userId = parseInt(req.user.id, 10);
 
-  if (!req.user || req.user.id !== userId) {
+  if (!req.user || req.user.id !== userId || req.role !== "User") {
     const err = new Error("Unauthorized");
     err.status = 401;
     err.message = "You do not have permission(s) to do that.";

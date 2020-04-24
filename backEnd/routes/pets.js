@@ -1,13 +1,13 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 
 const { asyncHandler, handleValidationErrors } = require("../utils");
-const { getUserToken, requireUserAuth, requireShelterAuth } = require("../auth");
+const { requireShelterAuth } = require("../auth");
 const db = require("../db/models");
-const { Pet, Breed, ShelterUser } = db
 
 const router = express.Router();
+
+const { Pet, Breed, ShelterUser } = db
 
 router.get(
   "/",
