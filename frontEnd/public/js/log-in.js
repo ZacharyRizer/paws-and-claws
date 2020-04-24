@@ -39,8 +39,8 @@ logInFormUser.addEventListener("submit", async (e) => {
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
-        // registerContainer.classList.add('hidden');
-        // loggedInContainer.classList.add('hidden');
+        registerContainer.classList.add('hidden');
+        loggedInContainer.classList.add('hidden');
         handleErrors(err);
     }
 });
@@ -78,8 +78,8 @@ logInFormShelter.addEventListener("submit", async (e) => {
     } catch (err) {
         masthead.classList.remove('hidden');
         errorContainer.classList.remove('hidden');
-        // registerContainer.classList.add('hidden');
-        // loggedInContainer.classList.add('hidden');
+        registerContainer.classList.add('hidden');
+        loggedInContainer.classList.add('hidden');
         handleErrors(err);
     }
 });

@@ -779,6 +779,7 @@ button:hover {
 
 .profile-container .pet-card-container .card {
   width: 30%;
+  margin: 10px;
 }
 
 .profile-container .dummy {
@@ -786,7 +787,8 @@ button:hover {
 }
 
 .profile-container .dummy .profile-right {
-  width: 100%;
+  width: 403px;
+  position: fixed;
   background: #f5f5f5;
   border-radius: 3px;
 }
@@ -825,5 +827,75 @@ button:hover {
 
 .profile-container .dummy .profile-right .links-container .profile-nav-list .profile-nav-link:hover {
   color: #9340D6;
+}
+
+.adoption-requests-container {
+  width: 100%;
+}
+
+.requests-table {
+  width: 95%;
+  background: #C0C0C0;
+  border-radius: 5px;
+  border-spacing: 0;
+}
+
+.requests-table th {
+  width: 25%;
+  text-align: center;
+  background: #4C008A;
+  color: #f5f5f5;
+  padding: 10px;
+  font-size: 22px;
+}
+
+.requests-table th:first-child {
+  border-top-left-radius: 5px;
+}
+
+.requests-table th:last-child {
+  border-top-right-radius: 5px;
+}
+
+.requests-table th:not(:first-child) {
+  border-left: 1px solid #f5f5f5;
+}
+
+.requests-table td {
+  max-height: 80px;
+  padding: 5px 10px 5px 10px;
+  border-top: 1px solid #808080;
+  color: #303030;
+}
+
+.requests-table td:not(:first-child) {
+  border-left: 1px solid #808080;
+}
+
+.requests-table .message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+
+.requests-table .message::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 8px;
+  background-color: #C0C0C0;
+  outline: 1px solid slategrey;
+}
+
+.requests-table .message::-webkit-scrollbar-thumb {
+  background-color: #808080;
+  height: 1px;
+  border-radius: 8px;
+  width: 4px;
+}
+
+.requests-table .date {
+  text-align: right;
+  font-size: 12px;
 }
 /*# sourceMappingURL=style.css.map */
