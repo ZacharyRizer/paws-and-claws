@@ -28,12 +28,30 @@ export const handleErrors = async (err) => {
 };
 
 export const convertAge = (ageIndex) => {
-    if (ageIndex === 1) return "Puppy"
-    if (ageIndex === 2) return "Young"
-    if (ageIndex === 3) return "Middle Aged"
-    if (ageIndex === 4) return "Adult"
-    if (ageIndex === 5) return "Mature"
+    if (ageIndex === 1) return "Puppy (0-1)"
+    if (ageIndex === 2) return "Young (1-3)"
+    if (ageIndex === 3) return "Middle Aged (3-7)"
+    if (ageIndex === 4) return "Adult (7-10)"
+    if (ageIndex === 5) return "Mature (10+)"
 };
+
+export const convertSex = (sexIndex) => {
+    if (sexIndex === 1) return "Male"
+    if (sexIndex === 2) return "Female"
+}
+
+export const convertSize = (sizeIndex) => {
+    if (sizeIndex === 1) return "Toy"
+    if (sizeIndex === 2) return "Small"
+    if (sizeIndex === 3) return "Medium"
+    if (sizeIndex === 4) return "Large"
+    if (sizeIndex === 5) return "X-Large"
+}
+
+export const convertBoolean = (boolean) => {
+    if (true) return "Yes";
+    if (!true) return "No";
+}
 
 export const matchPets = (dogs, prefPet) => {
     dogs.forEach(dog => {
@@ -55,17 +73,17 @@ export const matchPets = (dogs, prefPet) => {
         if (array.length <= 1) {
             return array;
         }
-    
+
         let pivot = array.shift();
         let pivotVal = pivot.matchPercentage;
         let left = array.filter(dog => dog.matchPercentage > pivotVal);
         let right = array.filter(dog => dog.matchPercentage <= pivotVal);
-    
+
         let leftSorted = bestMatchesSorted(left);
         let rightSorted = bestMatchesSorted(right);
-    
-        return [ ...leftSorted, pivot, ...rightSorted ];
+
+        return [...leftSorted, pivot, ...rightSorted];
     }
-    
+
     return bestMatchesSorted(bestMatches);
 }

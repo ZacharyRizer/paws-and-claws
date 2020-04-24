@@ -78,6 +78,20 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     } catch (err) {
         console.error(err);
     }
+
+    const petCards = document.querySelectorAll('.card');
+
+    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
+        let clickTarget = e.target.parentNode;
+
+        while (!clickTarget.id) {
+            clickTarget = clickTarget.parentNode;
+        }
+
+        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
+
+        window.location.href = `/pets/${petNum}`;
+    }));
 });
 // Matches
 matchLink.addEventListener('click', async (event) => {
@@ -123,6 +137,20 @@ matchLink.addEventListener('click', async (event) => {
     } catch (err) {
         console.error(err);
     }
+
+    const petCards = document.querySelectorAll('.card');
+
+    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
+        let clickTarget = e.target.parentNode;
+
+        while (!clickTarget.id) {
+            clickTarget = clickTarget.parentNode;
+        }
+
+        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
+
+        window.location.href = `/pets/${petNum}`;
+    }));
 });
 
 // Adoption Requests
@@ -177,3 +205,4 @@ requestsLink.addEventListener('click', async (event) => {
 editPetPref.addEventListener('click', async (event) => {
     profileContainer.innerHTML = '';
 })
+
