@@ -1,9 +1,8 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 
 const { asyncHandler, handleValidationErrors } = require("../utils");
-const { getUserToken, requireUserAuth, requireShelterAuth } = require("../auth");
+const { requireUserAuth } = require("../auth");
 const db = require("../db/models");
 
 const router = express.Router();
@@ -12,7 +11,15 @@ const { UserPetPreference, User } = db;
 
 router.use(requireUserAuth);
 
-router.get("/:id", asyncHandler(async (req, res) => {
+const petNotFoundError = (id) => {
+  const err = Error("Pet not found");
+  err.errors = [`Pet with id of ${id} could not be found.`];
+  err.title = "Pet not found.";
+  err.status = 404;
+  return err;
+};
+
+router.get("/:id", asyncHandler(async (req, res, next) => {
   const userId = parseInt(req.params.id, 10);
   const petPref = await UserPetPreference.findOne({
     where: {
@@ -23,7 +30,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
   if (petPref) {
     res.json({ petPref });
   } else {
-    next(petNotFoundError(req.params.id))
+      next(petNotFoundError(req.params.id));
   }
 }));
 

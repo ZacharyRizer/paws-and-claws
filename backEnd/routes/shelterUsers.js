@@ -14,9 +14,8 @@ const { Pet, ShelterUser, AdoptionRequest, State } = db;
 router.get(
   "/:id(\\d+)", requireShelterAuth, asyncHandler(async (req, res, next) => {
     const shelterUserId = parseInt(req.params.id, 10)
-    console.log(req.user)
 
-    if (req.user.id !== shelterUserId) {
+    if (req.user.id !== shelterUserId || req.role !== "Shelter") {
       const err = new Error("Unauthorized");
       err.status = 401;
       err.message = "You do not have permission(s) to do that.";

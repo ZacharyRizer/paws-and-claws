@@ -50,5 +50,22 @@ export const matchPets = (dogs, prefPet) => {
         return (dog.matchPercentage > 0.5);
     });
 
-    return bestMatches;
+    // Quick sort the matches -Sea
+    const bestMatchesSorted = array => {
+        if (array.length <= 1) {
+            return array;
+        }
+    
+        let pivot = array.shift();
+        let pivotVal = pivot.matchPercentage;
+        let left = array.filter(dog => dog.matchPercentage > pivotVal);
+        let right = array.filter(dog => dog.matchPercentage <= pivotVal);
+    
+        let leftSorted = bestMatchesSorted(left);
+        let rightSorted = bestMatchesSorted(right);
+    
+        return [ ...leftSorted, pivot, ...rightSorted ];
+    }
+    
+    return bestMatchesSorted(bestMatches);
 }
