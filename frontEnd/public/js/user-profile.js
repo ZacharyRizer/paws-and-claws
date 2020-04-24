@@ -231,6 +231,10 @@ editPetPref.addEventListener('click', async (event) => {
         let breedOptions = breedHTMLArr.join('');
         petPrefContainer.innerHTML = `
             <form class="pet-pref-form">
+                <div class="pet-pref-form-header">
+                    <h1>Edit your dream pet</h1>
+                    <p>Sometimes your dreams are elusive or ephemeral. Feel free to change your preferences to better align with your dream pet.</p>
+                </div>
                 <div class="age-sex">
                     <select class="dropdown" name="age" id="age" placeholder="Age">
                         <option value="1"> Puppy (0-1) </option>
@@ -256,11 +260,17 @@ editPetPref.addEventListener('click', async (event) => {
                         ${breedOptions}
                     </select>
                 </div>
-                <label for="isOkayKids">  Is the pet okay with children? </label>
-                <input class="checkbox" type="checkbox" name="isOkayKids" id="isOkayKids"></input>
-                <label for="isOkayPets"> Is the pet ok with other pets?</label>
-                <input class="checkbox" type="checkbox" name="isOkayPets" id="isOkayPets"></input>
-                <button type="submit" id="save-button"> Save </button>
+                <div class="checkdiv">
+                    <label for="isOkayKids">  Is the pet okay with children? </label>
+                    <input class="checkbox" type="checkbox" name="isOkayKids" id="isOkayKids"></input>
+                </div>
+                <div class="checkdiv">
+                    <label for="isOkayPets"> Is the pet ok with other pets?</label>
+                    <input class="checkbox" type="checkbox" name="isOkayPets" id="isOkayPets"></input>
+                </div>
+                <div class="buttondiv">
+                    <button type="submit" id="save-button"> Save </button>
+                </div>
             </form>
         `
         matchLink.classList.remove('selected');
