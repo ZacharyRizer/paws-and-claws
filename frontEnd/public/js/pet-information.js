@@ -4,13 +4,13 @@ const noUserInfo = document.getElementById("pet-page-noUser")
 const adopterInfo = document.getElementById("pet-page-adopter")
 const shelterInfo = document.getElementById("pet-page-shelter")
 
+const adoptionRequest = document.querySelector(".adoption-request");
+
 const tokenId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
 const tokenRole = localStorage.getItem("PAWS_AND_CLAWS_ROLE");
 
 
 const checkAuth = (role, id, pet) => {
-  console.log(role)
-  console.log(tokenRole)
   if (role) {
     if (role === "Adopter") {
       adopterInfo.classList.remove("hidden");
@@ -52,4 +52,40 @@ window.addEventListener('DOMContentLoaded', async (e) => {
   petImg.innerHTML = `
         <img src="${pet.photo}">
     `;
+
+  adoptionRequest.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(adoptionRequest);
+    const message = formData.get("adoption-message");
+    const body = {
+      userId: parseInt(tokenId, 10),
+      petId: pet.id,
+      shelterId: pet.shelterId,
+      message,
+      isAccepted: false,
+    };
+
+    try {
+      const res = await fetch("http://localhost:8080/adoptionRequests", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem(
+            "PAWS_AND_CLAWS_ACCESS_TOKEN"
+          )}`,
+        }
+      });
+
+      if (!res.ok) {
+        throw res;
+      }
+      adopterInfo.innerHTML = "Your request was sent!"
+
+    } catch (err) {
+      masthead.classList.remove('hidden');
+      errorContainer.classList.remove('hidden');
+      handleErrors(err);
+    };
+  });
 });

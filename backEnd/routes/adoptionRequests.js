@@ -86,21 +86,21 @@ router.post('/',
       isAccepted,
     } = req.body;
 
-    const adoptionRequests = await AdoptionRequest.findAll({
+    const oldAdoptReq = await AdoptionRequest.findOne({
       where: {
         userId: userId,
+        petId: petId,
+        shelterId: shelterId,
       }
     });
 
-    adoptionRequests.forEach(request => {
-      if (request.dataValues.petId == petId && request.dataValues.shelterId == shelterId) {
-        const err = new Error("Duplicate");
-        err.status = 409;
-        err.message = "This is a duplicate request."
-        err.title = "Duplicate";
-        throw err;
-      }
-    });
+    if (oldAdoptReq) {
+      const err = new Error("Duplicate");
+      err.status = 409;
+      err.message = "This is a duplicate request."
+      err.title = "Duplicate";
+      throw err;
+    }
 
     const adoptionRequest = await AdoptionRequest.create({
       userId,
