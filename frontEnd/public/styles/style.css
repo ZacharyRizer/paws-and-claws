@@ -766,6 +766,10 @@ button:hover {
   width: 70%;
 }
 
+.profile-container .profile-left .hidden {
+  display: none;
+}
+
 .profile-container .pet-card-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -897,5 +901,108 @@ button:hover {
 .requests-table .date {
   text-align: right;
   font-size: 12px;
+}
+
+.pet-pref-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.pet-pref-container form {
+  width: 60%;
+  background: #f5f5f5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pet-pref-container form .pet-pref-form-header {
+  margin: 20px 0 0 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.pet-pref-container form .pet-pref-form-header h1 {
+  color: #6C2F9D;
+}
+
+.pet-pref-container form .pet-pref-form-header p {
+  margin: 5px 20px 20px 20px;
+  color: #808080;
+}
+
+.pet-pref-container form .age-sex, .pet-pref-container form .size-breed {
+  width: 80%;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pet-pref-container form .checkdiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+.pet-pref-container form .buttondiv {
+  margin-top: 10px;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.pet-pref-container select {
+  background: inherit;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 45%;
+  color: #808080;
+  border: 2px solid #300057;
+  border-radius: 3px;
+  font-family: "Arvo";
+  padding: 10px;
+}
+
+.pet-pref-container select:hover {
+  -webkit-box-shadow: 0 0 3px 2px #A9A9A9;
+          box-shadow: 0 0 3px 2px #A9A9A9;
+}
+
+.pet-pref-container select option {
+  color: #f5f5f5;
+  background: #300057;
 }
 /*# sourceMappingURL=style.css.map */

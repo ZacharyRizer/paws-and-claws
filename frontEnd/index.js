@@ -10,7 +10,7 @@ const app = express();
 
 // Set up middleware
 app.use(morgan('dev'));
-app.use(cors({ origin: "https://localhost:8080" }));
+app.use(cors({ origin: "http://localhost:8080" }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Set the pug view engine.

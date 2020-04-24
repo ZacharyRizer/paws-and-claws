@@ -3,10 +3,10 @@ import { convertAge, matchPets } from './utils.js';
 const masthead = document.querySelector('.masthead');
 const errorContainer = document.getElementById('errorContainer');
 const profileContainer = document.querySelector('.profile-left');
+const petPrefContainer = document.querySelector('.pet-pref-container');
 const matchLink = document.getElementById('matches');
 const requestsLink = document.getElementById('requests');
 const editPetPref = document.getElementById('editPetPref');
-
 
 const userId = localStorage.getItem('PAWS_AND_CLAWS_CURRENT_USER_ID');
 
@@ -173,12 +173,12 @@ requestsLink.addEventListener('click', async (event) => {
         let adoptReqHTMLArr = [];
         adoptionRequests.forEach(adoptReq => {
             const adoptReqHTML = `
-                                <tr>
-                                    <td>${adoptReq.Pet.petName}</td>
-                                    <td>${adoptReq.ShelterUser.shelterName}</td>
-                                    <td class="message">${adoptReq.message}</td>
-                                    <td class="date">${adoptReq.createdAt}</td>
-                                </tr>
+                    <tr>
+                        <td>${adoptReq.Pet.petName}</td>
+                        <td>${adoptReq.ShelterUser.shelterName}</td>
+                        <td class="message">${adoptReq.message}</td>
+                        <td class="date">${adoptReq.createdAt}</td>
+                    </tr>
                 `
             adoptReqHTMLArr.push(adoptReqHTML);
         })
@@ -205,7 +205,86 @@ requestsLink.addEventListener('click', async (event) => {
     }
 });
 
+// Pet Preferences
 editPetPref.addEventListener('click', async (event) => {
-    profileContainer.innerHTML = '';
-})
+    profileContainer.innerHTML = `<div class="pet-pref-container"></div>`
+    const petPrefContainer = document.querySelector('.pet-pref-container');
+
+    try {
+        const resBreeds = await fetch("http://localhost:8080/breeds", {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem(
+                    "PAWS_AND_CLAWS_ACCESS_TOKEN"
+                )}`,
+            }
+        });
+        const { breeds } = await resBreeds.json();
+
+        let breedHTMLArr = [];
+        breeds.forEach(breed => {
+            const breedHTML = `
+                <option class="breed">${breed.breedName}</option>
+            `
+            breedHTMLArr.push(breedHTML);
+        });
+        let breedOptions = breedHTMLArr.join('');
+        petPrefContainer.innerHTML = `
+            <form class="pet-pref-form">
+                <div class="pet-pref-form-header">
+                    <h1>Edit your dream pet</h1>
+                    <p>Sometimes your dreams are elusive or ephemeral. Feel free to change your preferences to better align with your dream pet.</p>
+                </div>
+                <div class="age-sex">
+                    <select class="dropdown" name="age" id="age" placeholder="Age">
+                        <option value="1"> Puppy (0-1) </option>
+                        <option value="2"> Young (1-3) </option>
+                        <option value="3"> Middle Aged (3-7) </option>
+                        <option value="4"> Adult (7-10) </option>
+                        <option value="5"> Mature (10+) </option>
+                    </select>
+                    <select class="dropdown" name="sex" id="sex" placeholder="Sex">
+                        <option value="1"> Male </option>
+                        <option value="2"> Female </option>
+                    </select>
+                </div>
+                <div class="size-breed">
+                    <select class="dropdown" name="size" id="size" placeholder="Size">
+                        <option value="1"> Toy </option>
+                        <option value="2"> Small </option>
+                        <option value="3"> Medium (3-7) </option>
+                        <option value="4"> Large </option>
+                        <option value="5"> X-Large </option>
+                    </select>
+                    <select class="dropdown" name="breed" id="breed" placeholder="Breed">
+                        ${breedOptions}
+                    </select>
+                </div>
+                <div class="checkdiv">
+                    <label for="isOkayKids">  Is the pet okay with children? </label>
+                    <input class="checkbox" type="checkbox" name="isOkayKids" id="isOkayKids"></input>
+                </div>
+                <div class="checkdiv">
+                    <label for="isOkayPets"> Is the pet ok with other pets?</label>
+                    <input class="checkbox" type="checkbox" name="isOkayPets" id="isOkayPets"></input>
+                </div>
+                <div class="buttondiv">
+                    <button type="submit" id="save-button"> Save </button>
+                </div>
+            </form>
+        `
+        matchLink.classList.remove('selected');
+        requestsLink.classList.remove('selected');
+        editPetPref.classList.add('selected');
+    } catch (e) {
+        console.log(e);
+
+    }
+    const form = document.querySelector('.pet-pref-form')
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        alert('eureka');
+    });
+});
 
