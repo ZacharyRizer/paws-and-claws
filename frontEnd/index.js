@@ -30,15 +30,8 @@ app.get('/login', (req, res) => {
     res.render('login')
 });
 
-// //Only shelter can create a pet
-app.get('/createPet', async (req, res) => {
-    let response = await fetch("http://localhost:8080/breeds");
-    const { breeds } = await response.json();
-    res.render('create-pet', { breeds });
-})
-
 // //Only Adopter can fill out the preferred pet
-app.get('/createPreferredPet', async (req, res) => {
+app.get('/create-preferred-pet', async (req, res) => {
     let response = await fetch("http://localhost:8080/breeds");
     const { breeds } = await response.json();
     res.render('create-pref-pet', { breeds })

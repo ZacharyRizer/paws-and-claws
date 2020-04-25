@@ -80,7 +80,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
         requestsLink.classList.remove('selected');
         editPetPref.classList.remove('selected');
     } catch (err) {
-        console.error(err);
+        handleErrors(err);
     }
 
     const petCards = document.querySelectorAll('.card');
@@ -143,7 +143,7 @@ matchLink.addEventListener('click', async (event) => {
         requestsLink.classList.remove('selected');
         editPetPref.classList.remove('selected');
     } catch (err) {
-        console.error(err);
+        handleErrors(err);
     }
 
     const petCards = document.querySelectorAll('.card');
@@ -209,7 +209,7 @@ requestsLink.addEventListener('click', async (event) => {
         requestsLink.classList.add('selected');
         editPetPref.classList.remove('selected');
     } catch (e) {
-        console.log(e);
+        handleErrors(e);
     }
 });
 
@@ -231,7 +231,7 @@ editPetPref.addEventListener('click', async (event) => {
 
         const sortedBreeds = breedSort(breeds);
 
-        let breedHTMLArr = [];
+        let breedHTMLArr = [`<option class="breed" value=0>No Breed Preference</option>`];
         sortedBreeds.forEach(breed => {
             const breedHTML = `
                 <option class="breed" value=${breed.id}>${breed.breedName}</option>
@@ -293,22 +293,23 @@ editPetPref.addEventListener('click', async (event) => {
         requestsLink.classList.remove('selected');
         editPetPref.classList.add('selected');
     } catch (e) {
-        console.log(e);
-
+        handleErrors(e);
     }
-    const form = document.querySelector('.pet-pref-form')
-    form.addEventListener('submit', async (event) => {
+    const editPetPrefForm = document.querySelector('.pet-pref-form')
+    editPetPrefForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-
-
-        const formData = new FormData(form);
+        const formData = new FormData(editPetPrefForm);
         const age = formData.get("age");
         const sex = formData.get("sex");
         const size = formData.get("size");
-        const breedId = formData.get("breeds");
+        let breedId = formData.get("breeds");
         const isOkayKids = formData.get("isOkayKids") ? true : false;
         const isOkayPets = formData.get("isOkayKids") ? true : false;
+
+        if (breedId === "0") {
+            breedId = null;
+        }
 
         const body = {
             age,

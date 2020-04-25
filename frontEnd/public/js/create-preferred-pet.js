@@ -10,13 +10,17 @@ petPrefForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(petPrefForm);
-    const breedId = formData.get("breeds");
+    let breedId = formData.get("breeds");
     const userId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
     const age = formData.get("age");
     const sex = formData.get("sex");
     const size = formData.get("size");
     const isOkayKids = formData.get("isOkayKids") ? true : false;
     const isOkayPets = formData.get("isOkayPets") ? true : false;
+
+    if (breedId === "0") {
+        breedId = null;
+    }
 
     const body = {
         breedId,

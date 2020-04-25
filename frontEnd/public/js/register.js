@@ -38,7 +38,7 @@ registerFormUser.addEventListener("submit", async (e) => {
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
         localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
         // redirect to home page to see all tweets:
-        window.location.href = "/createPreferredPet";
+        window.location.href = "/create-preferred-pet";
     } catch (err) {
         handleErrors(err);
     }
@@ -82,7 +82,7 @@ registerFormShelter.addEventListener("submit", async (e) => {
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
         localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
         // redirect to home page to see all tweets:
-        window.location.href = "/createPet";
+        window.location.href = "/shelter-profile";
     } catch (err) {
         handleErrors(err);
     }

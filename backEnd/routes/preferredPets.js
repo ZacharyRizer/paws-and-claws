@@ -36,9 +36,6 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
 
 router.post(
   "/",
-  check("breedId")
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for breed'),
   handleValidationErrors,
   asyncHandler(async (req, res) => {
     const {
@@ -83,12 +80,12 @@ router.put(
 
     if (pref) {
       await pref.update({
-        breedId: req.body.breedID,
+        breedId: req.body.breedId,
         age: req.body.age,
         sex: req.body.sex,
         size: req.body.size,
         isOkayPets: req.body.isOkayPets,
-        isOkayKids: req.body.isOkayKids
+        isOkayKids: req.body.isOkayKids,
       });
       res.json({ pref });
     } else {

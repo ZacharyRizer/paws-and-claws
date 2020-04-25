@@ -9,7 +9,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       breedId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Breeds',

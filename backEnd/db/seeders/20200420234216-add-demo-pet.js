@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("Pets", [
       {
-        breedId: 22,
+        breedId: 21,
         shelterId: 1,
         petName: "Doge",
         age: 4,
@@ -125,7 +125,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 1,
         petName: "Jenga",
         age: 2,
@@ -140,7 +140,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 1,
         petName: "Bagel",
         age: 2,
@@ -155,7 +155,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 1,
         petName: "Arctic",
         age: 3,
@@ -170,7 +170,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 1,
         petName: "Acorn",
         age: 1,
@@ -185,7 +185,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 1,
         petName: "Boo",
         age: 2,
@@ -230,7 +230,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 2,
         petName: "Babs",
         age: 3,
@@ -245,7 +245,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 2,
         petName: "Gypsy",
         age: 3,
@@ -260,7 +260,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 2,
         petName: "Chauncy",
         age: 1,
@@ -275,7 +275,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 20,
         shelterId: 2,
         petName: "Quincy",
         age: 2,
@@ -305,7 +305,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 2,
         petName: "Ion",
         age: 4,
@@ -320,7 +320,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 2,
         petName: "Magnet",
         age: 2,
@@ -350,7 +350,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 2,
         petName: "Crumb",
         age: 2,
@@ -365,7 +365,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 2,
         petName: "Ozzy",
         age: 4,
@@ -380,7 +380,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        breedId: 21,
+        breedId: 22,
         shelterId: 2,
         petName: "Duncan",
         age: 4,

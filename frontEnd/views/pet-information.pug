@@ -13,10 +13,11 @@ block content
                             p Register to adopt this pet now!
                             a.nav-button(href="/register") Register
                         li(id="pet-page-adopter" class="hidden")
-                            p Would you like to adopt this pet? Send a request to the shelter!
+                            p.message-p Would you like to adopt this pet? Send a request to the shelter!
                             form.adoption-request
                                 textarea(name="adoption-message" id="adoption-message" placeholder="Put your message here")
-                                button.submit(type="submit") Send Request
+                                div.pet-infor-button
+                                    button.submit(type="submit") Send Request
                         li(id="pet-page-shelter" class="hidden")
                             a(id="edit-pet-link").edit-pet(href="") Edit this pet's information
     script(type="module" src="/js/pet-information.js")  .profile-container
