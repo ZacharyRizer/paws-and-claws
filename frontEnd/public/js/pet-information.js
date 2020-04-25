@@ -66,7 +66,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
 
   const petImg = document.querySelector('.pet-image');
   petImg.innerHTML = `
-        <img class="full-photo" src="${pet.photo}">
+        <img class="full-ph src="${pet.photo}">
     `;
 
   adoptionRequest.addEventListener("submit", async (e) => {

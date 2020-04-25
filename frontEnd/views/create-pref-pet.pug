@@ -9,6 +9,7 @@ block content
             .form-element
                 label(for="breeds")
                 select(name="breeds" id="breeds" required)
+                    option(value=0) No Breed Preference
                     each breed in breeds
                         option(value=`${breed.id}`)= breed.breedName
             .form-element
