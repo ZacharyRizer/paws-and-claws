@@ -10,8 +10,7 @@ block content
                 nav.links-container
                     ul.profile-nav-list
                         li(id="pet-page-noUser" class="hidden")
-                            p Register to adopt this pet now!
-                            a.nav-button(href="/register") Register
+                            a(href="/register"): p Register to adopt this pet now!
                         li(id="pet-page-adopter" class="hidden")
                             p.message-p Would you like to adopt this pet? Send a request to the shelter!
                             form.adoption-request
@@ -19,5 +18,5 @@ block content
                                 div.pet-infor-button
                                     button.submit(type="submit") Send Request
                         li(id="pet-page-shelter" class="hidden")
-                            a(id="edit-pet-link").edit-pet(href="") Edit this pet's information
+                            a(id="edit-pet-link").edit-pet(href=""): p Edit this pet's information
     script(type="module" src="/js/pet-information.js")  .profile-container
