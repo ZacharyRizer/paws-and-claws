@@ -127,8 +127,14 @@ router.put(
     if (pet) {
       await pet.update({
         petName: req.body.petName,
+        breedId: req.body.breedId,
+        age: req.body.age,
+        size: req.body.size,
+        description: req.body.description,
         photo: req.body.photo,
-        isAdopted: req.body.isAdopted
+        isOkayKids: req.body.isOkayKids,
+        isOkayPets: req.body.isOkayPets,
+        isAdopted: req.body.isAdopted,
       });
       res.json({ pet });
     } else {
