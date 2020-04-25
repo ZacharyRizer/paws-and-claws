@@ -1,6 +1,6 @@
 import { handleErrors } from "./utils.js";
 
-const petPrefForm = document.querySelector(".create-pref-pet");
+const petPrefForm = document.querySelector(".pet-pref-form");
 
 if (localStorage.getItem("PAWS_AND_CLAWS_ROLE") !== "Adopter") {
     window.location.href = "/login"

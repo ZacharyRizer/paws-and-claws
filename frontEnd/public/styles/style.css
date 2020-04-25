@@ -18,6 +18,10 @@ a {
   font-weight: 400;
 }
 
+.buttondiv {
+  margin-bottom: 20px;
+}
+
 .nav {
   position: fixed;
   top: 0;
@@ -426,6 +430,7 @@ button:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 80%;
 }
 
 .register-user .user-form-header h1 {
@@ -537,6 +542,7 @@ button:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 80%;
 }
 
 .register-shelter .shelter-form-header h1 {
@@ -670,6 +676,7 @@ button:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 80%;
 }
 
 .shelter-form-header h1 {
@@ -722,6 +729,7 @@ button:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 80%;
 }
 
 .user-login .user-form-header h1, .shelter-login .user-form-header h1 {
@@ -848,6 +856,8 @@ button:hover {
   width: 95%;
   background: #C0C0C0;
   border-radius: 5px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   border-spacing: 0;
 }
 
@@ -861,11 +871,11 @@ button:hover {
 }
 
 .requests-table th:first-child {
-  border-top-left-radius: 5px;
+  border-top-left-radius: 30px;
 }
 
 .requests-table th:last-child {
-  border-top-right-radius: 5px;
+  border-top-right-radius: 30px;
 }
 
 .requests-table th:not(:first-child) {
@@ -944,6 +954,7 @@ button:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 80%;
 }
 
 .pet-pref-container form .pet-pref-form-header h1 {
@@ -1069,6 +1080,7 @@ button:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 80%;
 }
 
 .create-pet .create-pet-header h1 {
@@ -1165,7 +1177,7 @@ button:hover {
 }
 
 .create-pet .form-checkbox .checkbox-label .custom-checkbox {
-  margin-left: 5px;
+  margin-left: 10px;
   position: absolute;
   height: 16px;
   width: 16px;
@@ -1191,7 +1203,7 @@ button:hover {
 }
 
 .create-pet .form-checkbox .checkbox-label input {
-  margin-left: 5px;
+  margin-left: 10px;
   height: 18px;
   width: 18px;
   position: absolute;
@@ -1241,5 +1253,122 @@ button:hover {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.pet-pref-form {
+  border-radius: 30px;
+  margin-top: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pet-pref-form #ppfhtwo {
+  margin-left: 0;
+  width: 90%;
+}
+
+.pet-pref-form .age-sex-two, .pet-pref-form .size-breed-two {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.pet-pref-form .age-sex-two .dropdown, .pet-pref-form .size-breed-two .dropdown {
+  margin: 0 0 20px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 48%;
+}
+
+.pet-pref-form .age-sex-two .dropdown:last-child, .pet-pref-form .size-breed-two .dropdown:last-child {
+  margin-left: 4%;
+}
+
+.pet-pref-form .form-checkbox {
+  margin-bottom: 20px;
+}
+
+.pet-pref-form .form-checkbox .custom-checkbox {
+  margin-left: 10px;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #300057;
+  z-index: 2;
+}
+
+.pet-pref-form .form-checkbox .custom-checkbox::after {
+  position: absolute;
+  content: "";
+  height: 0px;
+  width: 0px;
+  top: 8px;
+  left: 8px;
+  border-radius: 5px;
+  border: solid #300057;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(0deg) scale(0);
+  transform: rotate(0deg) scale(0);
+  opacity: 1;
+}
+
+.pet-pref-form .form-checkbox input {
+  margin-left: 10px;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.pet-pref-form .form-checkbox input:checked ~ .custom-checkbox {
+  background-color: #6C2F9D;
+  border-radius: 5px;
+  -webkit-transform: rotate(0deg) scale(1);
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  border: 2px solid #300057;
+  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+}
+
+.pet-pref-form .form-checkbox input:checked ~ .custom-checkbox::after {
+  -webkit-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+  left: 6px;
+  top: 2px;
+  width: 3px;
+  height: 8px;
+  border: solid #f5f5f5;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
+  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
 }
 /*# sourceMappingURL=style.css.map */
