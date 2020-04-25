@@ -786,7 +786,7 @@ button:hover {
 
 .profile-container .pet-card-container .card {
   width: 30%;
-  margin: 10px;
+  margin: 0 10px 20px 10px;
 }
 
 .profile-container .dummy {
@@ -797,7 +797,7 @@ button:hover {
   width: 403px;
   position: fixed;
   background: #f5f5f5;
-  border-radius: 3px;
+  border-radius: 30px;
 }
 
 .profile-container .dummy .profile-right li:hover {
@@ -806,7 +806,7 @@ button:hover {
 
 .profile-container .dummy .profile-right .info-container {
   padding-bottom: 10px;
-  margin: 10px 10px 10px 10px;
+  margin: 15px 10px 10px 30px;
   border-bottom: 2px solid #808080;
 }
 
@@ -834,6 +834,10 @@ button:hover {
 
 .profile-container .dummy .profile-right .links-container .profile-nav-list .profile-nav-link:hover {
   color: #9340D6;
+}
+
+.profile-container .dummy .profile-right .links-container .profile-nav-list .profile-nav-link:last-child {
+  margin-bottom: 10px;
 }
 
 .adoption-requests-container {
@@ -1158,6 +1162,75 @@ button:hover {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 10px;
+}
+
+.create-pet .form-checkbox .checkbox-label .custom-checkbox {
+  margin-left: 5px;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #300057;
+  z-index: 2;
+}
+
+.create-pet .form-checkbox .checkbox-label .custom-checkbox::after {
+  position: absolute;
+  content: "";
+  height: 0px;
+  width: 0px;
+  top: 8px;
+  left: 8px;
+  border-radius: 5px;
+  border: solid #300057;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(0deg) scale(0);
+  transform: rotate(0deg) scale(0);
+  opacity: 1;
+}
+
+.create-pet .form-checkbox .checkbox-label input {
+  margin-left: 5px;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.create-pet .form-checkbox .checkbox-label input:checked ~ .custom-checkbox {
+  background-color: #6C2F9D;
+  border-radius: 5px;
+  -webkit-transform: rotate(0deg) scale(1);
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  border: 2px solid #300057;
+  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+}
+
+.create-pet .form-checkbox .checkbox-label input:checked ~ .custom-checkbox::after {
+  -webkit-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+  left: 6px;
+  top: 2px;
+  width: 3px;
+  height: 8px;
+  border: solid #f5f5f5;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
+  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
 }
 
 .create-pet .form-submit-button {

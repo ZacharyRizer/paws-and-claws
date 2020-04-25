@@ -253,12 +253,18 @@ addPet.addEventListener('click', async (e) => {
                  <input name="photo" type="text" id="photo" placeholder="photo url" />
             </div>
             <div class="form-checkbox">
-                <label for="isOkayKids">Is the pet ok with children?</label>
-                <input type="checkbox" id="idOkayKids" name="isOkayKids" />
+                <label class="checkbox-label">
+                    Is the pet ok with children?
+                    <input type="checkbox" id="idOkayKids" name="isOkayKids" />
+                    <span class="custom-checkbox"></span>
+                </label>
             </div>
             <div class="form-checkbox">
-                <label for="isOkayPets">Is the pet ok with other pets?</label>
-                <input type="checkbox" name="isOkayPets" id="isOkayPets" />
+                <label class="checkbox-label">
+                    Is the pet ok with other pets?
+                    <input type="checkbox" name="isOkayPets" id="isOkayPets"/>
+                    <span class="custom-checkbox"></span>
+                </label>
             </div>
             <div class="form-submit-button">
                 <button class="button" type="submit">Add Pet</button></form>
