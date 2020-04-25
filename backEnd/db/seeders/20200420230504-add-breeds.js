@@ -3,8 +3,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("Breeds", [
-      { breedName: "Any", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
-      { breedName: "Mixed Breed", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Labrador Retriever", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "German Shepherd", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Beagle", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
@@ -26,6 +24,7 @@ module.exports = {
       { breedName: "Great Dane", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Shetland sheepdog", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       { breedName: "Shiba Inu", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
+      { breedName: "Mixed Breed", petType: "Dog", createdAt: new Date(), updatedAt: new Date() },
       // { breedName: "Siamese", petType: "Cat", createdAt: new Date(), updatedAt: new Date() },
       // { breedName: "Persian", petType: "Cat", createdAt: new Date(), updatedAt: new Date() },
       // { breedName: "Maine Coon", petType: "Cat", createdAt: new Date(), updatedAt: new Date() },

@@ -231,7 +231,7 @@ editPetPref.addEventListener('click', async (event) => {
 
         const sortedBreeds = breedSort(breeds);
 
-        let breedHTMLArr = [];
+        let breedHTMLArr = [`<option class="breed" value=0>No Breed Preference</option>`];
         sortedBreeds.forEach(breed => {
             const breedHTML = `
                 <option class="breed" value=${breed.id}>${breed.breedName}</option>

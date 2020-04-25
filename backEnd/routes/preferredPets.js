@@ -36,9 +36,6 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
 
 router.post(
   "/",
-  check("breedId")
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for breed'),
   handleValidationErrors,
   asyncHandler(async (req, res) => {
     const {

@@ -62,7 +62,7 @@ export const matchPets = (dogs, prefPet) => {
     dogs.forEach(dog => {
         let count = 0
         for (let key in prefPet) {
-            if ((prefPet[key] === dog[key]) || (key === 'breedId' && prefPet.breedId === 1)) {
+            if ((prefPet[key] === dog[key]) || (key === 'breedId' && prefPet.breedId === null)) {
                 count++
             }
         }
