@@ -270,13 +270,19 @@ editPetPref.addEventListener('click', async (event) => {
                         ${breedOptions}
                     </select>
                 </div>
-                <div class="checkdiv">
-                    <label for="isOkayKids">  Is the pet okay with children? </label>
-                    <input class="checkbox" type="checkbox" name="isOkayKids" id="isOkayKids"></input>
+                <div class="form-checkbox">
+                    <label class="checkbox-label">
+                        Is the pet ok with children?
+                        <input type="checkbox" id="idOkayKids" name="isOkayKids" />
+                        <span class="custom-checkbox"></span>
+                    </label>
                 </div>
-                <div class="checkdiv">
-                    <label for="isOkayPets"> Is the pet ok with other pets?</label>
-                    <input class="checkbox" type="checkbox" name="isOkayPets" id="isOkayPets"></input>
+                <div class="form-checkbox">
+                    <label class="checkbox-label">
+                        Is the pet ok with other pets?
+                        <input type="checkbox" name="isOkayPets" id="isOkayPets"/>
+                        <span class="custom-checkbox"></span>
+                    </label>
                 </div>
                 <div class="buttondiv">
                     <button type="submit" id="save-button"> Save </button>
