@@ -11,6 +11,15 @@ module.exports = {
         isAccepted: false,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        userId: 1,
+        petId: 4,
+        shelterId: 2,
+        message: "I would love to adopt this cute doggo!",
+        isAccepted: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   },
