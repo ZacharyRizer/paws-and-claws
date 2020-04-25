@@ -97,8 +97,5 @@ export const breedSort = breedArr => {
     breedArr.sort((petOne, petTwo) => {
         return petOne.breedName.localeCompare(petTwo.breedName) > 0;
     })
-
-    console.log(breedArr)
-
     return breedArr;
 }
