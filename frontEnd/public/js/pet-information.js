@@ -58,27 +58,21 @@ window.addEventListener("DOMContentLoaded", async e => {
         </div>
         <div>
         <p id="pet-isOkayKids">Is the pet okay with children: ${convertBoolean(
-					pet.isOkayKids
-				)}</p>
+		pet.isOkayKids
+	)}</p>
         <div>
         </div>
         <p id="pet-isOkayPets">Is the pet okay with other pets: ${convertBoolean(
-					pet.isOkayPets
-				)}</p>
+		pet.isOkayPets
+	)}</p>
         </div>
         <div>
         <p id="pet-description">${pet.description}</p>
     `;
 
-<<<<<<< HEAD
-	const petImg = document.querySelector(".pet-image");
+	const petImg = document.querySelector('.pet-image');
 	petImg.innerHTML = `
         <img src="${pet.photo}">
-=======
-  const petImg = document.querySelector('.pet-image');
-  petImg.innerHTML = `
-        <img class="full-ph src="${pet.photo}">
->>>>>>> master
     `;
 
 	adoptionRequest.addEventListener("submit", async e => {
