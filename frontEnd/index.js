@@ -55,10 +55,6 @@ app.get("/pets/:id", async (req, res) => {
     res.render('pet-information')
 })
 
-app.get('/adoptionRequests', (req, res) => {
-    res.render('adoption-request');
-});
-
 app.get("/logout", function (req, res) {
     res.render('logout');
 });

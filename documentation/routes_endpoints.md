@@ -33,20 +33,15 @@
 
 ### FrontEnd Routes
 1. Home Page `/` display top 10 available pets
-2. Login `/login` => for adopters redirect to homepage, for shelters redirect to adoption request page
-3. Register as either adopter or shelter `/register/` => post reqeust => redirect to create-dream-pet or create-pet
+2. Login `/login` => redirect to profile page of adopter or shelter
+3. Register `/register` => post request => redirect to `/create-preferred-pet` for adopter or `/shelter-profile` for shelters
 ___
-4. Show matches `/apopter/:id/matches` => shows matches based on adopter's preferred pet
-5. Create Preferred Pet `/create-dream-pet` => for adopters only => redirect to matchees
-6.  Create adoption request `/create-adoption-request` => for adopters only
+4. Preferred Pet Attributes `/create-preferred-pet` => post request => adopter inputs qualities they'd like to match with potential pets
+5. Adopter profile `/user-profile` => shows matches, and links for adoption requests and editing the preferred pet (AJAX)
 ___
-
-7. Create Pets `/create-pet` => for shelters only => list of shelter's available pets
-8.  Shelter's pet list `/shelters/:id/pets` => shows available pets for shelter
-9.  Adoption Request Page `/shelters/:id/adoption-requests` => for shelters only
-10.  Shelter Detail Page `/shelters/:id` => show shelter info along with all dogs at that shelter
-11.  A particular request page `/shelters/:id/adoption-requests/:id`
-
+6. Shelter profile `/shelter-profile` => show available pets, and links for adoption requests and adding a pet
+7. Edit a pet `/edit-pet/:id` => put request => edit a particular pets information
 ___
-12.  About page `/about` describe this app
-13.  404 error `/not-found` not found error page
+8. Pet information `/pets/:id` => display a particular pet's information
+---
+9. Logout `/logout` => clear local storage and redirect to homepage
