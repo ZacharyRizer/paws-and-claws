@@ -14,7 +14,8 @@ router.get(
   asyncHandler(async (req, res) => {
     const pets = await Pet.findAll({
       order: [["createdAt", "DESC"]],
-      include: [Breed, ShelterUser]
+      include: [Breed, ShelterUser],
+      where: { isAdopted: false },
     });
     res.json({ pets });
   })
