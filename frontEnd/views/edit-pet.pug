@@ -23,11 +23,6 @@ block content
                     option(value=4) Adult (7-10)
                     option(value=5) Mature (10+)
             .form-element
-                label(for="sex") Sex:
-                select(name="sex" id="sex" placeholder="Sex")
-                    option(value=1) Male
-                    option(value=2) Female
-            .form-element
                 label(for="size") Size:
                 select(name="size" id="size" placeholder="Sex")
                     option(value=1) Toy
@@ -43,10 +38,13 @@ block content
                 input(name="photo" type="text" id="photo" placeholder="photo url")
             .form-element
                 label(for="isOkayKids") Is the pet ok with children?
-                input(type="checkbox" id="idOkayKids" name="isOkayKids")
+                input(type="checkbox" id="isOkayKids" name="isOkayKids")
             .form-element
                 label(for="isOkayPets") Is the pet ok with other pets?
-                input(type="checkbox" name="isOkayPets" id="isOkayPets") 
+                input(type="checkbox" name="isOkayPets" id="isOkayPets")
+            .form-element
+                label(for="isAdopted") Has this pet been adopted?
+                input(type="checkbox" name="isAdopted" id="isAdopted")
             .form-element
             button.button(type="submit") Sumbit Edit
     script(type="module" src="/js/edit-pet.js")
