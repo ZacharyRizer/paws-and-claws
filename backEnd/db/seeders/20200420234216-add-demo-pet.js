@@ -232,21 +232,6 @@ module.exports = {
       {
         breedId: 21,
         shelterId: 2,
-        petName: "Boo",
-        age: 2,
-        sex: 1,
-        size: 2,
-        description: "Much doge. Very wow.",
-        photo: "https://thesmartcanine.com/wp-content/uploads/2019/02/mixed-dog-breeds-min.jpg",
-        isAdopted: false,
-        isOkayKids: true,
-        isOkayPets: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        breedId: 21,
-        shelterId: 2,
         petName: "Babs",
         age: 3,
         sex: 2,

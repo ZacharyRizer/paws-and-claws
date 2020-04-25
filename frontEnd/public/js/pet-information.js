@@ -38,14 +38,30 @@ window.addEventListener('DOMContentLoaded', async (e) => {
   checkAuth(tokenRole, tokenId, pet);
 
   petInfoContainer.innerHTML = `
+        <div class="pet-name"></div>
         <h3 id="pet-name">${pet.petName}</h3>
+        </div>
+        <div>
         <p id="pet-breed">${pet.Breed.breedName}</p>
+        </div>
+        <div>
         <p id="pet-sex">${convertSex(pet.sex)}</p>
+        </div>
+        <div>
         <p id="pet-size">${convertSize(pet.size)}</p>
+        </div>
+        <div>
         <p id="pet-age">${convertAge(pet.age)}</p>
+        </div>
+        <div>
         <p id="pet-isOkayKids">Is the pet okay with children: ${convertBoolean(pet.isOkayKids)}</p>
+        <div>
+        </div>
         <p id="pet-isOkayPets">Is the pet okay with other pets: ${convertBoolean(pet.isOkayPets)}</p>
+        </div>
+        <div>
         <p id="pet-description">${pet.description}</p>
+        </div>
     `;
 
   const petImg = document.querySelector('.pet-image');
@@ -80,12 +96,17 @@ window.addEventListener('DOMContentLoaded', async (e) => {
       if (!res.ok) {
         throw res;
       }
-      adopterInfo.innerHTML = "Your request was sent!"
+      window.location.href = "/user-profile";
 
     } catch (err) {
-      masthead.classList.remove('hidden');
-      errorContainer.classList.remove('hidden');
       handleErrors(err);
     };
   });
 });
+
+document.getElementById("edit-pet-link").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const pathParts = window.location.pathname.split('/');
+  const petNum = parseInt(pathParts[2], 10);
+  window.location.href = `/edit-pet/${petNum}`
+})

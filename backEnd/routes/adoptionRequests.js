@@ -50,14 +50,15 @@ router.get(
 // GET all adoption requests for shelters
 router.get(
   "/shelter/:id",
+  requireShelterAuth,
   asyncHandler(async (req, res, next) => {
     const shelterId = parseInt(req.params.id, 10);
-    const adoptionRequest = await AdoptionRequest.findAll({
+    const adoptionRequests = await AdoptionRequest.findAll({
       where: { shelterId: shelterId },
       include: [Pet, ShelterUser, User]
     });
-    if (adoptionRequest) {
-      res.json({ adoptionRequest });
+    if (adoptionRequests) {
+      res.json({ adoptionRequests });
     } else {
       next(adoptionRequestNotFoundError(req.params.id));
     }
