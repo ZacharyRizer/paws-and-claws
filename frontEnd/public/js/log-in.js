@@ -2,8 +2,6 @@ import { handleErrors } from "./utils.js";
 
 const logInFormUser = document.querySelector(".user-login");
 const logInFormShelter = document.querySelector(".shelter-login");
-const masthead = document.querySelector(".masthead");
-const errorContainer = document.getElementById("errorContainer");
 
 logInFormUser.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -37,10 +35,6 @@ logInFormUser.addEventListener("submit", async (e) => {
 
         window.location.href = `/user-profile`;
     } catch (err) {
-        masthead.classList.remove('hidden');
-        errorContainer.classList.remove('hidden');
-        registerContainer.classList.add('hidden');
-        loggedInContainer.classList.add('hidden');
         handleErrors(err);
     }
 });
@@ -76,10 +70,6 @@ logInFormShelter.addEventListener("submit", async (e) => {
 
         window.location.href = `/shelter-profile`;
     } catch (err) {
-        masthead.classList.remove('hidden');
-        errorContainer.classList.remove('hidden');
-        registerContainer.classList.add('hidden');
-        loggedInContainer.classList.add('hidden');
         handleErrors(err);
     }
 });

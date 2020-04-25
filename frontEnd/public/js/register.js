@@ -2,9 +2,6 @@ import { handleErrors } from "./utils.js";
 
 const registerFormUser = document.querySelector(".register-user");
 const registerFormShelter = document.querySelector(".register-shelter");
-const masthead = document.querySelector(".masthead");
-const errorContainer = document.getElementById("errorContainer");
-
 
 registerFormUser.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -43,10 +40,6 @@ registerFormUser.addEventListener("submit", async (e) => {
         // redirect to home page to see all tweets:
         window.location.href = "/createPreferredPet";
     } catch (err) {
-        masthead.classList.remove('hidden');
-        errorContainer.classList.remove('hidden');
-        // registerContainer.classList.add('hidden');
-        // loggedInContainer.clascreatePreferredPetn');
         handleErrors(err);
     }
 });
@@ -91,8 +84,6 @@ registerFormShelter.addEventListener("submit", async (e) => {
         // redirect to home page to see all tweets:
         window.location.href = "/createPet";
     } catch (err) {
-        masthead.classList.remove('hidden');
-        errorContainer.classList.remove('hidden');
         handleErrors(err);
     }
 });

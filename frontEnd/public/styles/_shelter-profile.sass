@@ -1,0 +1,78 @@
+@import "utils"
+
+.add-pet-container
+    display: flex
+    justify-content: center
+
+.dropdown
+    background: inherit
+    box-sizing: border-box
+    color: $grey4
+    width: 47%
+    border: 2px solid $darker
+    border-radius: 3px
+    font-family: "Arvo"
+    padding: 10px
+    &:hover
+        box-shadow: 0 0 3px 2px $grey3
+        option
+            color: $grey1
+            background: $darker
+
+.create-pet
+    width: 70%
+    display: flex
+    flex-direction: column
+    align-items: center
+    background: $grey1
+    border-radius: 30px
+    .create-pet-header
+        margin: 20px 0 0 10px
+        @include formHeader
+    .text-container
+        width: 80%
+        margin-bottom: 20px
+        input
+            box-sizing: border-box
+            width: 100%
+    .form-breed-age
+        width: 80%
+        display: flex
+        justify-content: space-between
+        margin-bottom: 20px
+    .form-sex-size
+        width: 80%
+        display: flex
+        justify-content: space-between
+        margin-bottom: 20px
+    .form-textarea
+        width: 80%
+        margin-bottom: 20px
+        .describe-pet
+            box-sizing: border-box
+            width: 100%
+            height: 100px
+            padding: 10px 0 0 10px
+            background: inherit
+            border: 2px solid $darker
+            border-radius: 3px
+    .form-image-input
+        width: 80%
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-bottom: 20px
+        label
+            width: 30%
+        input
+            width: 70%
+    .form-checkbox
+        width: 80%
+        align-self: left
+        display: flex
+        align-items: center
+        margin-bottom: 10px
+    .form-submit-button
+        width: 80%
+        display: flex
+        justify-content: flex-end

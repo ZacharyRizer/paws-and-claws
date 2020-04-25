@@ -11,11 +11,11 @@ const { UserPetPreference, User } = db;
 
 router.use(requireUserAuth);
 
-const petNotFoundError = (id) => {
-  const err = Error("Pet not found");
-  err.errors = [`Pet with id of ${id} could not be found.`];
-  err.title = "Pet not found.";
+const prefNotFoundError = (id) => {
+  const err = new Error("Not Found");
   err.status = 404;
+  err.message = "No pet preference was found for this user";
+  err.title = "No Preference";
   return err;
 };
 
@@ -30,7 +30,7 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
   if (petPref) {
     res.json({ petPref });
   } else {
-      next(petNotFoundError(req.params.id));
+    next(prefNotFoundError(req.params.id));
   }
 }));
 
@@ -66,11 +66,13 @@ router.put(
   "/:id",
   handleValidationErrors,
   asyncHandler(async (req, res, next) => {
+    const userId = req.user.id;
     const pref = await UserPetPreference.findOne({
       where: {
-        id: req.params.id,
+        userId: userId,
       },
     });
+
     if (req.user.id !== pref.userId) {
       const err = new Error("Unauthorized");
       err.status = 401;
@@ -78,6 +80,7 @@ router.put(
       err.title = "Unauthorized";
       throw err;
     }
+
     if (pref) {
       await pref.update({
         breedId: req.body.breedID,
@@ -89,7 +92,7 @@ router.put(
       });
       res.json({ pref });
     } else {
-      next(petNotFoundError(req.params.id));
+      next(prefNotFoundError(req.params.id));
     }
   })
 );

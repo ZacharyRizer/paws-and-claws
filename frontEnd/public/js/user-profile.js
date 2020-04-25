@@ -1,9 +1,9 @@
-import { convertAge, matchPets } from './utils.js';
+import { convertAge, matchPets, breedSort, handleErrors } from './utils.js';
 
 const masthead = document.querySelector('.masthead');
 const errorContainer = document.getElementById('errorContainer');
 const profileContainer = document.querySelector('.profile-left');
-const petPrefContainer = document.querySelector('.pet-pref-container');
+const loggedInContainer = document.querySelector('.logged-in-container');
 const matchLink = document.getElementById('matches');
 const requestsLink = document.getElementById('requests');
 const editPetPref = document.getElementById('editPetPref');
@@ -43,6 +43,10 @@ window.addEventListener('DOMContentLoaded', async (e) => {
 
         const res2 = await fetch(`http://localhost:8080/preferredPets/${userId}`);
         const { petPref } = await res2.json();
+
+        if (res2.status === 404) {
+            window.location.href = '/createPreferredPet';
+        }
 
         const matches = matchPets(pets, petPref);
 
@@ -102,6 +106,10 @@ matchLink.addEventListener('click', async (event) => {
 
         const res2 = await fetch(`http://localhost:8080/preferredPets/${userId}`);
         const { petPref } = await res2.json();
+
+        if (res2.status === 404) {
+            window.location.href = '/createPreferredPet';
+        }
 
         const matches = matchPets(pets, petPref);
 
@@ -221,10 +229,12 @@ editPetPref.addEventListener('click', async (event) => {
         });
         const { breeds } = await resBreeds.json();
 
+        const sortedBreeds = breedSort(breeds);
+
         let breedHTMLArr = [];
-        breeds.forEach(breed => {
+        sortedBreeds.forEach(breed => {
             const breedHTML = `
-                <option class="breed">${breed.breedName}</option>
+                <option class="breed" value=${breed.id}>${breed.breedName}</option>
             `
             breedHTMLArr.push(breedHTML);
         });
@@ -284,7 +294,53 @@ editPetPref.addEventListener('click', async (event) => {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        alert('eureka');
+
+
+        const formData = new FormData(form);
+        const age = formData.get("age");
+        const sex = formData.get("sex");
+        const size = formData.get("size");
+        const breedId = formData.get("breeds");
+        const isOkayKids = formData.get("isOkayKids") ? true : false;
+        const isOkayPets = formData.get("isOkayKids") ? true : false;
+
+        const body = {
+            age,
+            sex,
+            size,
+            breedId,
+            isOkayKids,
+            isOkayPets,
+            userId
+        };
+
+        try {
+            const res = await fetch(`http://localhost:8080/preferredPets/${userId}}`, {
+                method: "PUT",
+                body: JSON.stringify(body),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem(
+                        "PAWS_AND_CLAWS_ACCESS_TOKEN"
+                    )}`,
+                }
+            });
+
+            if (res.status === 401) {
+                window.location.href = "/login";
+            }
+
+            if (res.status === 404) {
+                window.location.href = '/createPreferredPet';
+            }
+
+            if (!res.ok) {
+                throw res;
+            }
+            window.location.href = "/user-profile";
+        } catch (e) {
+            handleErrors(e);
+        }
     });
 });
 

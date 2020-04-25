@@ -1,4 +1,9 @@
 export const handleErrors = async (err) => {
+    document.querySelector('.logged-in-container').classList.add('hidden');
+    document.querySelector('.register-container').classList.add('hidden');
+    document.querySelector('.masthead').classList.remove('hidden');
+    document.querySelector('.error-container').classList.remove('hidden');
+
     if (err.status >= 400 && err.status < 600) {
         const errorJSON = await err.json();
         const errorList = document.querySelector(".error-list");
@@ -57,7 +62,7 @@ export const matchPets = (dogs, prefPet) => {
     dogs.forEach(dog => {
         let count = 0
         for (let key in prefPet) {
-            if (prefPet[key] === dog[key]) {
+            if ((prefPet[key] === dog[key]) || (key === 'breedId' && prefPet.breedId === 1)) {
                 count++
             }
         }
@@ -86,4 +91,14 @@ export const matchPets = (dogs, prefPet) => {
     }
 
     return bestMatchesSorted(bestMatches);
+}
+
+export const breedSort = breedArr => {
+    breedArr.sort((petOne, petTwo) => {
+        return petOne.breedName.localeCompare(petTwo.breedName) > 0;
+    })
+
+    console.log(breedArr)
+
+    return breedArr;
 }

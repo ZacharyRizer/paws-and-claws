@@ -44,6 +44,12 @@ app.get('/createPreferredPet', async (req, res) => {
     res.render('create-pref-pet', { breeds })
 });
 
+app.get('/edit-pet/:id', async (req, res) => {
+    let response = await fetch("http://localhost:8080/breeds");
+    const { breeds } = await response.json();
+    res.render('edit-pet', { breeds })
+})
+
 app.get("/user-profile", async (req, res) => {
     res.render('user-profile');
 });
