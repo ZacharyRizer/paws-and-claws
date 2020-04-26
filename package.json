@@ -17,7 +17,8 @@
     "dotenv-cli": "^3.1.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "per-env": "^4.3.1"
   },
   "devDependencies": {
     "node-fetch": "^2.6.0",
