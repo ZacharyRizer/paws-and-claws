@@ -67,7 +67,5 @@ app.get("/logout", function (req, res) {
     res.render('logout');
 });
 
-// Define a port and start listening for connections.
-const port = 4000;
-
+//start listening for connections.
 app.listen(port, () => console.log(`Listening on port ${port}...`));
