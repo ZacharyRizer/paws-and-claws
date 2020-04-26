@@ -1,4 +1,4 @@
-import { convertAge, matchPets, breedSort, handleErrors } from './utils.js';
+import { convertAge, matchPets, breedSort, handleErrors, api } from './utils.js';
 
 const masthead = document.querySelector('.masthead');
 const errorContainer = document.getElementById('errorContainer');
@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     // Add authorization functionality
     // We should be able to only access the 
     profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
-    let response = await fetch(`http://localhost:8080/users/${userId}`, {
+    let response = await fetch(`${api}/users/${userId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -38,10 +38,10 @@ window.addEventListener('DOMContentLoaded', async (e) => {
 
     // Default to Matches
     try {
-        const res = await fetch(`http://localhost:8080/pets`);
+        const res = await fetch(`${api}/pets`);
         const { pets } = await res.json();
 
-        const res2 = await fetch(`http://localhost:8080/preferredPets/${userId}`);
+        const res2 = await fetch(`${api}/preferredPets/${userId}`);
         const { petPref } = await res2.json();
 
         if (res2.status === 404) {
@@ -101,10 +101,10 @@ window.addEventListener('DOMContentLoaded', async (e) => {
 matchLink.addEventListener('click', async (event) => {
     profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
     try {
-        const res = await fetch(`http://localhost:8080/pets`);
+        const res = await fetch(`${api}/pets`);
         const { pets } = await res.json();
 
-        const res2 = await fetch(`http://localhost:8080/preferredPets/${userId}`);
+        const res2 = await fetch(`${api}/preferredPets/${userId}`);
         const { petPref } = await res2.json();
 
         if (res2.status === 404) {
@@ -166,7 +166,7 @@ requestsLink.addEventListener('click', async (event) => {
     profileContainer.innerHTML = `<div class="adoption-requests-container"></div>`;
     const adoptReqContainer = document.querySelector('.adoption-requests-container');
     try {
-        const res = await fetch(`http://localhost:8080/adoptionRequests/user/${userId}`, {
+        const res = await fetch(`${api}/adoptionRequests/user/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -219,7 +219,7 @@ editPetPref.addEventListener('click', async (event) => {
     const petPrefContainer = document.querySelector('.pet-pref-container');
 
     try {
-        const resBreeds = await fetch("http://localhost:8080/breeds", {
+        const resBreeds = await fetch(`${api}/breeds`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem(
@@ -322,7 +322,7 @@ editPetPref.addEventListener('click', async (event) => {
         };
 
         try {
-            const res = await fetch(`http://localhost:8080/preferredPets/${userId}}`, {
+            const res = await fetch(`${api}/preferredPets/${userId}}`, {
                 method: "PUT",
                 body: JSON.stringify(body),
                 headers: {

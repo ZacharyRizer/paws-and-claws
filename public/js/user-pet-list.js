@@ -1,4 +1,4 @@
-const { convertAge } = require("./utils.js");
+import { convertAge, api } from "./utils.js";
 
 const masthead = document.querySelector(".masthead");
 const registerContainer = document.getElementById("registerContainer");
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
 
     //   const userId = localStorage.getItem("TWITTER_LITE_CURRENT_USER_ID");
     try {
-        const res = await fetch(`http://localhost:8080/pets`);
+        const res = await fetch(`${api}/pets`);
 
         if (res.status === 401) {
             window.location.href = "/log-in";

@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const fetch = require("node-fetch");
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next)
+const { api, port } = require("./config");
 
 // Create the Express app.
 const app = express();
@@ -16,6 +17,13 @@ app.use(express.static(path.join(__dirname, "public")));
 // Set the pug view engine.
 app.set("view engine", "pug");
 
+//middleware for custom render
+app.use((req, res, next) => {
+    res.locals.api = api;
+    next();
+})
+
+//routes
 app.get('/', (req, res) => {
     res.render('homepage');
 });

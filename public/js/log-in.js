@@ -1,4 +1,4 @@
-import { handleErrors } from "./utils.js";
+import { handleErrors, api } from "./utils.js";
 
 const logInFormUser = document.querySelector(".user-login");
 const logInFormShelter = document.querySelector(".shelter-login");
@@ -10,7 +10,7 @@ logInFormUser.addEventListener("submit", async (e) => {
     const password = formData.get("password");
     const body = { email, password };
     try {
-        const res = await fetch(`http://localhost:8080/users/token`, {
+        const res = await fetch(`${api}/users/token`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -45,7 +45,7 @@ logInFormShelter.addEventListener("submit", async (e) => {
     const password = formData.get("password");
     const body = { email, password };
     try {
-        const res = await fetch(`http://localhost:8080/shelters/token`, {
+        const res = await fetch(`${api}/shelters/token`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {

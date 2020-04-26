@@ -3,7 +3,8 @@ import {
 	convertAge,
 	convertSex,
 	convertSize,
-	convertBoolean
+	convertBoolean,
+	api
 } from "./utils.js";
 
 const noUserInfo = document.getElementById("pet-page-noUser");
@@ -33,7 +34,7 @@ window.addEventListener("DOMContentLoaded", async e => {
 	const pathParts = window.location.pathname.split("/");
 	const petNum = parseInt(pathParts[2], 10);
 
-	const petInfo = await fetch(`http://localhost:8080/pets/${petNum}`);
+	const petInfo = await fetch(`${api}/pets/${petNum}`);
 	const { pet } = await petInfo.json();
 
 	const petInfoContainer = document.querySelector(".info-container");
@@ -58,13 +59,13 @@ window.addEventListener("DOMContentLoaded", async e => {
         </div>
         <div>
         <p id="pet-isOkayKids">Is the pet okay with children: ${convertBoolean(
-					pet.isOkayKids
-				)}</p>
+		pet.isOkayKids
+	)}</p>
         <div>
         </div>
         <p id="pet-isOkayPets">Is the pet okay with other pets: ${convertBoolean(
-					pet.isOkayPets
-				)}</p>
+		pet.isOkayPets
+	)}</p>
         </div>
         <div>
         <p id="pet-description">${pet.description}</p>
@@ -88,7 +89,7 @@ window.addEventListener("DOMContentLoaded", async e => {
 		};
 
 		try {
-			const res = await fetch("http://localhost:8080/adoptionRequests", {
+			const res = await fetch(`${api}/adoptionRequests`, {
 				method: "POST",
 				body: JSON.stringify(body),
 				headers: {

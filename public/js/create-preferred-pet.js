@@ -1,4 +1,5 @@
-import { handleErrors } from "./utils.js";
+import { handleErrors, api } from "./utils.js";
+
 
 const petPrefForm = document.querySelector(".pet-pref-form");
 
@@ -33,7 +34,7 @@ petPrefForm.addEventListener("submit", async (e) => {
     };
 
     try {
-        const res = await fetch(`http://localhost:8080/preferredPets/`, {
+        const res = await fetch(`${api}/preferredPets/`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {

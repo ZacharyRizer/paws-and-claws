@@ -1,4 +1,4 @@
-import { handleErrors } from "./utils.js";
+import { handleErrors, api } from "./utils.js";
 
 const registerFormUser = document.querySelector(".register-user");
 const registerFormShelter = document.querySelector(".register-shelter");
@@ -16,7 +16,7 @@ registerFormUser.addEventListener("submit", async (e) => {
     const body = { username, firstName, lastName, email, phoneNum, password, confirmPassword };
 
     try {
-        const res = await fetch("http://localhost:8080/users", {
+        const res = await fetch(`${api}/users`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -60,7 +60,7 @@ registerFormShelter.addEventListener("submit", async (e) => {
     const body = { shelterName, email, website, phoneNum, address, city, stateId, zipCode, password, confirmPassword };
 
     try {
-        const res = await fetch("http://localhost:8080/shelters", {
+        const res = await fetch(`${api}/shelters`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {

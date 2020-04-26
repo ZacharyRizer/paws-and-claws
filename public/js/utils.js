@@ -99,3 +99,5 @@ export const breedSort = breedArr => {
     })
     return breedArr;
 }
+
+export const api = document.querySelector('link[rel="api"]').href;

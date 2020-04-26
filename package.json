@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "per-env",
+    "start:development": "nodemon -r dotenv/config index.js",
+    "start:production": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +15,10 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.3",
     "pug": "^2.0.4"
   },
   "devDependencies": {
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.3"
   }
 }

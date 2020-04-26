@@ -1,4 +1,4 @@
-import { handleErrors, convertAge, convertSex, convertSize } from "./utils.js";
+import { handleErrors, convertAge, convertSex, convertSize, api } from "./utils.js";
 
 const masthead = document.querySelector(".masthead");
 const registerContainer = document.getElementById("registerContainer");
@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     masthead.classList.remove('hidden');
 
     try {
-        const res = await fetch(`http://localhost:8080/pets`);
+        const res = await fetch(`${api}/pets`);
 
         if (res.status === 401) {
             window.location.href = "/log-in";

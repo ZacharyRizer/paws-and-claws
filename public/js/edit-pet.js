@@ -1,4 +1,5 @@
-import { handleErrors } from "./utils.js";
+import { handleErrors, api } from "./utils.js";
+
 
 const petForm = document.querySelector(".edit-pet");
 const masthead = document.querySelector(".masthead");
@@ -14,7 +15,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     try {
         const pathParts = window.location.pathname.split('/');
         const petNum = parseInt(pathParts[2], 10);
-        const petInfo = await fetch(`http://localhost:8080/pets/${petNum}`);
+        const petInfo = await fetch(`${api}/pets/${petNum}`);
         const { pet } = await petInfo.json();
         petId = pet.id
 
@@ -78,7 +79,7 @@ petForm.addEventListener("submit", async (e) => {
     };
 
     try {
-        const res = await fetch(`http://localhost:8080/pets/${petId}`, {
+        const res = await fetch(`${api}/pets/${petId}`, {
             method: "PUT",
             body: JSON.stringify(body),
             headers: {
