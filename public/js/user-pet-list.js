@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
 
     //   const userId = localStorage.getItem("TWITTER_LITE_CURRENT_USER_ID");
     try {
-        const res = await fetch(`${api}/pets`);
+        const res = await fetch(`${api}pets`);
 
         if (res.status === 401) {
             window.location.href = "/log-in";

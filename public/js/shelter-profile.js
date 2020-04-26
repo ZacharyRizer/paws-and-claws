@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     // Add authorization functionality
     // We should be able to only access the 
 
-    let response = await fetch(`${api}/shelters/${shelterId}`, {
+    let response = await fetch(`${api}shelters/${shelterId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     shelterAddressLine2.innerHTML = `${shelterUser.city}, ${shelterUser.State.stateName} ${shelterUser.zipCode}`;
     // Default To Matches
     try {
-        const res = await fetch(`${api}/pets`);
+        const res = await fetch(`${api}pets`);
         const { pets } = await res.json();
 
         const availablePets = pets.filter(pet => {
@@ -101,7 +101,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
 petList.addEventListener('click', async (e) => {
     e.preventDefault();
     profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
-    let response = await fetch(`${api}/shelters/${shelterId}`, {
+    let response = await fetch(`${api}shelters/${shelterId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -127,7 +127,7 @@ petList.addEventListener('click', async (e) => {
     shelterAddressLine2.innerHTML = `${shelterUser.city}, ${shelterUser.State.stateName} ${shelterUser.zipCode}`;
     // Default To Matches
     try {
-        const res = await fetch(`${api}/pets`);
+        const res = await fetch(`${api}pets`);
         const { pets } = await res.json();
 
         const availablePets = pets.filter(pet => {
@@ -186,7 +186,7 @@ addPet.addEventListener('click', async (e) => {
     const addPetContainer = document.querySelector('.add-pet-container');
 
     try {
-        const resBreeds = await fetch(`${api}/breeds`, {
+        const resBreeds = await fetch(`${api}breeds`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem(
@@ -304,7 +304,7 @@ addPet.addEventListener('click', async (e) => {
         };
 
         try {
-            const res = await fetch(`${api}/pets/`, {
+            const res = await fetch(`${api}pets/`, {
                 method: "POST",
                 body: JSON.stringify(body),
                 headers: {
@@ -332,7 +332,7 @@ adoptReq.addEventListener('click', async (event) => {
     profileContainer.innerHTML = `<div class="adoption-requests-container"></div>`;
     const adoptReqContainer = document.querySelector('.adoption-requests-container');
     try {
-        const res = await fetch(`${api}/adoptionRequests/shelter/${shelterId}`, {
+        const res = await fetch(`${api}adoptionRequests/shelter/${shelterId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

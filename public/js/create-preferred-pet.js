@@ -34,7 +34,7 @@ petPrefForm.addEventListener("submit", async (e) => {
     };
 
     try {
-        const res = await fetch(`${api}/preferredPets/`, {
+        const res = await fetch(`${api}preferredPets/`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {

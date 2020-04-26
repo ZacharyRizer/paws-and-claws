@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     masthead.classList.remove('hidden');
 
     try {
-        const res = await fetch(`${api}/pets`);
+        const res = await fetch(`${api}pets`);
 
         if (res.status === 401) {
             window.location.href = "/log-in";

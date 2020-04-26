@@ -34,7 +34,7 @@ window.addEventListener("DOMContentLoaded", async e => {
 	const pathParts = window.location.pathname.split("/");
 	const petNum = parseInt(pathParts[2], 10);
 
-	const petInfo = await fetch(`${api}/pets/${petNum}`);
+	const petInfo = await fetch(`${api}pets/${petNum}`);
 	const { pet } = await petInfo.json();
 
 	const petInfoContainer = document.querySelector(".info-container");
@@ -89,7 +89,7 @@ window.addEventListener("DOMContentLoaded", async e => {
 		};
 
 		try {
-			const res = await fetch(`${api}/adoptionRequests`, {
+			const res = await fetch(`${api}adoptionRequests`, {
 				method: "POST",
 				body: JSON.stringify(body),
 				headers: {
