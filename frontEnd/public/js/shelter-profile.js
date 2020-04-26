@@ -1,64 +1,63 @@
 import { breedSort, handleErrors, convertAge, matchPets } from "./utils.js";
-
 const masthead = document.querySelector(".masthead");
 const errorContainer = document.getElementById("errorContainer");
-const profileContainer = document.querySelector('.profile-left');
-const addPet = document.getElementById('addPet');
-const adoptReq = document.getElementById('adoptReq');
-const petList = document.getElementById('petList');
+const profileContainer = document.querySelector(".profile-left");
+const addPet = document.getElementById("addPet");
+const adoptReq = document.getElementById("adoptReq");
+const petList = document.getElementById("petList");
 
 profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
-const shelterId = localStorage.getItem('PAWS_AND_CLAWS_CURRENT_USER_ID');
+const shelterId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
 
 if (localStorage.getItem("PAWS_AND_CLAWS_ROLE") !== "Shelter") {
-    window.location.href = "/login"
+	window.location.href = "/login";
 }
 
-window.addEventListener('DOMContentLoaded', async (e) => {
-    // Add authorization functionality
-    // We should be able to only access the 
+window.addEventListener("DOMContentLoaded", async e => {
+	// Add authorization functionality
+	// We should be able to only access the
 
-    let response = await fetch(`http://localhost:8080/shelters/${shelterId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem(
-                "PAWS_AND_CLAWS_ACCESS_TOKEN"
-            )}`,
-        }
-    });
-    const { shelterUser } = await response.json();
+	let response = await fetch(`http://localhost:8080/shelters/${shelterId}`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem(
+				"PAWS_AND_CLAWS_ACCESS_TOKEN"
+			)}`
+		}
+	});
+	const { shelterUser } = await response.json();
 
-    const shelterName = document.getElementById('shelter-name');
-    const shelterPhone = document.getElementById('shelter-phoneNum');
-    const shelterEmail = document.getElementById('shelter-email');
-    const shelterWebsite = document.getElementById('shelter-website');
-    const shelterAddress = document.getElementById('shelter-address');
-    const shelterAddressLine2 = document.getElementById('shelter-address-2');
+	const shelterName = document.getElementById("shelter-name");
+	const shelterPhone = document.getElementById("shelter-phoneNum");
+	const shelterEmail = document.getElementById("shelter-email");
+	const shelterWebsite = document.getElementById("shelter-website");
+	const shelterAddress = document.getElementById("shelter-address");
+	const shelterAddressLine2 = document.getElementById("shelter-address-2");
 
-    shelterName.innerHTML = `${shelterUser.shelterName}`;
-    shelterPhone.innerHTML = `${shelterUser.phoneNum}`;
-    shelterEmail.innerHTML = `${shelterUser.email}`;
-    shelterWebsite.innerHTML = `${shelterUser.website}`;
-    shelterAddress.innerHTML = `${shelterUser.address}`;
-    shelterAddressLine2.innerHTML = `${shelterUser.city}, ${shelterUser.State.stateName} ${shelterUser.zipCode}`;
-    // Default To Matches
-    try {
-        const res = await fetch(`http://localhost:8080/pets`);
-        const { pets } = await res.json();
+	shelterName.innerHTML = `${shelterUser.shelterName}`;
+	shelterPhone.innerHTML = `${shelterUser.phoneNum}`;
+	shelterEmail.innerHTML = `${shelterUser.email}`;
+	shelterWebsite.innerHTML = `${shelterUser.website}`;
+	shelterAddress.innerHTML = `${shelterUser.address}`;
+	shelterAddressLine2.innerHTML = `${shelterUser.city}, ${shelterUser.State.stateName} ${shelterUser.zipCode}`;
+	// Default To Matches
+	try {
+		const res = await fetch(`http://localhost:8080/pets`);
+		const { pets } = await res.json();
 
-        const availablePets = pets.filter(pet => {
-            if (pet.shelterId === parseInt(shelterId, 10)) {
-                return pet;
-            };
-        });
+		const availablePets = pets.filter(pet => {
+			if (pet.shelterId === parseInt(shelterId, 10)) {
+				return pet;
+			}
+		});
 
-        const petsContainer = document.querySelector(".pet-card-container");
-        let petsHtml = [];
+		const petsContainer = document.querySelector(".pet-card-container");
+		let petsHtml = [];
 
-        availablePets.forEach((pet, i) => {
-            const { id, petName, age, breedId, photo } = pet;
-            const petHtml = `
+		availablePets.forEach((pet, i) => {
+			const { id, petName, age, breedId, photo } = pet;
+			const petHtml = `
                 <div class="card" id="pet-${id}">
                     <div class="card-image">
                         <img src=${photo}>
@@ -75,73 +74,75 @@ window.addEventListener('DOMContentLoaded', async (e) => {
                         </div>
                     </div>
                 </div>
-            `
-            petsHtml.push(petHtml);
-        })
-        petsContainer.innerHTML = petsHtml.join("");
-    } catch (err) {
-        console.error(err);
-    }
+            `;
+			petsHtml.push(petHtml);
+		});
+		petsContainer.innerHTML = petsHtml.join("");
+	} catch (err) {
+		console.error(err);
+	}
 
-    const petCards = document.querySelectorAll('.card');
+	const petCards = document.querySelectorAll(".card");
 
-    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
-        let clickTarget = e.target.parentNode;
+	petCards.forEach(petCard =>
+		petCard.addEventListener("click", async e => {
+			let clickTarget = e.target.parentNode;
 
-        while (!clickTarget.id) {
-            clickTarget = clickTarget.parentNode;
-        }
+			while (!clickTarget.id) {
+				clickTarget = clickTarget.parentNode;
+			}
 
-        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
+			const petNum = parseInt(clickTarget.id.split("-")[1], 10);
 
-        window.location.href = `/pets/${petNum}`;
-    }));
+			window.location.href = `/pets/${petNum}`;
+		})
+	);
 });
 
-petList.addEventListener('click', async (e) => {
-    e.preventDefault();
-    profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
-    let response = await fetch(`http://localhost:8080/shelters/${shelterId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem(
-                "PAWS_AND_CLAWS_ACCESS_TOKEN"
-            )}`,
-        }
-    });
-    const { shelterUser } = await response.json();
+petList.addEventListener("click", async e => {
+	e.preventDefault();
+	profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
+	let response = await fetch(`http://localhost:8080/shelters/${shelterId}`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem(
+				"PAWS_AND_CLAWS_ACCESS_TOKEN"
+			)}`
+		}
+	});
+	const { shelterUser } = await response.json();
 
-    const shelterName = document.getElementById('shelter-name');
-    const shelterPhone = document.getElementById('shelter-phoneNum');
-    const shelterEmail = document.getElementById('shelter-email');
-    const shelterWebsite = document.getElementById('shelter-website');
-    const shelterAddress = document.getElementById('shelter-address');
-    const shelterAddressLine2 = document.getElementById('shelter-address-2');
+	const shelterName = document.getElementById("shelter-name");
+	const shelterPhone = document.getElementById("shelter-phoneNum");
+	const shelterEmail = document.getElementById("shelter-email");
+	const shelterWebsite = document.getElementById("shelter-website");
+	const shelterAddress = document.getElementById("shelter-address");
+	const shelterAddressLine2 = document.getElementById("shelter-address-2");
 
-    shelterName.innerHTML = `${shelterUser.shelterName}`;
-    shelterPhone.innerHTML = `${shelterUser.phoneNum}`;
-    shelterEmail.innerHTML = `${shelterUser.email}`;
-    shelterWebsite.innerHTML = `${shelterUser.website}`;
-    shelterAddress.innerHTML = `${shelterUser.address}`;
-    shelterAddressLine2.innerHTML = `${shelterUser.city}, ${shelterUser.State.stateName} ${shelterUser.zipCode}`;
-    // Default To Matches
-    try {
-        const res = await fetch(`http://localhost:8080/pets`);
-        const { pets } = await res.json();
+	shelterName.innerHTML = `${shelterUser.shelterName}`;
+	shelterPhone.innerHTML = `${shelterUser.phoneNum}`;
+	shelterEmail.innerHTML = `${shelterUser.email}`;
+	shelterWebsite.innerHTML = `${shelterUser.website}`;
+	shelterAddress.innerHTML = `${shelterUser.address}`;
+	shelterAddressLine2.innerHTML = `${shelterUser.city}, ${shelterUser.State.stateName} ${shelterUser.zipCode}`;
+	// Default To Matches
+	try {
+		const res = await fetch(`http://localhost:8080/pets`);
+		const { pets } = await res.json();
 
-        const availablePets = pets.filter(pet => {
-            if (pet.shelterId === parseInt(shelterId, 10)) {
-                return pet;
-            };
-        });
+		const availablePets = pets.filter(pet => {
+			if (pet.shelterId === parseInt(shelterId, 10)) {
+				return pet;
+			}
+		});
 
-        const petsContainer = document.querySelector(".pet-card-container");
-        let petsHtml = [];
+		const petsContainer = document.querySelector(".pet-card-container");
+		let petsHtml = [];
 
-        availablePets.forEach((pet, i) => {
-            const { id, petName, age, breedId, photo } = pet;
-            const petHtml = `
+		availablePets.forEach((pet, i) => {
+			const { id, petName, age, breedId, photo } = pet;
+			const petHtml = `
                 <div class="card" id="pet-${id}">
                     <div class="card-image">
                         <img src=${photo}>
@@ -158,56 +159,58 @@ petList.addEventListener('click', async (e) => {
                         </div>
                     </div>
                 </div>
-            `
-            petsHtml.push(petHtml);
-        })
-        petsContainer.innerHTML = petsHtml.join("");
-    } catch (err) {
-        console.error(err);
-    }
+            `;
+			petsHtml.push(petHtml);
+		});
+		petsContainer.innerHTML = petsHtml.join("");
+	} catch (err) {
+		console.error(err);
+	}
 
-    const petCards = document.querySelectorAll('.card');
+	const petCards = document.querySelectorAll(".card");
 
-    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
-        let clickTarget = e.target.parentNode;
+	petCards.forEach(petCard =>
+		petCard.addEventListener("click", async e => {
+			let clickTarget = e.target.parentNode;
 
-        while (!clickTarget.id) {
-            clickTarget = clickTarget.parentNode;
-        }
+			while (!clickTarget.id) {
+				clickTarget = clickTarget.parentNode;
+			}
 
-        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
+			const petNum = parseInt(clickTarget.id.split("-")[1], 10);
 
-        window.location.href = `/pets/${petNum}`;
-    }));
+			window.location.href = `/pets/${petNum}`;
+		})
+	);
 });
 
-addPet.addEventListener('click', async (e) => {
-    profileContainer.innerHTML = `<div class="add-pet-container"></div>`
-    const addPetContainer = document.querySelector('.add-pet-container');
+addPet.addEventListener("click", async e => {
+	profileContainer.innerHTML = `<div class="add-pet-container"></div>`;
+	const addPetContainer = document.querySelector(".add-pet-container");
 
-    try {
-        const resBreeds = await fetch("http://localhost:8080/breeds", {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem(
-                    "PAWS_AND_CLAWS_ACCESS_TOKEN"
-                )}`,
-            }
-        });
-        const { breeds } = await resBreeds.json();
+	try {
+		const resBreeds = await fetch("http://localhost:8080/breeds", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem(
+					"PAWS_AND_CLAWS_ACCESS_TOKEN"
+				)}`
+			}
+		});
+		const { breeds } = await resBreeds.json();
 
-        const sortedBreeds = breedSort(breeds);
+		const sortedBreeds = breedSort(breeds);
 
-        let breedHTMLArr = [];
-        sortedBreeds.forEach(breed => {
-            const breedHTML = `
+		let breedHTMLArr = [];
+		sortedBreeds.forEach(breed => {
+			const breedHTML = `
                 <option class="breed" value=${breed.id}>${breed.breedName}</option>
-            `
-            breedHTMLArr.push(breedHTML);
-        });
-        let breedOptions = breedHTMLArr.join('');
+            `;
+			breedHTMLArr.push(breedHTML);
+		});
+		let breedOptions = breedHTMLArr.join("");
 
-        addPetContainer.innerHTML = `
+		addPetContainer.innerHTML = `
         <form class="create-pet">
             <div class="create-pet-header">
                 <h1>Add a pet to the adoption list</h1>
@@ -269,98 +272,103 @@ addPet.addEventListener('click', async (e) => {
             <div class="form-submit-button">
                 <button class="button" type="submit">Add Pet</button></form>
             </div>
-        `
-        adoptReq.classList.remove('selected');
-        addPet.classList.add('selected');
-    } catch (e) {
-        console.log(e);
-    }
-    const form = document.querySelector('.create-pet')
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+        `;
+		adoptReq.classList.remove("selected");
+		addPet.classList.add("selected");
+	} catch (e) {
+		console.log(e);
+	}
+	const form = document.querySelector(".create-pet");
+	form.addEventListener("submit", async e => {
+		e.preventDefault();
 
-        const formData = new FormData(form);
-        const breedId = formData.get("breeds");
-        // const shelterId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
-        const petName = formData.get("petName");
-        const age = formData.get("age");
-        const sex = formData.get("sex");
-        const size = formData.get("size");
-        const description = formData.get("description");
-        const photo = formData.get("photo");
-        const isOkayKids = formData.get("isOkayKids") ? true : false
-        const isOkayPets = formData.get("isOkayPets") ? true : false
+		const formData = new FormData(form);
+		const breedId = formData.get("breeds");
+		// const shelterId = localStorage.getItem("PAWS_AND_CLAWS_CURRENT_USER_ID");
+		const petName = formData.get("petName");
+		const age = formData.get("age");
+		const sex = formData.get("sex");
+		const size = formData.get("size");
+		const description = formData.get("description");
+		const photo = formData.get("photo");
+		const isOkayKids = formData.get("isOkayKids") ? true : false;
+		const isOkayPets = formData.get("isOkayPets") ? true : false;
 
-        const body = {
-            breedId,
-            petName,
-            age,
-            sex,
-            size,
-            description,
-            photo,
-            isOkayKids,
-            isOkayPets,
-        };
+		const body = {
+			breedId,
+			petName,
+			age,
+			sex,
+			size,
+			description,
+			photo,
+			isOkayKids,
+			isOkayPets
+		};
 
-        try {
-            const res = await fetch(`http://localhost:8080/pets/`, {
-                method: "POST",
-                body: JSON.stringify(body),
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem(
-                        "PAWS_AND_CLAWS_ACCESS_TOKEN"
-                    )}`,
-                },
-            });
-            if (res.status === 401) {
-                window.location.href = "/login";
-                return;
-            }
-            if (!res.ok) {
-                throw res;
-            }
-            window.location.href = "/shelter-profile";
-        } catch (err) {
-            handleErrors(err);
-        }
-    });
-})
+		try {
+			const res = await fetch(`http://localhost:8080/pets/`, {
+				method: "POST",
+				body: JSON.stringify(body),
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.getItem(
+						"PAWS_AND_CLAWS_ACCESS_TOKEN"
+					)}`
+				}
+			});
+			if (res.status === 401) {
+				window.location.href = "/login";
+				return;
+			}
+			if (!res.ok) {
+				throw res;
+			}
+			window.location.href = "/shelter-profile";
+		} catch (err) {
+			handleErrors(err);
+		}
+	});
+});
 
-adoptReq.addEventListener('click', async (event) => {
-    profileContainer.innerHTML = `<div class="adoption-requests-container"></div>`;
-    const adoptReqContainer = document.querySelector('.adoption-requests-container');
-    try {
-        const res = await fetch(`http://localhost:8080/adoptionRequests/shelter/${shelterId}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem(
-                    "PAWS_AND_CLAWS_ACCESS_TOKEN"
-                )}`,
-            }
-        });
-        console.log(res);
+adoptReq.addEventListener("click", async event => {
+	profileContainer.innerHTML = `<div class="adoption-requests-container"></div>`;
+	const adoptReqContainer = document.querySelector(
+		".adoption-requests-container"
+	);
+	try {
+		const res = await fetch(
+			`http://localhost:8080/adoptionRequests/shelter/${shelterId}`,
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.getItem(
+						"PAWS_AND_CLAWS_ACCESS_TOKEN"
+					)}`
+				}
+			}
+		);
+		console.log(res);
 
-        const { adoptionRequests } = await res.json();
+		const { adoptionRequests } = await res.json();
 
-        console.log(adoptionRequests)
+		console.log(adoptionRequests);
 
-        let adoptReqHTMLArr = [];
-        adoptionRequests.forEach(adoptReq => {
-            const adoptReqHTML = `
+		let adoptReqHTMLArr = [];
+		adoptionRequests.forEach(adoptReq => {
+			const adoptReqHTML = `
                     <tr>
                         <td>${adoptReq.Pet.petName}</td>
                         <td>${adoptReq.User.firstName} ${adoptReq.User.lastName}</td>
                         <td class="message">${adoptReq.message}</td>
                         <td class="date">${adoptReq.createdAt}</td>
                     </tr>
-                `
-            adoptReqHTMLArr.push(adoptReqHTML);
-        })
-        let adoptReqs = adoptReqHTMLArr.join('')
-        adoptReqContainer.innerHTML = `
+                `;
+			adoptReqHTMLArr.push(adoptReqHTML);
+		});
+		let adoptReqs = adoptReqHTMLArr.join("");
+		adoptReqContainer.innerHTML = `
             <div class="adoption-requests-container">
                 <table class="requests-table">
                     <thead>
@@ -374,10 +382,10 @@ adoptReq.addEventListener('click', async (event) => {
                 </table>
             </div>
         `;
-        matchLink.classList.remove('selected');
-        requestsLink.classList.add('selected');
-        editPetPref.classList.remove('selected');
-    } catch (e) {
-        console.log(e);
-    }
+		matchLink.classList.remove("selected");
+		requestsLink.classList.add("selected");
+		editPetPref.classList.remove("selected");
+	} catch (e) {
+		console.log(e);
+	}
 });

@@ -1,0 +1,96 @@
+#slides.carousel.slide
+    width: 1008px
+    border-radius: 30px
+.carousel
+    background: #ffffffff
+    margin-top: 20px
+    margin-bottom: 20px
+    display: flex
+    align-content: center
+    margin-left: 20px
+
+.carousel-item
+    text-align: center
+    min-height: 280px
+    display: flex
+
+.carousel-inner img
+    width: 100%
+    height: 300px
+    position: relative
+    border-radius: 30px
+
+.register-container
+    position: relative
+    p
+        padding-top: 30px
+        padding-bottom: 10px
+.wrapper
+    color: $darker
+    position: absolute
+    font-weight: bold
+    font-size: 18px
+    top: 10%
+    left: 40%
+    transform: translate(-50%, -50%)
+.wrapper span
+    margin-bottom: 20px
+    // font-size: p
+    display: inline-flex
+    opacity: 0
+    transform: translate(-155px, 0) scale(0.4)
+    animation: animate 1s forwards
+.wrapper span:nth-of-type(2)
+    animation-delay: 0.3s
+.wrapper span:nth-of-type(3)
+    animation-delay: 0.6s
+.wrapper span:nth-of-type(4)
+    animation-delay: 0.9s
+.wrapper span:nth-of-type(5)
+    animation-delay: 1.2s
+.wrapper span:nth-of-type(6)
+    animation-delay: 1.5s
+@keyframes  animate
+    40%
+        transform: translate(40px, 0) scale(0.7)
+        opacity: 1
+        color: $grey3
+    60%
+        color: $grey5
+    80%
+        transform: translate(0) scale(2)
+    100%
+        transform: translate(0) scale(1)
+        opacity: 1
+
+@media (max-width: $breakpoint-small-devices)
+
+    #slides.carousel.slide
+        display: none
+    .wrapper span
+        font-size: 14px
+    .register-container
+        p
+            font-size: 14px
+    .nav-right-1
+        display: flex
+        justify-content: flex-end
+        flex-direction: column
+        align-items: center
+    .nav-button
+        width: 70px
+        height: 25px
+        font-size: 12px
+        text-align: center
+        margin-bottom: 5px
+        &:first-child
+            margin-left: 25px
+    .nav
+        h1
+            font-size: 30px
+
+@media ($breakpoint-medium-devices)
+
+@media ($breakpoint-large-devices)
+
+@media ($breakpoint-extra-large-devices)
