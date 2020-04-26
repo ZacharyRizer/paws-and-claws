@@ -93,11 +93,4 @@ export const matchPets = (dogs, prefPet) => {
     return bestMatchesSorted(bestMatches);
 }
 
-export const breedSort = breedArr => {
-    breedArr.sort((petOne, petTwo) => {
-        return petOne.breedName.localeCompare(petTwo.breedName) > 0;
-    })
-    return breedArr;
-}
-
 export const api = document.querySelector('link[rel="api"]').href;

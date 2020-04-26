@@ -1,4 +1,4 @@
-import { convertAge, matchPets, breedSort, handleErrors, api } from './utils.js';
+import { convertAge, matchPets, handleErrors, api } from './utils.js';
 
 const masthead = document.querySelector('.masthead');
 const errorContainer = document.getElementById('errorContainer');
@@ -229,10 +229,8 @@ editPetPref.addEventListener('click', async (event) => {
         });
         const { breeds } = await resBreeds.json();
 
-        const sortedBreeds = breedSort(breeds);
-
         let breedHTMLArr = [`<option class="breed" value=0>No Breed Preference</option>`];
-        sortedBreeds.forEach(breed => {
+        breeds.forEach(breed => {
             const breedHTML = `
                 <option class="breed" value=${breed.id}>${breed.breedName}</option>
             `
