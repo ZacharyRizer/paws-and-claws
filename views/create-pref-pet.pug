@@ -28,6 +28,7 @@ block content
                     option(value=5) X-Large
                 label(for="breeds")
                 select(class="dropdown" name="breeds" id="breeds" required)
+                    option(class="breed" value=0) No Breed Preference
                     each breed in breeds
                         option(value=`${breed.id}`)= breed.breedName
             div(class="form-checkbox")
