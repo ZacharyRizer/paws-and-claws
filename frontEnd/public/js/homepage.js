@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
                         </div>
                         <div class="pet-breed">
                             <p>Breed</p>
-                            <p>${pet.Breed.breedName}</p>
+                            <p class="breed-name">${pet.Breed.breedName}</p>
                         </div>
                     </div>
                 </div>
