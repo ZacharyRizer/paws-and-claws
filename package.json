@@ -18,10 +18,10 @@
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "pug": "^2.0.4",
-    "per-env": "^1.0.2"
+    "per-env": "^1.0.2",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "node-fetch": "^2.6.0",
     "nodemon": "^2.0.3"
   }
 }
