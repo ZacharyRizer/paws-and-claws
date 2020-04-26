@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/register', async (req, res) => {
-    let response = await fetch("http://localhost:8080/states");
+    let response = await fetch(`${api}states`);
     const { states } = await response.json()
     res.render('register', { states });
 });
@@ -39,13 +39,13 @@ app.get('/login', (req, res) => {
 
 // //Only Adopter can fill out the preferred pet
 app.get('/create-preferred-pet', async (req, res) => {
-    let response = await fetch("http://localhost:8080/breeds");
+    let response = await fetch(`${api}breeds`);
     const { breeds } = await response.json();
     res.render('create-pref-pet', { breeds })
 });
 
 app.get('/edit-pet/:id', async (req, res) => {
-    let response = await fetch("http://localhost:8080/breeds");
+    let response = await fetch(`${api}breeds`);
     const { breeds } = await response.json();
     res.render('edit-pet', { breeds })
 })
