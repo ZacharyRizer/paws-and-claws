@@ -79,5 +79,5 @@ demoUserButton.addEventListener('click', (e) => {
 demoShelterButton.addEventListener('click', (e) => {
     e.preventDefault();
     let body = { email: "Demo1@DemoShelterUser.com", password: "password" };
-    handleLogin(body, 'user');
+    handleLogin(body, 'shelter');
 });

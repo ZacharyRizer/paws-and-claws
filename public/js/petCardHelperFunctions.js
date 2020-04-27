@@ -33,7 +33,7 @@ export const displayMatches = async (userId) => {
     const res2 = await fetch(`${api}preferredPets/${userId}`);
     const { petPref } = await res2.json();
     if (res2.status === 404) {
-        window.location.href = '/createPreferredPet';
+        window.location.href = '/create-preferred-pet';
     }
     const matches = matchPets(pets, petPref);
     let petsContainer = document.querySelector('.pet-card-container');
