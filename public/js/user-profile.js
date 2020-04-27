@@ -82,6 +82,7 @@ requestsLink.addEventListener('click', async (event) => {
                     <tr>
                         <td>${adoptReq.Pet.petName}</td>
                         <td>${adoptReq.ShelterUser.shelterName}</td>
+                        <td>${adoptReq.ShelterUser.email}</td>
                         <td class="message">${adoptReq.message}</td>
                         <td class="date">${adoptReq.createdAt}</td>
                     </tr>
@@ -96,6 +97,7 @@ requestsLink.addEventListener('click', async (event) => {
                         <tr>
                             <th>Pet</th>
                             <th>Shelter</th>
+                            <th>Shelter Email</th>
                             <th>Message</th>
                             <th>Date Sent</th>
                         </tr>

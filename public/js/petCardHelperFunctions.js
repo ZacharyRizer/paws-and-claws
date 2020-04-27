@@ -41,6 +41,21 @@ export const displayMatches = async (userId) => {
     petsContainer.innerHTML = petsHtml
 };
 
+export const displayShelterPets = async (shelterId) => {
+    const res = await fetch(`${api}pets`);
+    const { pets } = await res.json();
+
+    const availablePets = pets.filter(pet => {
+        if (pet.shelterId === parseInt(shelterId, 10)) {
+            return pet;
+        };
+    });
+
+    let petsContainer = document.querySelector(".pet-card-container");
+    let petsHtml = petCardBuilder(availablePets);
+    petsContainer.innerHTML = petsHtml
+}
+
 export const handlePetCardClick = () => {
     const petCards = document.querySelectorAll('.card');
 
