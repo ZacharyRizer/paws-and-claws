@@ -1,10 +1,10 @@
 import { convertAge, handleErrors, api, matchPets } from "./utils.js";
 
 export const petCardBuilder = (pets) => {
-  let petsHtml = [];
-  pets.forEach((pet, i) => {
-    const { id, petName, age, breedId, photo } = pet;
-    const petHtml = `
+    let petsHtml = [];
+    pets.forEach((pet, i) => {
+        const { id, petName, age, breedId, photo } = pet;
+        const petHtml = `
                 <div class="card" id="pet-${id}">
                     <div class="card-image">
                         <img src=${photo}>
@@ -22,33 +22,36 @@ export const petCardBuilder = (pets) => {
                     </div>
                 </div>
             `
-    petsHtml.push(petHtml);
-  });
-  return petsHtml.join("");
+        petsHtml.push(petHtml);
+    });
+    return petsHtml.join("");
 };
 
-export const displayMatches = async(userId) => {
-    try {
-        const res = await fetch(`${api}pets`);
-        const { pets } = await res.json();
+export const displayMatches = async (userId) => {
+    const res = await fetch(`${api}pets`);
+    const { pets } = await res.json();
+    const res2 = await fetch(`${api}preferredPets/${userId}`);
+    const { petPref } = await res2.json();
+    if (res2.status === 404) {
+        window.location.href = '/createPreferredPet';
+    }
+    const matches = matchPets(pets, petPref);
+    let petsContainer = document.querySelector('.pet-card-container');
+    let petsHtml = petCardBuilder(matches);
+    petsContainer.innerHTML = petsHtml
+};
 
-        const res2 = await fetch(`${api}preferredPets/${userId}`);
-        const { petPref } = await res2.json();
+export const handlePetCardClick = () => {
+    const petCards = document.querySelectorAll('.card');
 
-        if (res2.status === 404) {
-            window.location.href = '/create-preferred-pet';
+    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
+        let clickTarget = e.target.parentNode;
+
+        while (!clickTarget.id) {
+            clickTarget = clickTarget.parentNode;
         }
 
-        const matches = matchPets(pets, petPref);
-
-        const petsContainer = document.querySelector('.pet-card-container');
-        const petsHtml = petCardBuilder(matches);
-        petsContainer.innerHTML = petsHtml.join('');
-
-        matchLink.classList.add('selected');
-        requestsLink.classList.remove('selected');
-        editPetPref.classList.remove('selected');
-    } catch (err) {
-        handleErrors(err);
-    }
-};
+        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
+        window.location.href = `/pets/${petNum}`;
+    }));
+}

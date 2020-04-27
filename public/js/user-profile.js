@@ -1,10 +1,7 @@
-import { convertAge, matchPets, handleErrors, api } from './utils.js';
-import { petCardBuilder } from './petCardHelperFunctions.js'; 
+import { handleErrors, api } from './utils.js';
+import { displayMatches, handlePetCardClick } from './petCardHelperFunctions.js';
 
-const masthead = document.querySelector('.masthead');
-const errorContainer = document.getElementById('errorContainer');
 const profileContainer = document.querySelector('.profile-left');
-const loggedInContainer = document.querySelector('.logged-in-container');
 const matchLink = document.getElementById('matches');
 const requestsLink = document.getElementById('requests');
 const editPetPref = document.getElementById('editPetPref');
@@ -12,9 +9,6 @@ const editPetPref = document.getElementById('editPetPref');
 const userId = localStorage.getItem('PAWS_AND_CLAWS_CURRENT_USER_ID');
 
 window.addEventListener('DOMContentLoaded', async (e) => {
-    // Add authorization functionality
-    // We should be able to only access the 
-    profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
     let response = await fetch(`${api}users/${userId}`, {
         method: "GET",
         headers: {
@@ -38,23 +32,9 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     }
 
     // Default to Matches
+    profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
     try {
-        const res = await fetch(`${api}pets`);
-        const { pets } = await res.json();
-
-        const res2 = await fetch(`${api}preferredPets/${userId}`);
-        const { petPref } = await res2.json();
-
-        if (res2.status === 404) {
-            window.location.href = '/createPreferredPet';
-        }
-
-        const matches = matchPets(pets, petPref);
-
-        let petsContainer = document.querySelector('.pet-card-container');
-        let petsHtml = petCardBuilder(matches);
-        petsContainer.innerHTML = petsHtml
-
+        await displayMatches(userId);
         matchLink.classList.add('selected');
         requestsLink.classList.remove('selected');
         editPetPref.classList.remove('selected');
@@ -62,40 +42,13 @@ window.addEventListener('DOMContentLoaded', async (e) => {
         handleErrors(err);
     }
 
-    const petCards = document.querySelectorAll('.card');
-
-    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
-        let clickTarget = e.target.parentNode;
-
-        while (!clickTarget.id) {
-            clickTarget = clickTarget.parentNode;
-        }
-
-        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
-
-        window.location.href = `/pets/${petNum}`;
-    }));
+    handlePetCardClick();
 });
 // Matches
 matchLink.addEventListener('click', async (event) => {
     profileContainer.innerHTML = `<div class="pet-card-container"></div>`;
     try {
-        const res = await fetch(`${api}pets`);
-        const { pets } = await res.json();
-
-        const res2 = await fetch(`${api}preferredPets/${userId}`);
-        const { petPref } = await res2.json();
-
-        if (res2.status === 404) {
-            window.location.href = '/createPreferredPet';
-        }
-
-        const matches = matchPets(pets, petPref);
-
-        let petsContainer = document.querySelector('.pet-card-container');
-        let petsHtml = petCardBuilder(matches);
-        petsContainer.innerHTML = petsHtml
-        
+        await displayMatches(userId);
         matchLink.classList.add('selected');
         requestsLink.classList.remove('selected');
         editPetPref.classList.remove('selected');
@@ -103,19 +56,7 @@ matchLink.addEventListener('click', async (event) => {
         handleErrors(err);
     }
 
-    const petCards = document.querySelectorAll('.card');
-
-    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
-        let clickTarget = e.target.parentNode;
-
-        while (!clickTarget.id) {
-            clickTarget = clickTarget.parentNode;
-        }
-
-        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
-
-        window.location.href = `/pets/${petNum}`;
-    }));
+    handlePetCardClick();
 });
 
 // Adoption Requests

@@ -1,5 +1,5 @@
 import { handleErrors, api } from "./utils.js";
-import { petCardBuilder } from "./petCardHelperFunctions.js";
+import { petCardBuilder, handlePetCardClick } from "./petCardHelperFunctions.js";
 
 const masthead = document.querySelector(".masthead");
 
@@ -23,17 +23,5 @@ window.addEventListener('DOMContentLoaded', async (e) => {
         handleErrors(err);
     }
 
-    const petCards = document.querySelectorAll('.card');
-
-    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
-        let clickTarget = e.target.parentNode;
-
-        while (!clickTarget.id) {
-            clickTarget = clickTarget.parentNode;
-        }
-
-        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
-
-        window.location.href = `/pets/${petNum}`;
-    }));
+    handlePetCardClick();
 });
