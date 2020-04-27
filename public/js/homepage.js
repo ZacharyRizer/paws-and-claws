@@ -2,15 +2,8 @@ import { handleErrors, api } from "./utils.js";
 import { petCardBuilder, handlePetCardClick } from "./petCardHelperFunctions.js";
 
 const masthead = document.querySelector(".masthead");
-const registerContainer = document.getElementById("registerContainer");
-const loggedInContainer = document.getElementById("loggedInContainer");
-const errorContainer = document.getElementById("errorContainer");
-const slider = document.querySelector(".slider");
 const carouselLeft = document.getElementById("carouselNavLeft")
 const carouselRight = document.getElementById("carouselNavRight")
-
-
-
 
 window.addEventListener('DOMContentLoaded', async (e) => {
 

@@ -1,6 +1,7 @@
 export const handleErrors = async (err) => {
     document.querySelector('.logged-in-container').classList.add('hidden');
     document.querySelector('.register-container').classList.add('hidden');
+    document.querySelector('.slider').classList.add('hidden');
     document.querySelector('.masthead').classList.remove('hidden');
     document.querySelector('.error-container').classList.remove('hidden');
 
