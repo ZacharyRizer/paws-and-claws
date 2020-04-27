@@ -6,6 +6,7 @@ const registerFormShelter = document.querySelector(".register-shelter");
 const demoUserButton = document.getElementById('demoUserButton');
 const demoShelterButton = document.getElementById('demoShelterButton');
 
+
 const handleRegister = async (body, authorization, redirectPath) => {
     try {
         const res = await fetch(`${api}${authorization}`, {
@@ -78,5 +79,5 @@ demoUserButton.addEventListener('click', (e) => {
 demoShelterButton.addEventListener('click', (e) => {
     e.preventDefault();
     let body = { email: "Demo1@DemoShelterUser.com", password: "password" };
-    handleLogin(body, 'user');
+    handleLogin(body, 'shelter');
 });

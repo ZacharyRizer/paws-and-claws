@@ -34,4 +34,3 @@ document.getElementById('shelter-demo-button').addEventListener('click', (e) => 
     handleLogin(body, 'shelter');
 });
 
-
