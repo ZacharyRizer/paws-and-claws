@@ -16,7 +16,6 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     let currentPic = 1;
 
     carouselRight.addEventListener('click', async (e) => {
-
         if (currentPic === 10) {
             currentPic = 1;
         } else {
