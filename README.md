@@ -6,6 +6,7 @@ An app to connect people looking for a furry friend with pets that need homes.
 * Node.js
 * Sequelize
 * Pug Templates
+* SASS
 
 ### Documentation:
 * [Feature List](/documentation/featureList.md)

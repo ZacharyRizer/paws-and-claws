@@ -1,4 +1,5 @@
-import { handleErrors, convertAge, convertSex, convertSize, api } from "./utils.js";
+import { handleErrors, api } from "./utils.js";
+import { petCardBuilder, handlePetCardClick } from "./petCardHelperFunctions.js";
 
 const masthead = document.querySelector(".masthead");
 const registerContainer = document.getElementById("registerContainer");
@@ -44,48 +45,14 @@ window.addEventListener('DOMContentLoaded', async (e) => {
             return; //redirect to the log-in page
         }
         const { pets } = await res.json();
+
         const petsContainer = document.querySelector(".card-container");
-        let petsHtml = [];
-        pets.forEach((pet, i) => {
-            if (i < 12) {
-                const { id, petName, age, breedId, photo } = pet;
-                const petHtml = `
-                <div class="card" id="pet-${id}">
-                    <div class="card-image">
-                        <img src=${photo}>
-                    </div>
-                    <div class="card-info">
-                        <p class="pet-name">${petName}</p>
-                        <div class="pet-age">
-                            <p>Age</p>
-                            <p> ${convertAge(age)} </p>
-                        </div>
-                        <div class="pet-breed">
-                            <p>Breed</p>
-                            <p class="breed-name">${pet.Breed.breedName}</p>
-                        </div>
-                    </div>
-                </div>
-            `
-                petsHtml.push(petHtml);
-            }
-        })
-        petsContainer.innerHTML = petsHtml.join("");
+        const petsHtml = petCardBuilder(pets);
+        petsContainer.innerHTML = petsHtml
+
     } catch (err) {
-        console.error(err);
+        handleErrors(err);
     }
 
-    const petCards = document.querySelectorAll('.card');
-
-    petCards.forEach(petCard => petCard.addEventListener('click', async (e) => {
-        let clickTarget = e.target.parentNode;
-
-        while (!clickTarget.id) {
-            clickTarget = clickTarget.parentNode;
-        }
-
-        const petNum = parseInt(clickTarget.id.split('-')[1], 10);
-
-        window.location.href = `/pets/${petNum}`;
-    }));
+    handlePetCardClick();
 });

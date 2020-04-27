@@ -3,20 +3,9 @@ import { handleErrors, api } from "./utils.js";
 const registerFormUser = document.querySelector(".register-user");
 const registerFormShelter = document.querySelector(".register-shelter");
 
-registerFormUser.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formData = new FormData(registerFormUser);
-    const username = formData.get("username");
-    const firstName = formData.get("firstName");
-    const lastName = formData.get("lastName");
-    const email = formData.get("email");
-    const phoneNum = formData.get("phoneNumber");
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword")
-    const body = { username, firstName, lastName, email, phoneNum, password, confirmPassword };
-
+const handleRegister = async (body, authorization, redirectPath) => {
     try {
-        const res = await fetch(`${api}users`, {
+        const res = await fetch(`${api}${authorization}`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -38,10 +27,25 @@ registerFormUser.addEventListener("submit", async (e) => {
         localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
         localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
         // redirect to home page to see all tweets:
-        window.location.href = "/create-preferred-pet";
+        window.location.href = `${redirectPath}`;
     } catch (err) {
         handleErrors(err);
     }
+}
+
+registerFormUser.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(registerFormUser);
+    const username = formData.get("username");
+    const firstName = formData.get("firstName");
+    const lastName = formData.get("lastName");
+    const email = formData.get("email");
+    const phoneNum = formData.get("phoneNumber");
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirmPassword")
+    const body = { username, firstName, lastName, email, phoneNum, password, confirmPassword };
+
+    handleRegister(body, 'users', '/create-preferred-pet')
 });
 
 registerFormShelter.addEventListener("submit", async (e) => {
@@ -59,31 +63,5 @@ registerFormShelter.addEventListener("submit", async (e) => {
     const confirmPassword = formData.get("confirmPassword")
     const body = { shelterName, email, website, phoneNum, address, city, stateId, zipCode, password, confirmPassword };
 
-    try {
-        const res = await fetch(`${api}shelters`, {
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        if (!res.ok) {
-            throw res;
-        }
-        const {
-            token,
-            role,
-            user: { id },
-            name,
-        } = await res.json();
-        // storage access_token in localStorage:
-        localStorage.setItem("PAWS_AND_CLAWS_ACCESS_TOKEN", token);
-        localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
-        localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
-        localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
-        // redirect to home page to see all tweets:
-        window.location.href = "/shelter-profile";
-    } catch (err) {
-        handleErrors(err);
-    }
+    handleRegister(body, 'shelters', '/shelter-profile');
 });
