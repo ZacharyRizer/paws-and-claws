@@ -3,11 +3,7 @@ import { handleErrors, api } from "./utils.js";
 const logInFormUser = document.querySelector(".user-login");
 const logInFormShelter = document.querySelector(".shelter-login");
 
-const handleLogin = async (form, authorization) => {
-    const formData = new FormData(form);
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const body = { email, password };
+export const handleLogin = async (body, authorization) => {
     try {
         const res = await fetch(`${api}${authorization}s/token`, {
             method: "POST",
@@ -39,10 +35,32 @@ const handleLogin = async (form, authorization) => {
 
 logInFormUser.addEventListener("submit", (e) => {
     e.preventDefault();
-    handleLogin(logInFormUser, 'user');
+    const formData = new FormData(logInFormUser);
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const body = { email, password };
+    handleLogin(body, 'user');
 });
 
 logInFormShelter.addEventListener("submit", (e) => {
     e.preventDefault();
-    handleLogin(logInFormShelter, 'shelter');
+    const formData = new FormData(logInFormShelter);
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const body = { email, password };
+    handleLogin(body, 'shelter');
 });
+
+document.getElementById('user-demo-button').addEventListener('click', (e) => {
+    e.preventDefault();
+    let body = { email: "Demo@DemoUser.com", password: "password" };
+    handleLogin(body, 'user');
+});
+
+document.getElementById('shelter-demo-button').addEventListener('click', (e) => {
+    e.preventDefault();
+    let body = { email: "Demo1@DemoShelterUser.com", password: "password" };
+    handleLogin(body, 'shelter');
+});
+
+
