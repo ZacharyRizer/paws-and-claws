@@ -1,4 +1,5 @@
 import { convertAge, matchPets, handleErrors, api } from './utils.js';
+import { petCardBuilder } from './petCardHelperFunctions.js'; 
 
 const masthead = document.querySelector('.masthead');
 const errorContainer = document.getElementById('errorContainer');
@@ -51,31 +52,9 @@ window.addEventListener('DOMContentLoaded', async (e) => {
         const matches = matchPets(pets, petPref);
 
         let petsContainer = document.querySelector('.pet-card-container');
-        let petsHtml = [];
+        let petsHtml = petCardBuilder(matches);
+        petsContainer.innerHTML = petsHtml
 
-        matches.forEach((match, i) => {
-            const { id, petName, age, breedId, photo } = match;
-            const petHtml = `
-                <div class='card' id='pet-${id}'>
-                    <div class='card-image'>
-                        <img src=${photo}>
-                    </div>
-                    <div class='card-info'>
-                        <p class='pet-name'>${petName}</p>
-                        <div class='pet-age'>
-                            <p>Age</p>
-                            <p> ${convertAge(age)} </p>
-                        </div>
-                        <div class='pet-breed'>
-                            <p>Breed</p>
-                            <p>${match.Breed.breedName}</p>
-                        </div>
-                    </div>
-                </div>
-            `
-            petsHtml.push(petHtml);
-        })
-        petsContainer.innerHTML = petsHtml.join('');
         matchLink.classList.add('selected');
         requestsLink.classList.remove('selected');
         editPetPref.classList.remove('selected');
@@ -113,32 +92,10 @@ matchLink.addEventListener('click', async (event) => {
 
         const matches = matchPets(pets, petPref);
 
-        const petsContainer = document.querySelector('.pet-card-container');
-        let petsHtml = [];
-
-        matches.forEach((match, i) => {
-            const { id, petName, age, breedId, photo } = match;
-            const petHtml = `
-                <div class='card' id='pet-${id}'>
-                    <div class='card-image'>
-                        <img src=${photo}>
-                    </div>
-                    <div class='card-info'>
-                        <p class='pet-name'>${petName}</p>
-                        <div class='pet-age'>
-                            <p>Age</p>
-                            <p> ${convertAge(age)} </p>
-                        </div>
-                        <div class='pet-breed'>
-                            <p>Breed</p>
-                            <p>${match.Breed.breedName}</p>
-                        </div>
-                    </div>
-                </div>
-            `
-            petsHtml.push(petHtml);
-        })
-        petsContainer.innerHTML = petsHtml.join('');
+        let petsContainer = document.querySelector('.pet-card-container');
+        let petsHtml = petCardBuilder(matches);
+        petsContainer.innerHTML = petsHtml
+        
         matchLink.classList.add('selected');
         requestsLink.classList.remove('selected');
         editPetPref.classList.remove('selected');

@@ -1,5 +1,5 @@
 import { handleErrors, api } from "./utils.js";
-import { petCardBuilder } from "./petCardBuilder.js";
+import { petCardBuilder } from "./petCardHelperFunctions.js";
 
 const masthead = document.querySelector(".masthead");
 
@@ -15,7 +15,9 @@ window.addEventListener('DOMContentLoaded', async (e) => {
         }
         const { pets } = await res.json();
 
-        petCardBuilder(pets);
+        const petsContainer = document.querySelector(".card-container");
+        const petsHtml = petCardBuilder(pets);
+        petsContainer.innerHTML = petsHtml
 
     } catch (err) {
         handleErrors(err);
