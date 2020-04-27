@@ -1,0 +1,59 @@
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="api" href=`${api}`)
+        link(href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet")
+        link(rel="icon" type="image/png" href="../images/pixelDog.png")
+        script(type="module" src="/js/navbar.js")
+        link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js')
+        link(href="/styles/style.css" rel="stylesheet")
+        title Paws and Claws
+    body
+        .nav
+            .nav-left
+                a(href='/'): img(src="/images/pixelDog.png")
+                a(href="/"): h1 Paws and Claws
+            .nav-right-1
+                a.nav-button(href="/login") Login
+                a.nav-button(href="/register") Register
+            div(class="nav-right-2 hidden")
+                p.greeting Welcome User
+                ul.nav-list
+                    li: a.nav-link(id="profile-link") Profile
+                    li: a.nav-link(href="/logout") Logout
+        .page-container
+            div(class="masthead hidden" id="masthead")
+                #myCarousel.carousel.slide(data-ride='carousel')
+                    ol.carousel-indicators
+                        li.active(data-target='#myCarousel' data-slide-to='0')
+                        li(data-target='#myCarousel' data-slide-to='1')
+                        li(data-target='#myCarousel' data-slide-to='2')
+                    .carousel-inner
+                        .item.active
+                            img(src='/images/bg1.jpg' alt='Los Angeles' style='width:100%;')
+                        .item
+                            img(src='/images/bg2.jpg' alt='Chicago' style='width:100%;')
+                        .item
+                            img(src='/images/bg3.jpg' alt='New york' style='width:100%;')
+                    a.left.carousel-control(href='#myCarousel' data-slide='prev')
+                        span.glyphicon.glyphicon-chevron-left
+                        span.sr-only Previous
+                    a.right.carousel-control(href='#myCarousel' data-slide='next')
+                        span.glyphicon.glyphicon-chevron-right
+                        span.sr-only Next
+                div(class="register-container hidden" id="registerContainer")
+                    h3 Your best friends are a click away
+                    p Paws and Claws is here to help connect people and pets. So if you're looking for a new furry companion, or you are a shelter that has pets that need homes, click below!
+                    a.nav-button(href="/register") Register
+                div(class="logged-in-container hidden" id="loggedInContainer")
+                    h2 Here's a list of pets we think you'd get along great with
+                    p No pressure, just some suggestions
+                div(class="error-container hidden" id="errorContainer")
+                    h3 Uh-oh! We had a few problems...
+                    ul.error-list
+            block content

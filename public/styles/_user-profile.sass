@@ -1,0 +1,152 @@
+@import "utils"
+.selected
+    background: $grey3
+
+.profile-container
+    width: 100%
+    display: flex
+    flex-direction: row
+    margin-top: 100px
+
+    .profile-left
+        width: 70%
+        .hidden
+            display: none
+    .pet-card-container
+        display: flex
+        flex-wrap: wrap
+        justify-content: left
+        .card
+            width: 30%
+            margin: 0 10px 20px 10px
+    .dummy
+        width: 30%
+        .profile-right
+            width: 403px
+            position: fixed
+            background: $grey1
+            border-radius: 30px
+            li
+                &:hover
+                    background: $grey2
+            .info-container
+                padding-bottom: 10px
+                margin: 15px 10px 10px 30px
+                border-bottom: 2px solid $grey4
+                h3
+                    color: $darker
+                    font-size: 30px
+                p
+                    margin-left: 20px
+                    color: $grey4
+
+            .links-container
+                .profile-nav-list
+                    list-style: none
+                    margin: 0
+                    padding: 0
+                    padding-bottom: 20px
+                    .profile-nav-link
+                        color: $primary
+                        display: block
+                        padding: 0.5em 1.5em 0.5em 1.5em
+                        &:hover
+                            color: $lighter
+                        &:last-child
+                            margin-bottom: 10px
+
+.adoption-requests-container
+    width: 100%
+
+.requests-table
+    width: 95%
+    background: $grey2
+    border-radius: 5px
+    border-top-left-radius: 30px
+    border-top-right-radius: 30px
+    border-spacing: 0
+    tr
+    th
+        width: 25%
+        text-align: center
+        background: $primary
+        color: $grey1
+        padding: 10px
+        font-size: 22px
+        &:first-child
+            border-top-left-radius: 30px
+        &:last-child
+            border-top-right-radius: 30px
+        &:not(:first-child)
+            border-left: 1px solid $grey1
+    td
+        max-height: 80px
+        padding: 5px 10px 5px 10px
+        border-top: 1px solid $grey4
+        color: $grey5
+        &:not(:first-child)
+            border-left: 1px solid $grey4
+    .message
+        display: flex
+        overflow: auto
+        overflow-wrap: anywhere
+        &::-webkit-scrollbar
+            width: 4px
+            border-radius: 8px
+            background-color: $grey2
+            outline: 1px solid slategrey
+        &::-webkit-scrollbar-thumb
+            background-color: $grey4
+            height: 1px
+            border-radius: 8px
+            width: 4px
+    .date
+        text-align: right
+        font-size: 12px
+
+.pet-pref-container
+    width: 100%
+    display: flex
+    justify-content: center
+
+    form
+        width: 60%
+        background: $grey1
+        display: flex
+        flex-direction: column
+        align-items: center
+        .pet-pref-form-header
+            margin: 20px 0 0 20px
+            @include formHeader
+        .age-sex, .size-breed
+            width: 80%
+            margin-bottom: 20px
+            display: flex
+            justify-content: space-between
+        .checkdiv
+            display: flex
+            justify-content: left
+            align-items: center
+            margin-bottom: 10px
+            width: 80%
+        .buttondiv
+            margin-top: 10px
+            width: 80%
+            display: flex
+            justify-content: flex-end
+        button
+
+    select
+        background: inherit
+        box-sizing: border-box
+        width: 45%
+        color: $grey4
+        border: 2px solid $darker
+        border-radius: 3px
+        font-family: "Arvo"
+        padding: 10px
+        &:hover
+            box-shadow: 0 0 3px 2px $grey3
+        option
+            color: $grey1
+            background: $darker
