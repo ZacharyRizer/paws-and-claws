@@ -1,5 +1,8 @@
 import { handleErrors, api } from "./utils.js";
 
+const registerFormUser = document.querySelector(".register-user");
+const registerFormShelter = document.querySelector(".register-shelter");
+
 const handleRegister = async (body, authorization, redirectPath) => {
     try {
         const res = await fetch(`${api}${authorization}`, {
@@ -30,7 +33,7 @@ const handleRegister = async (body, authorization, redirectPath) => {
     }
 }
 
-document.querySelector(".register-user").addEventListener("submit", (e) => {
+registerFormUser.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(registerFormUser);
     const username = formData.get("username");
@@ -39,13 +42,13 @@ document.querySelector(".register-user").addEventListener("submit", (e) => {
     const email = formData.get("email");
     const phoneNum = formData.get("phoneNumber");
     const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
+    const confirmPassword = formData.get("confirmPassword")
     const body = { username, firstName, lastName, email, phoneNum, password, confirmPassword };
 
-    handleRegister(body, 'users', '/create-preferred-pet');
+    handleRegister(body, 'users', '/create-preferred-pet')
 });
 
-document.querySelector(".register-shelter").addEventListener("submit", async (e) => {
+registerFormShelter.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(registerFormShelter);
     const shelterName = formData.get("shelterName");
@@ -57,7 +60,7 @@ document.querySelector(".register-shelter").addEventListener("submit", async (e)
     const stateId = formData.get("state");
     const zipCode = formData.get("zipCode");
     const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
+    const confirmPassword = formData.get("confirmPassword")
     const body = { shelterName, email, website, phoneNum, address, city, stateId, zipCode, password, confirmPassword };
 
     handleRegister(body, 'shelters', '/shelter-profile');
