@@ -293,6 +293,7 @@ a {
 
 .card .card-image {
   height: 60%;
+  border-radius: 30px;
 }
 
 .card img {
@@ -319,6 +320,7 @@ a {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 30px auto 0 30px;
+  border-radius: 30px;
 }
 
 .card-info p {
@@ -1495,13 +1497,12 @@ button:hover {
   color: lightcoral;
 }
 
-#slides.carousel.slide {
+#myCarousel.carousel.slide {
   width: 1008px;
-  border-radius: 30px;
 }
 
 .carousel {
-  background: #ffffffff;
+  background: #00000000 !important;
   margin-top: 20px;
   margin-bottom: 20px;
   display: -webkit-box;
@@ -1510,6 +1511,7 @@ button:hover {
   -ms-flex-line-pack: center;
       align-content: center;
   margin-left: 20px;
+  border-radius: 30px;
 }
 
 .carousel-item {
@@ -1518,6 +1520,11 @@ button:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-radius: 30px;
+}
+
+.carousel-inner {
+  border-radius: 30px;
 }
 
 .carousel-inner img {
@@ -1527,6 +1534,11 @@ button:hover {
   border-radius: 30px;
 }
 
+.left.carousel-control, .right.carousel-control {
+  border-radius: 30px;
+  color: #f5f5f5;
+}
+
 .register-container {
   position: relative;
 }
@@ -1534,135 +1546,5 @@ button:hover {
 .register-container p {
   padding-top: 30px;
   padding-bottom: 10px;
-}
-
-.wrapper {
-  color: #300057;
-  position: absolute;
-  font-weight: bold;
-  font-size: 18px;
-  top: 10%;
-  left: 40%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.wrapper span {
-  margin-bottom: 20px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  opacity: 0;
-  -webkit-transform: translate(-155px, 0) scale(0.4);
-          transform: translate(-155px, 0) scale(0.4);
-  -webkit-animation: animate 1s forwards;
-          animation: animate 1s forwards;
-}
-
-.wrapper span:nth-of-type(2) {
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
-}
-
-.wrapper span:nth-of-type(3) {
-  -webkit-animation-delay: 0.6s;
-          animation-delay: 0.6s;
-}
-
-.wrapper span:nth-of-type(4) {
-  -webkit-animation-delay: 0.9s;
-          animation-delay: 0.9s;
-}
-
-.wrapper span:nth-of-type(5) {
-  -webkit-animation-delay: 1.2s;
-          animation-delay: 1.2s;
-}
-
-.wrapper span:nth-of-type(6) {
-  -webkit-animation-delay: 1.5s;
-          animation-delay: 1.5s;
-}
-
-@-webkit-keyframes animate {
-  40% {
-    -webkit-transform: translate(40px, 0) scale(0.7);
-            transform: translate(40px, 0) scale(0.7);
-    opacity: 1;
-    color: #A9A9A9;
-  }
-  60% {
-    color: #303030;
-  }
-  80% {
-    -webkit-transform: translate(0) scale(2);
-            transform: translate(0) scale(2);
-  }
-  100% {
-    -webkit-transform: translate(0) scale(1);
-            transform: translate(0) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes animate {
-  40% {
-    -webkit-transform: translate(40px, 0) scale(0.7);
-            transform: translate(40px, 0) scale(0.7);
-    opacity: 1;
-    color: #A9A9A9;
-  }
-  60% {
-    color: #303030;
-  }
-  80% {
-    -webkit-transform: translate(0) scale(2);
-            transform: translate(0) scale(2);
-  }
-  100% {
-    -webkit-transform: translate(0) scale(1);
-            transform: translate(0) scale(1);
-    opacity: 1;
-  }
-}
-
-@media (max-width: 576px) {
-  #slides.carousel.slide {
-    display: none;
-  }
-  .wrapper span {
-    font-size: 14px;
-  }
-  .register-container p {
-    font-size: 14px;
-  }
-  .nav-right-1 {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .nav-button {
-    width: 70px;
-    height: 25px;
-    font-size: 12px;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  .nav-button:first-child {
-    margin-left: 25px;
-  }
-  .nav h1 {
-    font-size: 30px;
-  }
 }
 /*# sourceMappingURL=style.css.map */

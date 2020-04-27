@@ -5,25 +5,12 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet")
-        link(href="/styles/style.css" rel="stylesheet")
         link(rel="icon" type="image/png" href="../images/pixelDog.png")
         script(type="module" src="/js/navbar.js")
-        link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
-        link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
-        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
-        link(rel='stylesheet', href='stylesheets/style.css')
-        link(rel='stylesheet', href='/css/bootstrap.min.css')
-        link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
-        link(rel='stylesheet', href='stylesheets/style.css')
-        link(rel='stylesheet', href='/css/bootstrap.min.css')
-        link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
-        script(src='https://ajax.googleapis.com/ajax.libs/jquery/1/jquery.min.js')
-        script(src='lib/bootstrap/js/bootstrap.min.js')
-        script(src='bootstrap/js/bootstrap.min.js')
-        link(href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet")
-        script(src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js")
+        link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js')
+        link(href="/styles/style.css" rel="stylesheet")
         title Paws and Claws
     body
         .nav
@@ -40,55 +27,26 @@ html(lang="en")
                     li: a.nav-link(href="/logout") Logout
         .page-container
             div(class="masthead hidden" id="masthead")
-                #slides.carousel.slide(data-ride='carousel')
+                #myCarousel.carousel.slide(data-ride='carousel')
                     ol.carousel-indicators
-                        li.active(data-target='#slides'	data-slide-to='0')
-                        li(data-target='#slides' data-slide-to='1')
-                        li(data-target='#slides' data-slide-to='2')
-                        li(data-target='#slides' data-slide-to='3')
-                        li(data-target='#slides' data-slide-to='4')
-                        li(data-target='#slides' data-slide-to='5')
-                        li(data-target='#slides' data-slide-to='6')
-                        li(data-target='#slides' data-slide-to='7')
+                        li.active(data-target='#myCarousel' data-slide-to='0')
+                        li(data-target='#myCarousel' data-slide-to='1')
+                        li(data-target='#myCarousel' data-slide-to='2')
                     .carousel-inner
-                        .carousel-item.active
-                            img.bg(src='/images/bg7.jpg' alt='First Picture')
-                        .carousel-item
-                            img.bg(src='images/bg2.jpg' alt='Second Picture')
-                        .carousel-item
-                            img.bg(src='images/bg3.jpg' alt='Third Picture')
-                        .carousel-item
-                            img.bg(src='images/bg4.jpg' alt='Fourth Picture')
-                        .carousel-item
-                            img.bg(src='images/bg5.jpg' alt='Fifth Picture')
-                        .carousel-item
-                            img.bg(src='images/bg8.jpg' alt='Seventh Picture')
-                        .carousel-item
-                            img.bg(src='images/bg6.jpg' alt='Eight Picture')
-                        .carousel-item
-                            img.bg(src='images/bg9.jpg' alt='Eight Picture')
-                        .carousel-item
-                            img.bg(src='images/bg10.jpg' alt='Eight Picture')
-                    div.bubbles
-                    a.carousel-control-prev(href='#slides' data-slide='prev')
-                        span.carousel-control-prev-icon
-                            //- img(src='images/left-chevron.png' alt='Slide Prev' height='60px')
-                    a.carousel-control-next(href='#slides' data-slide='next')
-                        span.carousel-control-next-icon
-                            //- img(src='images/right-chevron.png' alt='Slide Next' height='60px')
+                        .item.active
+                            img(src='/images/bg1.jpg' alt='Los Angeles' style='width:100%;')
+                        .item
+                            img(src='/images/bg2.jpg' alt='Chicago' style='width:100%;')
+                        .item
+                            img(src='/images/bg3.jpg' alt='New york' style='width:100%;')
+                    a.left.carousel-control(href='#myCarousel' data-slide='prev')
+                        span.glyphicon.glyphicon-chevron-left
+                        span.sr-only Previous
+                    a.right.carousel-control(href='#myCarousel' data-slide='next')
+                        span.glyphicon.glyphicon-chevron-right
+                        span.sr-only Next
                 div(class="register-container hidden" id="registerContainer")
-                    .wrapper
-                        span Your
-                        |  
-                        span best
-                        |  
-                        span friends
-                        |  
-                        span is
-                        | 
-                        span click
-                        |  
-                        span away
+                    h3 Your best friends are a click away
                     p Paws and Claws is here to help connect people and pets. So if you're looking for a new furry companion, or you are a shelter that has pets that need homes, click below!
                     a.nav-button(href="/register") Register
                 div(class="logged-in-container hidden" id="loggedInContainer")
