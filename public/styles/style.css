@@ -158,9 +158,142 @@ a {
   border-radius: 0 0 10px 10px;
 }
 
+.masthead .slider {
+  width: 740px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 20px 0 20px 0;
+}
+
+.masthead .slider .nav-left-arrow-container {
+  width: 50px;
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+
+.masthead .slider .nav-left-arrow-container:hover {
+  cursor: pointer;
+}
+
+.masthead .slider .nav-left-arrow-container:hover .nav-left-arrow {
+  border-bottom-color: #9340D6;
+  border-right-color: #9340D6;
+}
+
+.masthead .slider .nav-left-arrow-container .nav-left-arrow {
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #303030;
+  border-right: 2px solid #303030;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.masthead .slider .nav-right-arrow-container {
+  width: 50px;
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+
+.masthead .slider .nav-right-arrow-container:hover {
+  cursor: pointer;
+}
+
+.masthead .slider .nav-right-arrow-container:hover .nav-right-arrow {
+  border-bottom-color: #9340D6;
+  border-right-color: #9340D6;
+}
+
+.masthead .slider .nav-right-arrow-container .nav-right-arrow {
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #303030;
+  border-right: 2px solid #303030;
+  -webkit-transform: rotate(315deg);
+          transform: rotate(315deg);
+}
+
+.masthead .slider .slides {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: auto;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.masthead .slider .slides::-webkit-scrollbar {
+  display: none;
+}
+
+.masthead .slider .slides > div {
+  scroll-snap-align: start;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 600px;
+  height: 400px;
+  border-radius: 30px;
+  background: #f5f5f5;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.masthead .slider .slides > div img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+
 .masthead .register-container {
   margin: 40px 5% 40px 5%;
-  width: 100%;
+  width: 30%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -168,6 +301,9 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .masthead .register-container h2 {
@@ -195,7 +331,7 @@ a {
 
 .masthead .logged-in-container {
   margin: 40px 5% 40px 5%;
-  width: 100%;
+  width: 30%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -203,6 +339,9 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .masthead .logged-in-container h2 {
@@ -217,7 +356,7 @@ a {
 .masthead .error-container {
   width: 100%;
   margin: 40px 5% 40px 5%;
-  width: 100%;
+  width: 30%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -225,6 +364,9 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .masthead .error-container h3 {
