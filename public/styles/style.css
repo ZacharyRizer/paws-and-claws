@@ -1208,6 +1208,10 @@ button:hover {
           justify-content: center;
 }
 
+.add-pet-container .create-pet {
+  margin: 0px;
+}
+
 .dropdown {
   background: inherit;
   -webkit-box-sizing: border-box;
@@ -1671,15 +1675,129 @@ button:hover {
   color: lightcoral;
 }
 
-.create-pet {
+.edit-pet {
   margin-top: 100px;
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #f5f5f5;
+  border-radius: 30px;
 }
 
-.create-pet-header h1 {
+.edit-pet .create-pet-header {
+  margin: 20px 0 20px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
+}
+
+.edit-pet .create-pet-header h1 {
+  color: #6C2F9D;
+}
+
+.edit-pet .create-pet-header p {
+  margin: 5px 20px 20px 20px;
+  color: #808080;
+}
+
+.edit-pet .text-container {
+  width: 80%;
   margin-bottom: 20px;
 }
 
-.checkbox-label .custom-checkbox {
+.edit-pet .text-container input {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+}
+
+.edit-pet .form-breed-age {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.edit-pet .form-sex-size {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.edit-pet .form-textarea {
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.edit-pet .form-textarea .describe-pet {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  padding: 10px 0 0 10px;
+  background: inherit;
+  border: 2px solid #300057;
+  border-radius: 3px;
+}
+
+.edit-pet .form-image-input {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+.edit-pet .form-image-input label {
+  width: 30%;
+}
+
+.edit-pet .form-image-input input {
+  width: 70%;
+}
+
+.edit-pet .form-checkbox {
+  width: 80%;
+  -ms-flex-item-align: left;
+      align-self: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+.edit-pet .form-checkbox .checkbox-label .custom-checkbox {
   margin-left: 10px;
   position: absolute;
   height: 16px;
@@ -1690,7 +1808,7 @@ button:hover {
   z-index: 2;
 }
 
-.checkbox-label .custom-checkbox .custom-checkbox::after {
+.edit-pet .form-checkbox .checkbox-label .custom-checkbox::after {
   position: absolute;
   content: "";
   height: 0px;
@@ -1705,7 +1823,7 @@ button:hover {
   opacity: 1;
 }
 
-.checkbox-label .custom-checkbox .custom-checkbox::after input {
+.edit-pet .form-checkbox .checkbox-label input {
   margin-left: 10px;
   height: 18px;
   width: 18px;
@@ -1715,7 +1833,7 @@ button:hover {
   z-index: 3;
 }
 
-.checkbox-label .custom-checkbox .custom-checkbox::after input:checked ~ .custom-checkbox {
+.edit-pet .form-checkbox .checkbox-label input:checked ~ .custom-checkbox {
   background-color: #6C2F9D;
   border-radius: 5px;
   -webkit-transform: rotate(0deg) scale(1);
@@ -1729,7 +1847,7 @@ button:hover {
   -o-transition: all 0.2s ease-out;
 }
 
-.checkbox-label .custom-checkbox .custom-checkbox::after input:checked ~ .custom-checkbox::after {
+.edit-pet .form-checkbox .checkbox-label input:checked ~ .custom-checkbox::after {
   -webkit-transform: rotate(45deg) scale(1);
   transform: rotate(45deg) scale(1);
   opacity: 1;
@@ -1748,7 +1866,7 @@ button:hover {
   -o-transition: all 0.2s ease-out;
 }
 
-.form-submit-button {
+.edit-pet .form-submit-button {
   width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
