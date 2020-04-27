@@ -1528,7 +1528,7 @@ button:hover {
 .pet-image img {
   width: 85%;
   height: auto;
-  border-radius: 5px;
+  border-radius: 30px;
   -webkit-transform: scale(1);
           transform: scale(1);
   background-color: rgba(0, 0, 0, 0.7);
