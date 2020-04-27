@@ -1,0 +1,75 @@
+.create-pet
+    margin-top: 100px
+
+.create-pet-header
+    h1
+        margin-bottom: 20px
+
+.checkbox-label
+    .custom-checkbox
+        margin-left: 10px
+        position: absolute
+        height: 16px
+        width: 16px
+        background-color: transparent
+        border-radius: 5px
+        border: 2px solid $darker
+        z-index: 2
+        .custom-checkbox::after
+            position: absolute
+            content: ""
+            height: 0px
+            width: 0px
+            top: 8px
+            left: 8px
+            border-radius: 5px
+            border: solid $darker
+            border-width: 0 2px 2px 0
+            -webkit-transform: rotate(0deg) scale(0)
+            -ms-transform: rotate(0deg) scale(0)
+            transform: rotate(0deg) scale(0)
+            opacity: 1
+            input
+                margin-left: 10px
+                height: 18px
+                width: 18px
+                position: absolute
+                opacity: 0
+                cursor: pointer
+                z-index: 3
+                &:checked ~.custom-checkbox
+                    background-color: $dark
+                    border-radius: 5px
+                    -webkit-transform: rotate(0deg) scale(1)
+                    -ms-transform: rotate(0deg) scale(1)
+                    transform: rotate(0deg) scale(1)
+                    opacity: 1
+                    border: 2px solid $darker
+                    transition: all 0.2s ease-out
+                    -webkit-transition: all 0.2s ease-out
+                    -moz-transition: all 0.2s ease-out
+                    -ms-transition: all 0.2s ease-out
+                    -o-transition: all 0.2s ease-out
+                &:checked ~.custom-checkbox::after
+                    -webkit-transform: rotate(45deg) scale(1)
+                    -ms-transform: rotate(45deg) scale(1)
+                    transform: rotate(45deg) scale(1)
+                    opacity: 1
+                    left: 6px
+                    top: 2px
+                    width: 3px
+                    height: 8px
+                    border: solid $grey1
+                    border-width: 0 2px 2px 0
+                    background-color: transparent
+                    border-radius: 0
+                    transition: all 0.2s ease-out
+                    -webkit-transition: all 0.2s ease-out
+                    -moz-transition: all 0.2s ease-out
+                    -ms-transition: all 0.2s ease-out
+                    -o-transition: all 0.2s ease-out
+.form-submit-button
+    width: 80%
+    display: flex
+    justify-content: flex-end
+    margin-bottom: 20px
