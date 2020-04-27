@@ -3,6 +3,7 @@ import { handleErrors, api } from "./utils.js";
 const registerFormUser = document.querySelector(".register-user");
 const registerFormShelter = document.querySelector(".register-shelter");
 
+
 const handleRegister = async (body, authorization, redirectPath) => {
     try {
         const res = await fetch(`${api}${authorization}`, {

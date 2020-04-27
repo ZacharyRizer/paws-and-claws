@@ -46,3 +46,4 @@ logInFormShelter.addEventListener("submit", (e) => {
     e.preventDefault();
     handleLogin(logInFormShelter, 'shelter');
 });
+
