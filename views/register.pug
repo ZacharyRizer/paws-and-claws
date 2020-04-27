@@ -22,7 +22,9 @@ block content
             input.password(name="password" type="password" placeholder="Password" autocomplete="off" required)
             //- label(for="confirmPassword")
             input.password-confirm(name="confirmPassword" type="password" placeholder="Confirm Password" autocomplete="off" required)
-            button.button(type="submit") Create Account
+            .register-form-buttons
+                button.button(id="demoShelterButton") Demo Adopter
+                button.button(type="submit") Create Account
         span.divider
         form.register-shelter
             .shelter-form-header
@@ -57,5 +59,7 @@ block content
             .password-fields
                 input.password(name="password" type="password" placeholder="Password" autocomplete="off" required)
                 input.password-confirm(name="confirmPassword" type="password" placeholder="Confirm Password" autocomplete="off" required)
-            button.button(type="submit") Create Shelter
+            .register-form-buttons
+                button.button(id="demoShelterButton") Demo Shelter
+                button.button(type="submit") Create Shelter
     script(type="module" src="js/register.js")

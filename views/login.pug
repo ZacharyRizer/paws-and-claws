@@ -8,7 +8,9 @@ block content
                     p We're glad you're back. Let's find you a best friend for thick and thin. Login below and in no time you'll be walking through the world with the perfect pup.
                 input.email(name="email" type="text" placeholder="Email")
                 input.password(name="password" type="password" placeholder="Password")
-                button.submit(type="submit") Login Adopter
+                .login-form-buttons
+                    button.button Demo Adopter
+                    button.submit(type="submit") Login Adopter
             span.divider
             form.shelter-login
                 .shelter-form-header
@@ -16,5 +18,7 @@ block content
                     p Welcome back! Thanks for all your hard work. We appreciate you placing so many lovable dogs. We'd love for you to let us do our part to help you along.
                 input.email(name="email" type="text" placeholder="Email")
                 input.password(name="password" type="password" placeholder="Password")
-                button.submit(type="submit") Login Shelter
+                .login-form-buttons
+                    button.button Demo Shelter
+                    button.submit(type="submit") Login Shelter
     script(type="module" src="js/log-in.js")

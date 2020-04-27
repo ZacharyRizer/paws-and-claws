@@ -33,6 +33,7 @@ button
 .register-user
     display: flex
     flex-direction: column
+    justify-content: center
     background: $grey1
     padding: 20px 30px
     border-radius: 30px
@@ -63,9 +64,11 @@ button
         width: 80%
         align-self: center
         margin-bottom: 10px
-    .button
-        align-self: flex-end
-        margin-right: 10%
+    .register-form-buttons
+        width: 80%
+        align-self: center
+        display: flex
+        justify-content: space-between
 .divider
     width: 5px
     height: 460px
@@ -76,6 +79,7 @@ button
 .register-shelter
     display: flex
     flex-direction: column
+    justify-content: center
     background: $grey1
     padding: 20px 30px
     border-radius: 30px
@@ -124,6 +128,8 @@ button
         & *
             width: 42%
         @include formBox
-    .button
-        align-self: flex-end
-        margin-right: 10%
+    .register-form-buttons
+        width: 80%
+        align-self: center
+        display: flex
+        justify-content: space-between
