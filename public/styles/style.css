@@ -289,6 +289,8 @@ a {
   -webkit-box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.6);
           box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.6);
   cursor: pointer;
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
 }
 
 .card .card-image {
@@ -933,10 +935,14 @@ button:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
-.pet-pref-container form {
-  width: 60%;
+.pet-pref-container .pet-pref-form-two {
+  margin-top: 0;
+  width: 80%;
   background: #f5f5f5;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -950,7 +956,7 @@ button:hover {
           align-items: center;
 }
 
-.pet-pref-container form .pet-pref-form-header {
+.pet-pref-container .pet-pref-form-two .pet-pref-form-header {
   margin: 20px 0 0 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -962,16 +968,16 @@ button:hover {
   width: 80%;
 }
 
-.pet-pref-container form .pet-pref-form-header h1 {
+.pet-pref-container .pet-pref-form-two .pet-pref-form-header h1 {
   color: #6C2F9D;
 }
 
-.pet-pref-container form .pet-pref-form-header p {
+.pet-pref-container .pet-pref-form-two .pet-pref-form-header p {
   margin: 5px 20px 20px 20px;
   color: #808080;
 }
 
-.pet-pref-container form .age-sex, .pet-pref-container form .size-breed {
+.pet-pref-container .pet-pref-form-two .age-sex, .pet-pref-container .pet-pref-form-two .size-breed {
   width: 80%;
   margin-bottom: 20px;
   display: -webkit-box;
@@ -982,7 +988,7 @@ button:hover {
           justify-content: space-between;
 }
 
-.pet-pref-container form .checkdiv {
+.pet-pref-container .pet-pref-form-two .form-checkbox {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -996,7 +1002,7 @@ button:hover {
   width: 80%;
 }
 
-.pet-pref-container form .buttondiv {
+.pet-pref-container .pet-pref-form-two .buttondiv {
   margin-top: 10px;
   width: 80%;
   display: -webkit-box;
@@ -1499,5 +1505,93 @@ button:hover {
 #pet-page-noUser p:hover {
   text-shadow: none;
   color: lightcoral;
+}
+
+.create-pet {
+  margin-top: 100px;
+}
+
+.create-pet-header h1 {
+  margin-bottom: 20px;
+}
+
+.checkbox-label .custom-checkbox {
+  margin-left: 10px;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #300057;
+  z-index: 2;
+}
+
+.checkbox-label .custom-checkbox .custom-checkbox::after {
+  position: absolute;
+  content: "";
+  height: 0px;
+  width: 0px;
+  top: 8px;
+  left: 8px;
+  border-radius: 5px;
+  border: solid #300057;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(0deg) scale(0);
+  transform: rotate(0deg) scale(0);
+  opacity: 1;
+}
+
+.checkbox-label .custom-checkbox .custom-checkbox::after input {
+  margin-left: 10px;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.checkbox-label .custom-checkbox .custom-checkbox::after input:checked ~ .custom-checkbox {
+  background-color: #6C2F9D;
+  border-radius: 5px;
+  -webkit-transform: rotate(0deg) scale(1);
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  border: 2px solid #300057;
+  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+}
+
+.checkbox-label .custom-checkbox .custom-checkbox::after input:checked ~ .custom-checkbox::after {
+  -webkit-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+  left: 6px;
+  top: 2px;
+  width: 3px;
+  height: 8px;
+  border: solid #f5f5f5;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
+  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+}
+
+.form-submit-button {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=style.css.map */

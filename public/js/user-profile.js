@@ -138,7 +138,7 @@ editPetPref.addEventListener('click', async (event) => {
         });
         let breedOptions = breedHTMLArr.join('');
         petPrefContainer.innerHTML = `
-            <form class="pet-pref-form">
+            <form class="pet-pref-form pet-pref-form-two">
                 <div class="pet-pref-form-header">
                     <h1>Edit your dream pet</h1>
                     <p>Sometimes your dreams are elusive or ephemeral. Feel free to change your preferences to better align with your dream pet.</p>
