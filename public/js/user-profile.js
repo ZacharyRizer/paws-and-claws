@@ -119,7 +119,10 @@ editPetPref.addEventListener('click', async (event) => {
     const petPrefContainer = document.querySelector('.pet-pref-container');
 
     try {
-        const resBreeds = await fetch(`${api}breeds`, {
+        const resBreeds = await fetch(`${api}breeds`);
+        const { breeds } = await resBreeds.json();
+
+        const resPrefs = await fetch(`${api}preferredPets/${userId}}`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem(
@@ -127,7 +130,8 @@ editPetPref.addEventListener('click', async (event) => {
                 )}`,
             }
         });
-        const { breeds } = await resBreeds.json();
+        const { petPref } = await resPrefs.json();
+        console.log(petPref);
 
         let breedHTMLArr = [`<option class="breed" value=0>No Breed Preference</option>`];
         breeds.forEach(breed => {
@@ -144,41 +148,41 @@ editPetPref.addEventListener('click', async (event) => {
                     <p>Sometimes your dreams are elusive or ephemeral. Feel free to change your preferences to better align with your dream pet.</p>
                 </div>
                 <div class="age-sex">
-                    <select class="dropdown" name="age" id="age" placeholder="Age">
+                    <select id="prefAge" class="dropdown" name="age" id="age">
                         <option value="1"> Puppy (0-1) </option>
                         <option value="2"> Young (1-3) </option>
                         <option value="3"> Middle Aged (3-7) </option>
                         <option value="4"> Adult (7-10) </option>
                         <option value="5"> Mature (10+) </option>
                     </select>
-                    <select class="dropdown" name="sex" id="sex" placeholder="Sex">
+                    <select id="prefSex" class="dropdown" name="sex" id="sex">
                         <option value="1"> Male </option>
                         <option value="2"> Female </option>
                     </select>
                 </div>
                 <div class="size-breed">
-                    <select class="dropdown" name="size" id="size" placeholder="Size">
+                    <select id="prefSize" class="dropdown" name="size" id="size" placeholder="Size">
                         <option value="1"> Toy </option>
                         <option value="2"> Small </option>
                         <option value="3"> Medium (3-7) </option>
                         <option value="4"> Large </option>
                         <option value="5"> X-Large </option>
                     </select>
-                    <select class="dropdown" name="breed" id="breed" placeholder="Breed">
+                    <select id="prefBreed" class="dropdown" name="breed" id="breed" placeholder="Breed">
                         ${breedOptions}
                     </select>
                 </div>
                 <div class="form-checkbox">
                     <label class="checkbox-label">
                         Is the pet ok with children?
-                        <input type="checkbox" id="idOkayKids" name="isOkayKids" />
+                        <input type="checkbox" id="isOkayKids" name="isOkayKids">
                         <span class="custom-checkbox"></span>
                     </label>
                 </div>
                 <div class="form-checkbox">
                     <label class="checkbox-label">
                         Is the pet ok with other pets?
-                        <input type="checkbox" name="isOkayPets" id="isOkayPets"/>
+                        <input type="checkbox" id="isOkayPets" name="isOkayPets">
                         <span class="custom-checkbox"></span>
                     </label>
                 </div>
@@ -187,6 +191,21 @@ editPetPref.addEventListener('click', async (event) => {
                 </div>
             </form>
         `
+        document.getElementById('prefAge').value = petPref.age
+        document.getElementById('prefSex').value = petPref.sex
+        document.getElementById('prefSize').value = petPref.size
+        if (petPref.breedId) {
+            document.getElementById('prefBreed').value = petPref.breedId
+        } else {
+            document.getElementById('prefBreed').value = "0"
+        }
+        if (petPref.isOkayKids === true) {
+            document.getElementById('isOkayKids').checked = true
+        }
+        if (petPref.isOkayPets === true) {
+            document.getElementById('isOkayPets').checked = true
+        }
+
         matchLink.classList.remove('selected');
         requestsLink.classList.remove('selected');
         editPetPref.classList.add('selected');
