@@ -253,7 +253,7 @@ addPet.addEventListener('click', async (e) => {
             <div class="form-checkbox">
                 <label class="checkbox-label">
                     Is the pet ok with children?
-                    <input type="checkbox" id="idOkayKids" name="isOkayKids" />
+                    <input type="checkbox" id="isOkayKids" name="isOkayKids" />
                     <span class="custom-checkbox"></span>
                 </label>
             </div>
