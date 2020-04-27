@@ -1,7 +1,10 @@
 import { handleErrors, api } from "./utils.js";
+import { handleLogin } from "./loginHelperFunction.js";
 
 const registerFormUser = document.querySelector(".register-user");
 const registerFormShelter = document.querySelector(".register-shelter");
+const demoUserButton = document.getElementById('demoUserButton');
+const demoShelterButton = document.getElementById('demoShelterButton');
 
 const handleRegister = async (body, authorization, redirectPath) => {
     try {
@@ -64,4 +67,16 @@ registerFormShelter.addEventListener("submit", async (e) => {
     const body = { shelterName, email, website, phoneNum, address, city, stateId, zipCode, password, confirmPassword };
 
     handleRegister(body, 'shelters', '/shelter-profile');
+});
+
+demoUserButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    let body = { email: "Demo@DemoUser.com", password: "password" };
+    handleLogin(body, 'user');
+});
+
+demoShelterButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    let body = { email: "Demo1@DemoShelterUser.com", password: "password" };
+    handleLogin(body, 'user');
 });
