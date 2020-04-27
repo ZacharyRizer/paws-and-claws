@@ -6,6 +6,7 @@ const registerFormShelter = document.querySelector(".register-shelter");
 const demoUserButton = document.getElementById('demoUserButton');
 const demoShelterButton = document.getElementById('demoShelterButton');
 
+
 const handleRegister = async (body, authorization, redirectPath) => {
     try {
         const res = await fetch(`${api}${authorization}`, {
