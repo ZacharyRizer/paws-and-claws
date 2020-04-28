@@ -168,7 +168,7 @@ editPetPref.addEventListener('click', async (event) => {
                         <option value="4"> Large </option>
                         <option value="5"> X-Large </option>
                     </select>
-                    <select id="prefBreed" class="dropdown" name="breed" id="breed" placeholder="Breed">
+                    <select id="prefBreed" class="dropdown" name="breed" placeholder="Breed">
                         ${breedOptions}
                     </select>
                 </div>
@@ -194,10 +194,10 @@ editPetPref.addEventListener('click', async (event) => {
         document.getElementById('prefAge').value = petPref.age
         document.getElementById('prefSex').value = petPref.sex
         document.getElementById('prefSize').value = petPref.size
-        if (petPref.breedId) {
-            document.getElementById('prefBreed').value = petPref.breedId
-        } else {
+        if (petPref.breedId === null) {
             document.getElementById('prefBreed').value = "0"
+        } else {
+            document.getElementById('prefBreed').value = petPref.breedId
         }
         if (petPref.isOkayKids === true) {
             document.getElementById('isOkayKids').checked = true
@@ -212,6 +212,7 @@ editPetPref.addEventListener('click', async (event) => {
     } catch (e) {
         handleErrors(e);
     }
+
     const editPetPrefForm = document.querySelector('.pet-pref-form')
     editPetPrefForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -220,7 +221,7 @@ editPetPref.addEventListener('click', async (event) => {
         const age = formData.get("age");
         const sex = formData.get("sex");
         const size = formData.get("size");
-        let breedId = formData.get("breeds");
+        let breedId = formData.get("breed");
         const isOkayKids = formData.get("isOkayKids") ? true : false;
         const isOkayPets = formData.get("isOkayKids") ? true : false;
 
@@ -255,7 +256,7 @@ editPetPref.addEventListener('click', async (event) => {
             }
 
             if (res.status === 404) {
-                window.location.href = '/createPreferredPet';
+                window.location.href = '/create-preferred-pet';
             }
 
             if (!res.ok) {
