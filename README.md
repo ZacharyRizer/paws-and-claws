@@ -1,7 +1,7 @@
-# [Paws and Claws](https://paws-and-claws.herokuapp.com/) ![](/paws-and-claws/documentation/Images/logo.png)
+# [Paws and Claws](https://paws-and-claws.herokuapp.com/) 
 An app to connect people looking for a furry friend with pets that need homes.
 
-![](/paws-and-claws/documentation/Images/paws-and-claws-screenshot.jpeg)
+![](/documentation/Images/paws-and-claws-screenshot.jpeg)
 
 ## Built With:
 * Express
