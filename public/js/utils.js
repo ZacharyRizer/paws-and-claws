@@ -71,7 +71,7 @@ export const matchPets = (dogs, prefPet) => {
     })
 
     const bestMatches = dogs.filter(dog => {
-        return (dog.matchPercentage > 0.5);
+        return (dog.matchPercentage > 0.65);
     });
 
     // Quick sort the matches -Sea
