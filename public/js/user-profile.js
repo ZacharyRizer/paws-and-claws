@@ -131,7 +131,6 @@ editPetPref.addEventListener('click', async (event) => {
             }
         });
         const { petPref } = await resPrefs.json();
-        console.log(petPref);
 
         let breedHTMLArr = [`<option class="breed" value=0>No Breed Preference</option>`];
         breeds.forEach(breed => {
