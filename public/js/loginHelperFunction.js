@@ -1,12 +1,12 @@
-import { handleErrors, api } from "./utils.js";
+import { handleErrors, api } from './utils.js';
 
 export const handleLogin = async (body, authorization) => {
   try {
     const res = await fetch(`${api}${authorization}s/token`, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(body),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
     if (!res.ok) {
@@ -19,13 +19,13 @@ export const handleLogin = async (body, authorization) => {
       name,
     } = await res.json();
     // storage access_token in localStorage:
-    localStorage.setItem("PAWS_AND_CLAWS_ACCESS_TOKEN", token);
-    localStorage.setItem("PAWS_AND_CLAWS_CURRENT_USER_ID", id);
-    localStorage.setItem("PAWS_AND_CLAWS_ROLE", role);
-    localStorage.setItem("PAWS_AND_CLAWS_NAME", name);
+    localStorage.setItem('PAWS_AND_CLAWS_ACCESS_TOKEN', token);
+    localStorage.setItem('PAWS_AND_CLAWS_CURRENT_USER_ID', id);
+    localStorage.setItem('PAWS_AND_CLAWS_ROLE', role);
+    localStorage.setItem('PAWS_AND_CLAWS_NAME', name);
 
     window.location.href = `/${authorization}-profile`;
   } catch (err) {
     handleErrors(err);
   }
-}
+};

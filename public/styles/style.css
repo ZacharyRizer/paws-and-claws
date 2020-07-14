@@ -926,6 +926,14 @@ button:hover {
           justify-content: space-between;
 }
 
+.user-login .login-form-buttons #shelter-demo-login, .user-login .login-form-buttons #user-demo-login, .shelter-login .login-form-buttons #shelter-demo-login, .shelter-login .login-form-buttons #user-demo-login {
+  margin-right: 5px;
+}
+
+.user-login .login-form-buttons #shelter-login, .user-login .login-form-buttons #user-login, .shelter-login .login-form-buttons #shelter-login, .shelter-login .login-form-buttons #user-login {
+  margin-left: 5px;
+}
+
 .selected {
   background: #A9A9A9;
 }
