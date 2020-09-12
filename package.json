@@ -19,7 +19,7 @@
     "morgan": "^1.10.0",
     "pug": "^2.0.4",
     "per-env": "^1.0.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
